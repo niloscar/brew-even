@@ -1,0 +1,16 @@
+.apiHealthy, .apiUnhealthy {
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 6px;
+  border: 1px solid;
+}
+
+.apiHealthy {
+  color: #00C000;
+  background-color: #00C0001a;
+}
+
+.apiUnhealthy {
+  color: #ff0000;
+  background-color: #ff00001a;
+}

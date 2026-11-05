@@ -1,0 +1,35 @@
+{
+    "name": "autokund",
+    "version": "1.0.0",
+    "private": true,
+    "description": "",
+    "workspaces": [
+        "frontend",
+        "backend",
+        "shared"
+    ],
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "sitemap:build": "node scripts/generate-sitemap.mjs",
+        "images:build": "node scripts/optimize-images.mjs",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "concurrently --names frontend,backend \"npm run dev -w frontend\" \"npm run dev -w backend\"",
+        "dev:host": "concurrently --names frontend,backend \"npm run dev -w frontend -- --host\" \"npm run dev -w backend\"",
+        "build": "npm run build --workspace backend && npm run build --workspace frontend"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "concurrently": "^10.0.5",
+        "prettier": "^3.9.9"
+    },
+    "allowScripts": {
+        "esbuild": true,
+        "argon2": true
+    }
+}
