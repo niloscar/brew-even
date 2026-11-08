@@ -1,29 +1,50 @@
-import { useEffect, useState } from 'react'
-import { getHealth } from './api/healthApi'
+import { useState } from 'react'
 
-import styles from './App.module.css'
+import AppHeader from './components/AppHeader'
+import OverviewSection from './components/overview/OverviewSection'
+import SetupSection from './components/setup/SetupSection'
+import SettingsSection from './components/settings/SettingsSection'
+import AppFooter from './components/AppFooter'
+
+import type { Currency } from 'shared'
+
+export const OSCARS_NEXT_CUP_COST = 51.21
 
 export default function App() {
-  const [health, setHealth] = useState<string | null>(null)
-
-  useEffect(() => {
-    const fetchHealth = async () => {
-      try {
-        const data = await getHealth()
-        setHealth(data.status)
-      } catch (error) {
-        console.error('Error fetching health:', error)
-        setHealth('Error')
-      }
-    }
-
-    fetchHealth()
-  }, [])
+  // const [health, setHealth] = useState<string | null>(null)
+  const [locale, setLocale] = useState(import.meta.env.VITE_DEFAULT_LOCALE)
+  const [currency, setCurrency] = useState<Currency>(
+    import.meta.env.VITE_DEFAULT_CURRENCY as Currency
+  )
 
   return (
     <>
-      <h1>Hello World</h1>
-      <p>API Health: <span className={health === 'ok' ? styles.apiHealthy : styles.apiUnhealthy}>{health?.toUpperCase()}</span></p>
+      <AppHeader
+        locale={locale}
+        setLocale={setLocale}
+        currency={currency}
+        setCurrency={setCurrency}
+      />
+
+      <main>
+        <OverviewSection
+          locale={locale}
+          currency={currency}
+        />
+
+        <SetupSection
+          locale={locale}
+          currency={currency}
+        />
+
+        <SettingsSection />
+      </main>
+
+      <AppFooter 
+        currency={currency}
+        locale={locale}
+        nextCupCost={OSCARS_NEXT_CUP_COST}
+      />
     </>
   )
 }

@@ -1,42 +1,18 @@
-# Oscars fullstack-starter
+# Brew-even ☕️
 
-En enkel boilerplate för fullstackprojekt med React, TypeScript, Vite, Node.js och Express.
+A home espresso cost calculator for tracking equipment, consumables, cost per cup, and break-even.
 
-Använder npm workspaces för att hantera frontend, backend och delad kod i ett gemensamt repository.
+Brew-even aims to help home baristas understand the true cost of their espresso setup and compare the cost of brewing at home with alternative coffee habits.
 
-## Teknikstack
+## Planned features
 
-- **Frontend:** React, TypeScript, Vite, Axios, CSS Modules
-- **Backend:** Node.js, Express, TypeScript
-- **Shared:** Gemensamma typer, konstanter och valideringsscheman
-- **Verktyg:** npm workspaces, ESLint, Prettier, concurrently
+- Track equipment investments and running costs
+- Calculate cost per cup
+- Visualize how costs change over time
+- Compare against alternative coffee habits
+- Calculate break-even points
+- Integrate with the La Marzocco API to automatically retrieve the number of coffees brewed
 
-## Projektstruktur
+## Status
 
-```text
-├── frontend/   # React-applikation
-├── backend/    # Express API
-├── shared/     # Delad kod och typer
-└── docs/       # Dokumentation
-```
-
-## Kom igång
-
-```bash
-npm install
-npm run dev
-```
-
-Frontend körs på `http://localhost:5173` och backend på `http://localhost:3000`.
-
-Under utveckling vidarebefordrar Vite anrop till `/api` via en proxy till backend.
-
-## Bygg
-
-```bash
-npm run build
-```
-
-## Användning
-
-Skapa ett nytt repository utifrån denna mall, uppdatera projektnamnet och börja utveckla.
+**Early development.** Currently exploring the dashboard layout and user interface. Core functionality has not yet been implemented.
