@@ -10,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "shared": "*",
+    "@phosphor-icons/react": "^2.1.10",
     "axios": "^1.21.0",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "shared": "*"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",

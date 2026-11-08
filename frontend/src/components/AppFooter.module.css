@@ -1,0 +1,70 @@
+.footer {
+  display: grid;
+  padding-bottom: 2rem;
+}
+
+.footerGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 1fr auto;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    align-items: center;
+  }
+}
+
+.supportCard h2 {
+  margin-bottom: 0;
+}
+
+.supportCard h2 svg {
+  color: var(--accent);
+}
+
+.supportCard button {
+  background-color: var(--accent);
+  color: var(--bg);
+  margin: .5rem 0;
+}
+
+.supportCard i {
+  font-size: var(--font-sm);
+  text-align: center;
+}
+
+.bottomRow {
+  --gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap);
+  grid-column: 1 / -1;
+
+  font-size: var(--font-sm);
+  letter-spacing: -0.12px;
+
+  @media (max-width: 768px) {
+    grid-column: 1;
+    align-self: end;
+    justify-content: center;
+
+    &::before {
+      content: "·";
+      order: 1;
+    }
+
+    & p:first-child {
+      order: 0;
+    }
+
+    & p:last-child {
+      order: 2;
+    }
+  }
+}
+
+.bottomRow p {
+  margin: 0;
+}

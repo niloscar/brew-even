@@ -1,1 +1,1 @@
-export { TEST } from './test.constants.ts'
+export type { Currency } from './currency.types.ts'

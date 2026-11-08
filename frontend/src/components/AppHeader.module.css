@@ -1,0 +1,29 @@
+.appHeader {
+  position: fixed;
+  top: 0;
+  padding: 1rem 2rem;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1126px;
+  width: 100%;
+}
+
+.appHeader h1 {
+  font-size: 1rem;
+  text-align: left;
+  margin: 0;
+}
+
+.appHeader .localeCurrency {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.appHeader .localeCurrency select {
+  padding: 4px 0;
+  border: none;
+  background-color: transparent;
+}
