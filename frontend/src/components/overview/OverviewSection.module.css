@@ -53,19 +53,18 @@
   }
 }
 
-.currency {
-  font-size: 0.6em;
+.currency,
+.metricUnit {
+  font-size: .6em;
   font-weight: 500;
-  opacity: 0.7;
+  opacity: .7;
 }
 
-.currency + .integer {
-  margin-left: 0.1em;
-}
-
+.currency + .integer,
 .fraction + .currency,
-.integer + .currency {
-  margin-left: 0.16em;
+.integer + .currency,
+.metricUnit {
+  margin-left: .1em;
 }
 
 .literal {

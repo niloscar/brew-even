@@ -17,11 +17,13 @@ export default function OverviewSection({ locale, currency }: { locale: string, 
   const nextCupCost = currencyUtils.convert(51.21, MOCK_RATES[currency])
 
   const renderPrice = (amount: number) =>
-    format.priceParts(amount, locale, currency).map((part, index) => (
-      <span key={index} className={styles[part.type]}>
-        {part.value}
-      </span>
-    ))
+    format.priceParts(amount, locale, currency)
+      .filter(part => part.type !== 'literal' || part.value.trim() !== '')
+      .map((part, index) => (
+        <span key={index} className={styles[part.type]}>
+          {part.value}
+        </span>
+      ))
 
   return (
     <section className="view" id="overview">
@@ -67,7 +69,10 @@ export default function OverviewSection({ locale, currency }: { locale: string, 
             <CoffeeIcon />
             <span>Brewed</span>
           </h3>
-          <p className={styles.metricValue}>{cupsBrewed}</p>
+          <p className={styles.metricValue}>
+            {cupsBrewed}
+            <span className={styles.metricUnit}>cups</span>
+          </p>
         </div>
       </div>
     </section>
