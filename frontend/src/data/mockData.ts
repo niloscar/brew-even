@@ -105,13 +105,13 @@ export const MOCK_CONSUMABLES = [
   {
     id: 1,
     type: 'coffeeBeans',
-    pricePerUnit: 0.4,
+    pricePerUnit: 378,
     currency: 'SEK'
   },
   {
     id: 2,
     type: 'water',
-    pricePerUnit: 0.5,
+    pricePerUnit: 6.33,
     currency: 'SEK'
   }
 ]

@@ -37,10 +37,7 @@ export default function App() {
           currency={currency}
         />
 
-        <SettingsSection 
-          currency={currency}
-        />
-
+        <SettingsSection />
       </main>
 
       <AppFooter 

@@ -2,6 +2,12 @@ import { useState } from 'react'
 import * as currencyUtils from '../../utils/currency'
 import * as format from '../../utils/format'
 import NumberStepperInput from '../NumberStepperInput'
+import {
+  CoffeeBeanIcon,
+  PlusIcon, 
+  SlidersHorizontalIcon,
+  ToolboxIcon
+} from '@phosphor-icons/react'
 
 import styles from './SetupSection.module.css'
 
@@ -25,6 +31,13 @@ interface SetupSectionProps {
 
 type BrewSetting = 'gramsBeansPerCup' | 'gramsCoffeePerCup'
 type ConsumableId = (typeof MOCK_CONSUMABLES)[number]['id']
+
+const CURRENCY_STEPS: Record<Currency, number> = {
+  SEK: 1,
+  EUR: 0.1,
+  USD: 0.1,
+  GBP: 0.1,
+}
 
 export default function SetupSection({ locale, currency }: SetupSectionProps) {
   const [settings, setSettings] = useState(MOCK_SETTINGS)
@@ -72,9 +85,12 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
     <section className="view" id="setup">
       <h2>Setup</h2>
 
-      <div className="cardGrid col2">
+      <div className="cardGrid contained col2">
         <section className="card">
-          <h3>Brew settings</h3>
+          <h3>
+            <SlidersHorizontalIcon />
+            <span>Brew settings</span>
+          </h3>
 
           <form className="formGrid">
               <label htmlFor="gramsBeansPerCup">Beans per cup</label>
@@ -100,7 +116,10 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
         </section>
 
         <section className="card">
-          <h3>Consumables</h3>
+          <h3>
+            <CoffeeBeanIcon />
+            <span>Consumables</span>
+          </h3>
 
           <form className="formGrid" onSubmit={(e) => e.preventDefault()}>
             {consumables.map((consumable) => {
@@ -125,7 +144,7 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
                       handleConsumablePrice(consumable.id, value)
                     }
                     min={0}
-                    step={0.01}
+                    step={CURRENCY_STEPS[currency]}
                     unit={`${currencySymbol}/${unit}`}
                   />
                 </>
@@ -135,7 +154,17 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
         </section>
 
         <section className="card span2">
-          <h3>Hardware</h3>
+          <button
+            aria-label="Add new equipment"
+            className={styles.addEquipmentButton}
+            onClick={() => alert('Add new equipment')}
+          >
+            <PlusIcon />
+          </button>
+          <h3>
+            <ToolboxIcon />
+            <span>Equipment</span>
+          </h3>
           <ul className={styles.setupPartsList}>
             {sortedSetupParts.map((part) => (
               <li key={part.id} title={`Acquired on ${part.acquisitionDate}`}>

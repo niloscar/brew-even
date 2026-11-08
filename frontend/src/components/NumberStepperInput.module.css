@@ -1,4 +1,3 @@
-
 .inputUnit {
   position: absolute;
   right: .5rem;
@@ -15,6 +14,10 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
+
+  &:focus-within {
+    border-color: var(--accent);
+  }
 }
 
 .inputWrapper input {
@@ -25,6 +28,11 @@
   border-radius: 0;
   color: var(--text-h);
   appearance: textfield;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
 }
 
 .inputWrapper button {
@@ -62,13 +70,18 @@
   background: var(--bg);
   color: var(--text);
   cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--selection);
+    color: var(--text-h);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .inputStepper button:first-child {
   border-bottom: 1px solid var(--border);
-}
-
-.inputStepper button:hover {
-  background: var(--border);
-  color: var(--text-h);
 }

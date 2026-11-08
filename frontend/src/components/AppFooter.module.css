@@ -24,14 +24,13 @@
 }
 
 .supportCard button {
-  background-color: var(--accent);
-  color: var(--bg);
   margin: .5rem 0;
 }
 
 .supportCard i {
   font-size: var(--font-sm);
   text-align: center;
+  text-wrap: pretty;
 }
 
 .bottomRow {

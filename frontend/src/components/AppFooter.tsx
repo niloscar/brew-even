@@ -28,7 +28,7 @@ export default function AppFooter({ currency, locale, nextCupCost }: { currency:
               <span>Buy me a coffee</span>
             </h2>
             <p>Enjoying Brew-even? Buy me a coffee and help support its development.</p>
-            <button className={styles.supportButton}>
+            <button className="buttonAccent">
               <span>Support the project</span>
               <ArrowUpRightIcon />
             </button>

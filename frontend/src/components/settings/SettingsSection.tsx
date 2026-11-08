@@ -1,58 +1,18 @@
-import { useState } from 'react'
+import { PlugsIcon } from '@phosphor-icons/react'
 
-import { SETUP_PART_OPTIONS } from '../../settings/constants'
-import NumberStepperInput from '../NumberStepperInput'
 
-import type { Currency } from 'shared'
-
-export default function SettingsSection({ currency }: { currency: Currency }) {
-  const [partPrice, setPartPrice] = useState(0)
-
+export default function SettingsSection() {
   return (
     <section className="view" id="settings">
       <h2>Settings</h2>
 
-      <div className="cardGrid col2">
+      <div className="cardGrid col1">
         <section className="card">
-          <h3>Manage setup</h3>
+          <h3>
+            <PlugsIcon />
+            <span>Connect your coffee setup</span>
+          </h3>
 
-          <form 
-            className="formGrid" 
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <label htmlFor="setupPart">Part of setup</label>
-            <select id="setupPart" name="setupPart">
-              {SETUP_PART_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-
-            <label htmlFor="partPrice">Price</label>
-            <NumberStepperInput
-              id="partPrice"
-              label="Part price"
-              value={partPrice}
-              onChange={setPartPrice}
-              step={0.01}
-              unit={currency}
-            />
-
-            <label htmlFor="partAcquisitionDate">Acquisition date</label>
-            <input
-              type="date"
-              id="partAcquisitionDate"
-              name="partAcquisitionDate"
-            />
-
-            <button type="submit">Add</button>
-          </form>
-        </section>
-
-        <section className="card">
-          <h3>Connect your coffee setup</h3>
-          
           <p>Connect your coffee setup to the app to automatically track and calculate your costs.</p>
           <p>Once connected, the app will automatically update your costs based on your usage.</p>
 
@@ -61,7 +21,11 @@ export default function SettingsSection({ currency }: { currency: Currency }) {
             onSubmit={(e) => e.preventDefault()}
           >
             <label htmlFor="supplier">Supplier</label>
-            <select id="supplier" name="supplier">
+            <select 
+              className="buttonLike"
+              id="supplier" 
+              name="supplier"
+            >
               <option value="laMarzocco">La Marzocco</option>
             </select>
 

@@ -25,8 +25,7 @@ export default function NumberStepperInput({
     const decimals = (step.toString().split('.')[1] ?? '').length
     const factor = 10 ** decimals
 
-    const nextValue =
-      Math.round((value + direction * step) * factor) / factor
+    const nextValue = Math.round((value + direction * step) * factor) / factor
 
     onChange(Math.min(max ?? Infinity, Math.max(min, nextValue)))
   }

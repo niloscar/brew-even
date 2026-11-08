@@ -1,3 +1,5 @@
+import type { Currency } from 'shared'
+
 export function number(
   value: number,
   locale: string,
@@ -17,6 +19,18 @@ export function price(price: number, locale: string, currency = 'SEK'): string {
     minimumFractionDigits: fractionDigits,
     maximumFractionDigits: fractionDigits
   }).format(price)
+}
+
+export function priceParts(
+  amount: number,
+  locale: string,
+  currency: Currency
+) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency,
+    currencyDisplay: 'narrowSymbol'
+  }).formatToParts(amount)
 }
 
 export function grams(grams: number, locale: string): string {
