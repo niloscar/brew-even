@@ -1,10 +1,10 @@
-# Brew-even
+# Brew-even ☕️
 
-A simple calculator for tracking the true cost of home espresso.
+A home espresso cost calculator for tracking equipment, consumables, cost per cup, and break-even.
 
-Calculate your cost per cup based on equipment, coffee beans, and running costs. Compare your setup against alternatives to see when (or if) it breaks even.
+Brew-even aims to help home baristas understand the true cost of their espresso setup and compare the cost of brewing at home with alternative coffee habits.
 
-## Features (planned)
+## Planned features
 
 - Track equipment investments and running costs
 - Calculate cost per cup
@@ -15,4 +15,4 @@ Calculate your cost per cup based on equipment, coffee beans, and running costs.
 
 ## Status
 
-Early development.
+**Early development.** Currently exploring the dashboard layout and user interface. Core functionality has not yet been implemented.
