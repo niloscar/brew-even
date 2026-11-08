@@ -3,6 +3,7 @@
   padding: 0;
   margin: 0;
   display: grid;
+  grid-template-columns: max-content minmax(0, 1fr) max-content;
   text-align: left;
   text-wrap: pretty;
 }
@@ -29,4 +30,22 @@
 .equipmentTotalPrice {
   font-weight: bold;
   grid-column: 3;
+}
+
+@media (max-width: 480px) {
+  .equipmentList {
+    grid-template-columns: minmax(0, 1fr) max-content;
+  }
+
+  .equipmentList li {
+    grid-column: 1 / -1;
+  }
+
+  .equipmentType {
+    display: none;
+  }
+
+  .equipmentTotalPrice {
+    grid-column: 2;
+  }
 }

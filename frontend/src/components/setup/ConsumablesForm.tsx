@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import NumberStepperInput from '../NumberStepperInput'
 import * as currencyUtils from '../../utils/currency'
 import { MOCK_CONSUMABLES, MOCK_RATES } from '../../data/mockData'
@@ -57,7 +57,7 @@ export default function ConsumablesForm({ locale, currency }: { locale: string; 
         const unit = option?.unit ?? 'item'
 
         return (
-          <>
+          <Fragment key={consumable.id}>
             <label htmlFor={`consumable-${consumable.id}`}>
               {option?.label}
             </label>
@@ -71,7 +71,7 @@ export default function ConsumablesForm({ locale, currency }: { locale: string; 
               step={CURRENCY_STEPS[currency]}
               unit={`${currencySymbol}/${unit}`}
             />
-          </>
+          </Fragment>
         )
       })}
     </form>
