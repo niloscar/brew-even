@@ -1,0 +1,32 @@
+.equipmentList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.equipmentList li {
+  display: grid;
+  grid-column: span 3;
+  grid-template-columns: subgrid;
+  justify-items: start;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.equipmentName {
+  font-weight: bold;
+}
+
+.equipmentTotal {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border-dark);
+}
+
+.equipmentTotalPrice {
+  font-weight: bold;
+  grid-column: 3;
+}
