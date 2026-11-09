@@ -4,6 +4,8 @@ A home espresso cost calculator for tracking equipment, consumables, cost per cu
 
 Brew-even aims to help home baristas understand the true cost of their espresso setup and compare the cost of brewing at home with alternative coffee habits.
 
+**Live preview:** [brew-even.vercel.app](https://brew-even.vercel.app)
+
 ## Planned features
 
 - Track equipment investments and running costs
