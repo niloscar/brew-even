@@ -45,17 +45,23 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
         </section>
 
         <section className="card span2">
-          <button
-            aria-label={t('setup.addEquipment')}
-            className={styles.addEquipmentButton}
-            onClick={() => alert(t('setup.addEquipment'))}
-          >
-            <PlusIcon />
-          </button>
-          <h3>
-            <ToolboxIcon />
-            <span>{t('setup.equipment')}</span>
-          </h3>
+          <div className={styles.equipmentHeader}>
+            <h3>
+              <ToolboxIcon />
+              <span>{t('setup.equipment')}</span>
+            </h3>
+
+            <button
+              type="button"
+              aria-label={t('setup.addEquipment')}
+              className={styles.addEquipmentButton}
+              onClick={() => alert(t('setup.addEquipment'))}
+            >
+              <PlusIcon weight="bold" />
+              <span>{t('common.add')}</span>
+            </button>
+          </div>
+
           <EquipmentList locale={locale} currency={currency} />
         </section>
       </div>

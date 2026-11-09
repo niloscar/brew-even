@@ -61,6 +61,11 @@
     "tagline": "Caffeine made me do it."
   },
   "common": {
+    "add": "Add",
+    "remove": "Remove",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
     "increase": "Increase {{label}}",
     "decrease": "Decrease {{label}}"
   }

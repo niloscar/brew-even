@@ -327,6 +327,11 @@ input, textarea, select, button {
   background-color: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 input:focus-visible,

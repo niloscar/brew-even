@@ -61,6 +61,11 @@
     "tagline": "Das habe ich dem Koffein zu verdanken."
   },
   "common": {
+    "add": "Hinzufügen",
+    "remove": "Entfernen",
+    "edit": "Bearbeiten",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
     "increase": "Wert für „{{label}}“ erhöhen",
     "decrease": "Wert für „{{label}}“ verringern"
   }

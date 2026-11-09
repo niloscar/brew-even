@@ -1,0 +1,12 @@
+.graphContainer {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}

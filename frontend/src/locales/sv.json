@@ -61,6 +61,11 @@
     "tagline": "Det här är koffeinets verk."
   },
   "common": {
+    "add": "Lägg till",
+    "remove": "Ta bort",
+    "edit": "Redigera",
+    "save": "Spara",
+    "cancel": "Avbryt",
     "increase": "Öka {{label}}",
     "decrease": "Minska {{label}}"
   }

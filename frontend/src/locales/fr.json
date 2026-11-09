@@ -61,6 +61,11 @@
     "tagline": "Tout ça, c’est grâce à la caféine."
   },
   "common": {
+    "add": "Ajouter",
+    "remove": "Supprimer",
+    "edit": "Modifier",
+    "save": "Sauvegarder",
+    "cancel": "Annuler",
     "increase": "Augmenter la valeur du champ « {{label}} »",
     "decrease": "Diminuer la valeur du champ « {{label}} »"
   }

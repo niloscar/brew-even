@@ -6,8 +6,8 @@ export default function CoffeeIntegrationForm() {
   return (
     <form className="formGrid" onSubmit={(e) => e.preventDefault()}>
       <label htmlFor="supplier">{t('settings.supplier')}</label>
-      <select className="buttonLike" id="supplier" name="supplier">
-        <option value="laMarzocco">La Marzocco</option>
+      <select className="buttonLike" id="supplier" name="supplier" disabled>
+        {/* <option value="laMarzocco">La Marzocco</option> */}
       </select>
 
       <label htmlFor="apiKey">{t('settings.apiKey')}</label>
@@ -16,6 +16,7 @@ export default function CoffeeIntegrationForm() {
         id="apiKey"
         name="apiKey"
         autoComplete="off"
+        disabled
       />
 
       <button type="submit">{t('settings.connect')}</button>
