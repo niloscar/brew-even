@@ -50,7 +50,7 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
             className={styles.addEquipmentButton}
             onClick={() => alert(t('setup.addEquipment'))}
           >
-            <PlusIcon />
+            <PlusIcon weight="bold" />
           </button>
           <h3>
             <ToolboxIcon />

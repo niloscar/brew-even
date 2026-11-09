@@ -1,18 +1,13 @@
 import { useTranslation } from 'react-i18next'
-import { MOCK_SETUP_PARTS } from '../../data/mockData'
+import { MOCK_RATES, MOCK_SETUP_PARTS } from '../../data/mockData'
+import * as currencyUtils from '../../utils/currency'
 import * as format from '../../utils/format'
 
 import type { Currency } from 'shared'
 
 import styles from './EquipmentList.module.css'
 
-export default function EquipmentList({
-  locale,
-  currency
-}: {
-  locale: string
-  currency: Currency
-}) {
+export default function EquipmentList({ locale, currency }: { locale: string, currency: Currency }) {
   const { t } = useTranslation()
   const sortedEquipment = [...MOCK_SETUP_PARTS].sort(
     (a, b) => b.price - a.price
@@ -34,14 +29,21 @@ export default function EquipmentList({
           </span>
           <span className={styles.equipmentName}>{part.name}</span>
           <span className={styles.equipmentPrice}>
-            {format.price(part.price, locale, currency)}
+            {format.price(
+              currencyUtils.convert(part.price, MOCK_RATES[currency]),
+              locale,
+              currency
+            )}
           </span>
         </li>
       ))}
       <li className={styles.equipmentTotal}>
         <span className={styles.equipmentTotalPrice}>
           {format.price(
-            sortedEquipment.reduce((sum, part) => sum + part.price, 0),
+            currencyUtils.convert(
+              sortedEquipment.reduce((sum, part) => sum + part.price, 0),
+              MOCK_RATES[currency]
+            ),
             locale,
             currency
           )}
