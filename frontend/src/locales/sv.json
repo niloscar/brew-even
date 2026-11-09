@@ -1,0 +1,67 @@
+{
+  "overview": {
+    "title": "Översikt",
+    "comingSoon": "Kommer snart: Kostnad per kopp över tid",
+    "lastCup": "Senaste koppen",
+    "nextCup": "Nästa kopp",
+    "brewed": "Bryggt",
+    "cupsBrewed": "Bryggda koppar",
+    "cup_one": "st",
+    "cup_other": "st"
+  },
+  "setup": {
+    "title": "Utrustning och inställningar",
+    "brewSettings": "Brygginställningar",
+    "consumables": "Förbrukningsvaror",
+    "equipment": "Utrustning",
+    "addEquipment": "Lägg till utrustning",
+    "coffeeDose": "Kaffedos",
+    "espressoYield": "Espressomängd",
+    "priceLabel": "Pris för {{item}}",
+    "unitItem": "st",
+    "acquiredOn": "Inköpt {{date}}",
+    "consumableTypes": {
+      "coffeeBeans": "Kaffebönor",
+      "water": "Vatten",
+      "electricity": "El",
+      "milk": "Mjölk",
+      "cleaningProducts": "Rengöringsmedel"
+    },
+    "equipmentTypes": {
+      "espressoMachine": "Maskin",
+      "grinder": "Kvarn",
+      "scale": "Våg",
+      "knockBox": "Sumplåda",
+      "coffeeCanister": "Förvaringsburk",
+      "tamper": "Tamper",
+      "wdt": "WDT",
+      "tampingMat": "Tampermatta",
+      "waterTestKit": "Vattentest"
+    }
+  },
+  "settings": {
+    "title": "Inställningar",
+    "connectSetup": "Anslut din kaffeutrustning",
+    "connectDescription": "Anslut din kaffeutrustning till appen för att automatiskt registrera och beräkna dina kostnader.",
+    "automaticUpdates": "När utrustningen är ansluten uppdateras kostnaderna automatiskt utifrån din användning.",
+    "supplier": "Tillverkare",
+    "apiKey": "API-nyckel",
+    "connect": "Anslut"
+  },
+  "footer": {
+    "title": "Byggt av kärleken till kaffe",
+    "description": "Brew-even är ett indie-projekt som hjälper hemmabaristor att förstå vad deras espressoutrustning faktiskt kostar.",
+    "createdBy": "Skapat av",
+    "creatorDescription": ", kaffeentusiast och mjukvaruutvecklare.",
+    "viewOnGitHub": "Visa på GitHub",
+    "buyMeACoffee": "Bjud mig på en kopp",
+    "supportDescription": "Gillar du Brew-even? Bjud mig på en kopp kaffe och stöd utvecklingen av projektet.",
+    "supportProject": "Stöd projektet",
+    "nextCupCost": "Min nästa kopp kaffe kommer att kosta {{price}}.",
+    "tagline": "Det här är koffeinets verk."
+  },
+  "common": {
+    "increase": "Öka {{label}}",
+    "decrease": "Minska {{label}}"
+  }
+}

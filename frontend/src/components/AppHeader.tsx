@@ -1,17 +1,18 @@
-import type { Currency } from 'shared'
+import { useTranslation } from 'react-i18next'
 import useTheme from '../hooks/useTheme'
 import ThemeSwitch from './ThemeSwitch'
+
+import type { Currency } from 'shared'
 
 import styles from './AppHeader.module.css'
 
 interface AppHeaderProps {
-  locale: string
-  setLocale: (locale: string) => void
   currency: Currency
   setCurrency: (currency: Currency) => void
 }
 
-export default function AppHeader({ locale, setLocale, currency, setCurrency }: AppHeaderProps) {
+export default function AppHeader({ currency, setCurrency }: AppHeaderProps) {
+  const { i18n } = useTranslation()
   const { theme, toggleTheme } = useTheme()
 
   return (
@@ -21,13 +22,13 @@ export default function AppHeader({ locale, setLocale, currency, setCurrency }: 
       <div className={styles.localeCurrency}>
         <select
           id="locale"
-          value={locale}
-          onChange={(e) => setLocale(e.target.value)}
+          value={i18n.language}
+          onChange={(e) => void i18n.changeLanguage(e.target.value)}
         >
-          <option value="sv-SE">Swedish</option>
+          <option value="de-DE">Deutsch</option>
           <option value="en-US">English</option>
-          <option value="de-DE">German</option>
-          <option value="fr-FR">French</option>
+          <option value="fr-FR">Français</option>
+          <option value="sv-SE">Svenska</option>
         </select>
 
         <select
@@ -35,10 +36,10 @@ export default function AppHeader({ locale, setLocale, currency, setCurrency }: 
           value={currency}
           onChange={(e) => setCurrency(e.target.value as Currency)}
         >
-          <option value="SEK">SEK</option>
-          <option value="USD">USD</option>
           <option value="EUR">EUR</option>
           <option value="GBP">GBP</option>
+          <option value="SEK">SEK</option>
+          <option value="USD">USD</option>
         </select>
       </div>
 

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import AppHeader from './components/AppHeader'
 import OverviewSection from './components/overview/OverviewSection'
@@ -12,14 +13,14 @@ const OSCARS_NEXT_CUP_COST = 51.21
 const OSCARS_CUPS_BREWED = null //1274
 
 export default function App() {
-  const [locale, setLocale] = useState(import.meta.env.VITE_DEFAULT_LOCALE)
   const [currency, setCurrency] = useState<Currency>(import.meta.env.VITE_DEFAULT_CURRENCY as Currency)
+  
+  const { i18n } = useTranslation()
+  const locale = i18n.language
 
   return (
     <>
       <AppHeader
-        locale={locale}
-        setLocale={setLocale}
         currency={currency}
         setCurrency={setCurrency}
       />

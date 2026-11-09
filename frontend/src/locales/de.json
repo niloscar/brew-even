@@ -1,0 +1,67 @@
+{
+  "overview": {
+    "title": "Übersicht",
+    "comingSoon": "Demnächst: Kosten pro Tasse im Zeitverlauf",
+    "lastCup": "Letzte Tasse",
+    "nextCup": "Nächste Tasse",
+    "brewed": "Zubereitet",
+    "cupsBrewed": "Zubereitete Tassen",
+    "cup_one": "Stk.",
+    "cup_other": "Stk."
+  },
+  "setup": {
+    "title": "Ausrüstung und Einstellungen",
+    "brewSettings": "Brüheinstellungen",
+    "consumables": "Verbrauchskosten",
+    "equipment": "Ausrüstung",
+    "addEquipment": "Ausrüstung hinzufügen",
+    "coffeeDose": "Kaffeedosis",
+    "espressoYield": "Espressomenge",
+    "priceLabel": "Preis für {{item}}",
+    "unitItem": "Stk.",
+    "acquiredOn": "Gekauft am {{date}}",
+    "consumableTypes": {
+      "coffeeBeans": "Kaffeebohnen",
+      "water": "Wasser",
+      "electricity": "Strom",
+      "milk": "Milch",
+      "cleaningProducts": "Reinigungsmittel"
+    },
+    "equipmentTypes": {
+      "espressoMachine": "Espressomaschine",
+      "grinder": "Kaffeemühle",
+      "scale": "Waage",
+      "knockBox": "Abklopfbehälter",
+      "coffeeCanister": "Kaffeedose",
+      "tamper": "Tamper",
+      "wdt": "WDT",
+      "tampingMat": "Tampermatte",
+      "waterTestKit": "Wassertest-Set"
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "connectSetup": "Kaffeegeräte verbinden",
+    "connectDescription": "Verbinde deine Kaffeegeräte mit Brew-even, um deinen Verbrauch automatisch zu erfassen und deine Kosten zu berechnen.",
+    "automaticUpdates": "Nach dem Verbinden werden deine Kosten anhand deiner Nutzung automatisch aktualisiert.",
+    "supplier": "Hersteller",
+    "apiKey": "API-Schlüssel",
+    "connect": "Verbinden"
+  },
+  "footer": {
+    "title": "Aus Liebe zum Kaffee entwickelt",
+    "description": "Brew-even ist ein unabhängiges Projekt, das Hobby-Baristas hilft, die tatsächlichen Kosten ihrer Espressoausrüstung im Blick zu behalten.",
+    "createdBy": "Entwickelt von",
+    "creatorDescription": ", Kaffeeliebhaber und Softwareentwickler.",
+    "viewOnGitHub": "Auf GitHub ansehen",
+    "buyMeACoffee": "Spendier mir einen Kaffee",
+    "supportDescription": "Gefällt dir Brew-even? Spendier mir einen Kaffee und unterstütze die Weiterentwicklung des Projekts.",
+    "supportProject": "Projekt unterstützen",
+    "nextCupCost": "Meine nächste Tasse Kaffee kostet mich {{price}}.",
+    "tagline": "Das habe ich dem Koffein zu verdanken."
+  },
+  "common": {
+    "increase": "Wert für „{{label}}“ erhöhen",
+    "decrease": "Wert für „{{label}}“ verringern"
+  }
+}

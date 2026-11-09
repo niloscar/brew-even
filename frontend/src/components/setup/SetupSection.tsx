@@ -1,9 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import BrewSettingsForm from './BrewSettingsForm'
 import ConsumablesForm from './ConsumablesForm'
 import EquipmentList from './EquipmentList'
 import {
   CoffeeBeanIcon,
-  PlusIcon, 
+  PlusIcon,
   SlidersHorizontalIcon,
   ToolboxIcon
 } from '@phosphor-icons/react'
@@ -18,15 +19,17 @@ interface SetupSectionProps {
 }
 
 export default function SetupSection({ locale, currency }: SetupSectionProps) {
+  const { t } = useTranslation()
+
   return (
     <section className="view" id="setup">
-      <h2>Setup</h2>
+      <h2>{t('setup.title')}</h2>
 
       <div className="cardGrid contained col2">
         <section className="card">
           <h3>
             <SlidersHorizontalIcon />
-            <span>Brew settings</span>
+            <span>{t('setup.brewSettings')}</span>
           </h3>
 
           <BrewSettingsForm />
@@ -35,7 +38,7 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
         <section className="card">
           <h3>
             <CoffeeBeanIcon />
-            <span>Consumables</span>
+            <span>{t('setup.consumables')}</span>
           </h3>
 
           <ConsumablesForm locale={locale} currency={currency} />
@@ -43,15 +46,15 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
 
         <section className="card span2">
           <button
-            aria-label="Add new equipment"
+            aria-label={t('setup.addEquipment')}
             className={styles.addEquipmentButton}
-            onClick={() => alert('Add new equipment')}
+            onClick={() => alert(t('setup.addEquipment'))}
           >
             <PlusIcon />
           </button>
           <h3>
             <ToolboxIcon />
-            <span>Equipment</span>
+            <span>{t('setup.equipment')}</span>
           </h3>
           <EquipmentList locale={locale} currency={currency} />
         </section>
