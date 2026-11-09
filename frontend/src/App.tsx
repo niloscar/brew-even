@@ -7,43 +7,66 @@ import SetupSection from './components/setup/SetupSection'
 import SettingsSection from './components/settings/SettingsSection'
 import AppFooter from './components/AppFooter'
 
+import { calculateCosts, calculateBeanCostPerCup } from './lib/cost'
+import {
+  MOCK_SETUP_PARTS,
+  MOCK_SETTINGS,
+  MOCK_CONSUMABLES
+} from './data/mockData'
+
 import type { Currency } from 'shared'
 
-const OSCARS_NEXT_CUP_COST = 51.21
-const OSCARS_CUPS_BREWED = null //1274
+const OSCARS_CUPS_BREWED = 1289 //1289
 
 export default function App() {
-  const [currency, setCurrency] = useState<Currency>(import.meta.env.VITE_DEFAULT_CURRENCY as Currency)
-  
+  const [currency, setCurrency] = useState<Currency>(
+    import.meta.env.VITE_DEFAULT_CURRENCY as Currency
+  )
+  const [manualCups, setManualCups] = useState('0')
+
   const { i18n } = useTranslation()
   const locale = i18n.language
 
+  const cupsBrewed = OSCARS_CUPS_BREWED ?? Number(manualCups || 0)
+
+  const coffeeBeans = MOCK_CONSUMABLES.find((item) => item.type === 'coffeeBeans')
+  if (!coffeeBeans) throw new Error('Coffee beans not found')
+
+  const consumablesPerCup = calculateBeanCostPerCup(
+    MOCK_SETTINGS.doseGrams,
+    coffeeBeans.pricePerUnit
+  )
+
+  const costs = calculateCosts({
+    equipment: MOCK_SETUP_PARTS,
+    cupsBrewed,
+    consumablesPerCup
+  })
+
   return (
     <>
-      <AppHeader
-        currency={currency}
-        setCurrency={setCurrency}
-      />
+      <AppHeader currency={currency} setCurrency={setCurrency} />
 
       <main>
         <OverviewSection
           locale={locale}
           currency={currency}
           integratedCups={OSCARS_CUPS_BREWED}
+          manualCups={manualCups}
+          onManualCupsChange={setManualCups}
+          averageCostPerCup={costs.averageCostPerCup}
+          nextAverageCostPerCup={costs.nextAverageCostPerCup}
         />
 
-        <SetupSection
-          locale={locale}
-          currency={currency}
-        />
+        <SetupSection locale={locale} currency={currency} />
 
         <SettingsSection />
       </main>
 
-      <AppFooter 
+      <AppFooter
         currency={currency}
         locale={locale}
-        nextCupCost={OSCARS_NEXT_CUP_COST}
+        nextCupCost={costs.nextAverageCostPerCup}
       />
     </>
   )

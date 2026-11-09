@@ -8,9 +8,13 @@ type OverviewSectionProps = {
   locale: string
   currency: Currency
   integratedCups?: number | null
+  manualCups: string
+  averageCostPerCup: number | null
+  nextAverageCostPerCup: number
+  onManualCupsChange: (value: string) => void
 }
 
-export default function OverviewSection({ locale, currency, integratedCups }: OverviewSectionProps) {
+export default function OverviewSection({ locale, currency, integratedCups, manualCups, averageCostPerCup, nextAverageCostPerCup, onManualCupsChange }: OverviewSectionProps) {
   const { t } = useTranslation()
 
   return (
@@ -19,10 +23,14 @@ export default function OverviewSection({ locale, currency, integratedCups }: Ov
 
       <Graph />
 
-      <Metrics 
-        locale={locale} 
-        currency={currency} 
-        integratedCups={integratedCups} 
+      <Metrics
+        locale={locale}
+        currency={currency}
+        integratedCups={integratedCups}
+        manualCups={manualCups}
+        averageCostPerCup={averageCostPerCup}
+        nextAverageCostPerCup={nextAverageCostPerCup}
+        onManualCupsChange={onManualCupsChange}
       />
     </section>
   )
