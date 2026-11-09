@@ -1,0 +1,67 @@
+{
+  "overview": {
+    "title": "Overview",
+    "comingSoon": "Coming soon: Cost per cup over time",
+    "lastCup": "Last cup",
+    "nextCup": "Next cup",
+    "brewed": "Brewed",
+    "cupsBrewed": "Cups brewed",
+    "cup_one": "cup",
+    "cup_other": "cups"
+  },
+  "setup": {
+    "title": "Setup",
+    "brewSettings": "Brew settings",
+    "consumables": "Consumables",
+    "equipment": "Equipment",
+    "addEquipment": "Add new equipment",
+    "coffeeDose": "Coffee dose",
+    "espressoYield": "Espresso yield",
+    "priceLabel": "{{item}} price",
+    "unitItem": "item",
+    "acquiredOn": "Acquired on {{date}}",
+    "consumableTypes": {
+      "coffeeBeans": "Coffee beans",
+      "water": "Water",
+      "electricity": "Electricity",
+      "milk": "Milk",
+      "cleaningProducts": "Cleaning products"
+    },
+    "equipmentTypes": {
+      "espressoMachine": "Machine",
+      "grinder": "Grinder",
+      "scale": "Scale",
+      "knockBox": "Knock box",
+      "coffeeCanister": "Canister",
+      "tamper": "Tamper",
+      "wdt": "WDT",
+      "tampingMat": "Tamping mat",
+      "waterTestKit": "Water test kit"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "connectSetup": "Connect your coffee setup",
+    "connectDescription": "Connect your coffee setup to the app to automatically track and calculate your costs.",
+    "automaticUpdates": "Once connected, the app will automatically update your costs based on your usage.",
+    "supplier": "Supplier",
+    "apiKey": "API key",
+    "connect": "Connect"
+  },
+  "footer": {
+    "title": "Built for the love of coffee",
+    "description": "Brew-even is an independent project helping home baristas understand the true cost of their espresso setup.",
+    "createdBy": "Created by",
+    "creatorDescription": ", coffee enthusiast and software developer.",
+    "viewOnGitHub": "View on GitHub",
+    "buyMeACoffee": "Buy me a coffee",
+    "supportDescription": "Enjoying Brew-even? Buy me a coffee and help support its development.",
+    "supportProject": "Support the project",
+    "nextCupCost": "My next cup of coffee will cost me {{price}}.",
+    "tagline": "Caffeine made me do it."
+  },
+  "common": {
+    "increase": "Increase {{label}}",
+    "decrease": "Decrease {{label}}"
+  }
+}

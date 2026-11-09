@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import styles from './NumberStepperInput.module.css'
 
 interface NumberStepperInputProps {
@@ -21,6 +23,8 @@ export default function NumberStepperInput({
   step = 1,
   unit = ''
 }: NumberStepperInputProps) {
+  const { t } = useTranslation()
+
   function handleAdjust(direction: 1 | -1) {
     const decimals = (step.toString().split('.')[1] ?? '').length
     const factor = 10 ** decimals
@@ -54,7 +58,7 @@ export default function NumberStepperInput({
       <div className={styles.inputStepper}>
         <button
           type="button"
-          aria-label={`Increase ${label}`}
+          aria-label={t('common.increase', { label })}
           onClick={() => handleAdjust(1)}
         >
           +
@@ -62,7 +66,7 @@ export default function NumberStepperInput({
 
         <button
           type="button"
-          aria-label={`Decrease ${label}`}
+          aria-label={t('common.decrease', { label })}
           onClick={() => handleAdjust(-1)}
         >
           −

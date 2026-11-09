@@ -1,45 +1,93 @@
+import { useTranslation } from 'react-i18next'
 import * as format from '../utils/format'
 import * as currencyUtils from '../utils/currency'
 import { MOCK_RATES } from '../data/mockData'
-import { ArrowUpRightIcon, CoffeeIcon, GithubLogoIcon } from '@phosphor-icons/react'
+import {
+  ArrowUpRightIcon,
+  CoffeeIcon,
+  GithubLogoIcon
+} from '@phosphor-icons/react'
 
 import type { Currency } from 'shared'
 
 import styles from './AppFooter.module.css'
 
-export default function AppFooter({ currency, locale, nextCupCost }: { currency: Currency, locale: string, nextCupCost: number }) {
+interface AppFooterProps {
+  currency: Currency
+  locale: string
+  nextCupCost: number
+}
+
+export default function AppFooter({
+  currency,
+  locale,
+  nextCupCost
+}: AppFooterProps) {
+  const { t } = useTranslation()
+
+  const nextCupPrice = format.price(
+    currencyUtils.convert(nextCupCost, MOCK_RATES[currency]),
+    locale,
+    currency
+  )
+
   return (
-      <footer className={`view ${styles.footer}`} id="about">
-        <div className={`cardGrid ${styles.footerGrid}`}>
-          <section>
-            <h2>Built for the love of coffee</h2>
-            <p>Brew-even is an independent project helping home baristas understand the true cost of their espresso setup.</p>
-            <p>Created by <a href="https://oscarnilsson.dev?ref=brew-even" target="_blank" rel="noopener noreferrer"><span>Oscar Nilsson</span><ArrowUpRightIcon /></a>, coffee enthusiast and software developer.</p>
-            <a href="https://github.com/niloscar/brew-even" target="_blank" rel="noopener noreferrer">
-              <GithubLogoIcon />
-              <span>View on GitHub</span>
+    <footer className={`view ${styles.footer}`} id="about">
+      <div className={`cardGrid ${styles.footerGrid}`}>
+        <section>
+          <h2>{t('footer.title')}</h2>
+
+          <p>{t('footer.description')}</p>
+
+          <p>
+            {t('footer.createdBy')}{' '}
+            <a
+              href="https://oscarnilsson.dev?ref=brew-even"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Oscar Nilsson</span>
               <ArrowUpRightIcon />
             </a>
-          </section>
+            {t('footer.creatorDescription')}
+          </p>
 
-          <section className={`card ${styles.supportCard}`}>
-            <h2 className={styles.supportHeader}>
-              <CoffeeIcon />
-              <span>Buy me a coffee</span>
-            </h2>
-            <p>Enjoying Brew-even? Buy me a coffee and help support its development.</p>
-            <button className="buttonAccent">
-              <span>Support the project</span>
-              <ArrowUpRightIcon />
-            </button>
-            <i>My next cup of coffee will cost me{' '}{format.price(currencyUtils.convert(nextCupCost, MOCK_RATES[currency]), locale, currency)}.</i>
-          </section>
+          <a
+            href="https://github.com/niloscar/brew-even"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GithubLogoIcon />
+            <span>{t('footer.viewOnGitHub')}</span>
+            <ArrowUpRightIcon />
+          </a>
+        </section>
 
-          <section className={styles.bottomRow}>
-            <p className={styles.copyright}>&copy; {new Date().getFullYear()} Brew-even</p>
-            <p>Caffeine made me do it.</p>
-          </section>
-        </div>
-      </footer>
+        <section className={`card ${styles.supportCard}`}>
+          <h2 className={styles.supportHeader}>
+            <CoffeeIcon />
+            <span>{t('footer.buyMeACoffee')}</span>
+          </h2>
+
+          <p>{t('footer.supportDescription')}</p>
+
+          <button className="buttonAccent">
+            <span>{t('footer.supportProject')}</span>
+            <ArrowUpRightIcon />
+          </button>
+
+          <i>
+            {t('footer.nextCupCost', { price: nextCupPrice })}
+          </i>
+        </section>
+
+        <section className={styles.bottomRow}>
+          <p className={styles.copyright}>
+            &copy; {new Date().getFullYear()} Brew-even
+          </p>
+          <p>{t('footer.tagline')}</p>
+        </section>
+      </div>
+    </footer>
   )
 }

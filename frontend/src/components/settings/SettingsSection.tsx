@@ -1,20 +1,23 @@
+import { useTranslation } from 'react-i18next'
 import CoffeeIntegrationForm from './CoffeeIntegrationForm'
 import { PlugsIcon } from '@phosphor-icons/react'
 
 export default function SettingsSection() {
+  const { t } = useTranslation()
+
   return (
     <section className="view" id="settings">
-      <h2>Settings</h2>
+      <h2>{t('settings.title')}</h2>
 
       <div className="cardGrid col1">
         <section className="card">
           <h3>
             <PlugsIcon />
-            <span>Connect your coffee setup</span>
+            <span>{t('settings.connectSetup')}</span>
           </h3>
 
-          <p>Connect your coffee setup to the app to automatically track and calculate your costs.</p>
-          <p>Once connected, the app will automatically update your costs based on your usage.</p>
+          <p>{t('settings.connectDescription')}</p>
+          <p>{t('settings.automaticUpdates')}</p>
 
           <CoffeeIntegrationForm />
         </section>

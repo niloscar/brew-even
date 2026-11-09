@@ -1,0 +1,67 @@
+{
+  "overview": {
+    "title": "Vue d’ensemble",
+    "comingSoon": "Bientôt : évolution du coût par tasse",
+    "lastCup": "Dernière tasse",
+    "nextCup": "Prochaine tasse",
+    "brewed": "Préparées",
+    "cupsBrewed": "Nombre de tasses préparées",
+    "cup_one": "pce",
+    "cup_other": "pces"
+  },
+  "setup": {
+    "title": "Équipement et réglages",
+    "brewSettings": "Réglages de préparation",
+    "consumables": "Consommables",
+    "equipment": "Équipement",
+    "addEquipment": "Ajouter un équipement",
+    "coffeeDose": "Dose de café moulu",
+    "espressoYield": "Quantité d’espresso",
+    "priceLabel": "Prix : {{item}}",
+    "unitItem": "pce",
+    "acquiredOn": "Date d’achat : {{date}}",
+    "consumableTypes": {
+      "coffeeBeans": "Café en grains",
+      "water": "Eau",
+      "electricity": "Électricité",
+      "milk": "Lait",
+      "cleaningProducts": "Produits d’entretien"
+    },
+    "equipmentTypes": {
+      "espressoMachine": "Machine à expresso",
+      "grinder": "Moulin à café",
+      "scale": "Balance",
+      "knockBox": "Bac à marc",
+      "coffeeCanister": "Boîte à café",
+      "tamper": "Tasseur",
+      "wdt": "WDT",
+      "tampingMat": "Tapis de tassage",
+      "waterTestKit": "Kit d’analyse de l’eau"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "connectSetup": "Connecter vos appareils à café",
+    "connectDescription": "Connectez vos appareils à Brew-even pour suivre automatiquement votre consommation et calculer vos coûts.",
+    "automaticUpdates": "Une fois vos appareils connectés, vos coûts sont automatiquement mis à jour en fonction de votre utilisation.",
+    "supplier": "Fabricant",
+    "apiKey": "Clé API",
+    "connect": "Connecter"
+  },
+  "footer": {
+    "title": "Créé par amour du café",
+    "description": "Brew-even est un projet indépendant qui aide les passionnés d’espresso à connaître le coût réel de leur équipement.",
+    "createdBy": "Créé par",
+    "creatorDescription": ", passionné de café et développeur logiciel.",
+    "viewOnGitHub": "Voir sur GitHub",
+    "buyMeACoffee": "Offrez-moi un café",
+    "supportDescription": "Brew-even vous plaît ? Offrez-moi un café pour soutenir son développement.",
+    "supportProject": "Soutenir le projet",
+    "nextCupCost": "Ma prochaine tasse de café me coûtera {{price}}.",
+    "tagline": "Tout ça, c’est grâce à la caféine."
+  },
+  "common": {
+    "increase": "Augmenter la valeur du champ « {{label}} »",
+    "decrease": "Diminuer la valeur du champ « {{label}} »"
+  }
+}

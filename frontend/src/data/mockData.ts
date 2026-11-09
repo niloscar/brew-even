@@ -97,8 +97,8 @@ export const MOCK_SETUP_PARTS = [
 ]
 
 export const MOCK_SETTINGS = {
-  gramsBeansPerCup: 15,
-  gramsCoffeePerCup: 30
+  doseGrams: 15,
+  yieldGrams: 30
 }
 
 export const MOCK_CONSUMABLES = [

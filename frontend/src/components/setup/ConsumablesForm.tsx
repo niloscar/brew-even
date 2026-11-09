@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import NumberStepperInput from '../NumberStepperInput'
 import * as currencyUtils from '../../utils/currency'
 import { MOCK_CONSUMABLES, MOCK_RATES } from '../../data/mockData'
@@ -12,11 +13,18 @@ const CURRENCY_STEPS: Record<Currency, number> = {
   SEK: 1,
   EUR: 0.1,
   USD: 0.1,
-  GBP: 0.1,
+  GBP: 0.1
 }
 
-export default function ConsumablesForm({ locale, currency }: { locale: string; currency: Currency }) {
+export default function ConsumablesForm({
+  locale,
+  currency
+}: {
+  locale: string
+  currency: Currency
+}) {
   const [consumables, setConsumables] = useState(MOCK_CONSUMABLES)
+  const { t } = useTranslation()
 
   function handleConsumablePrice(id: ConsumableId, amount: number) {
     if (!Number.isFinite(amount)) return
@@ -32,7 +40,6 @@ export default function ConsumablesForm({ locale, currency }: { locale: string; 
       )
     )
   }
-
 
   const currencySymbol =
     new Intl.NumberFormat(locale, {
@@ -54,17 +61,19 @@ export default function ConsumablesForm({ locale, currency }: { locale: string; 
         )
 
         const price = displayPrice(consumable.pricePerUnit)
-        const unit = option?.unit ?? 'item'
+        const label = t(`setup.consumableTypes.${consumable.type}`)
+        const unit =
+          option?.unit === 'item' || !option?.unit
+            ? t('setup.unitItem')
+            : option.unit
 
         return (
           <Fragment key={consumable.id}>
-            <label htmlFor={`consumable-${consumable.id}`}>
-              {option?.label}
-            </label>
+            <label htmlFor={`consumable-${consumable.id}`}>{label}</label>
 
             <NumberStepperInput
               id={`consumable-${consumable.id}`}
-              label={`${option?.label} price`}
+              label={t('setup.priceLabel', { item: label })}
               value={price}
               onChange={(value) => handleConsumablePrice(consumable.id, value)}
               min={0}
