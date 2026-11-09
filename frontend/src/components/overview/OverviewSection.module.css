@@ -129,6 +129,20 @@
   pointer-events: none;
 }
 
+.editIconBold {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .editIconRegular {
+    display: none;
+  }
+
+  .editIconBold {
+    display: block;
+  }
+}
+
 .currency,
 .metricUnit {
   font-size: .6em;

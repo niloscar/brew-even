@@ -1,0 +1,41 @@
+.themeSwitch {
+  position: relative;
+  background-color: transparent;
+  color: var(--text);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 24px;
+
+  -webkit-tap-highlight-color: transparent;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -.5rem;
+  }
+
+  &:hover {
+    color: var(--text-h);
+  }
+}
+
+.icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+}
+
+.espresso {
+  mask-image: url('../assets/icons/EspressoIcon.svg');
+}
+
+.latte {
+  mask-image: url('../assets/icons/LatteIcon.svg');
+}

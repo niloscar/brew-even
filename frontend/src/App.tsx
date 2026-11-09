@@ -13,9 +13,7 @@ const OSCARS_CUPS_BREWED = null //1274
 
 export default function App() {
   const [locale, setLocale] = useState(import.meta.env.VITE_DEFAULT_LOCALE)
-  const [currency, setCurrency] = useState<Currency>(
-    import.meta.env.VITE_DEFAULT_CURRENCY as Currency
-  )
+  const [currency, setCurrency] = useState<Currency>(import.meta.env.VITE_DEFAULT_CURRENCY as Currency)
 
   return (
     <>

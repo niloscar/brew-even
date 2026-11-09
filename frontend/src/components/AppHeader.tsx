@@ -1,4 +1,6 @@
 import type { Currency } from 'shared'
+import useTheme from '../hooks/useTheme'
+import ThemeSwitch from './ThemeSwitch'
 
 import styles from './AppHeader.module.css'
 
@@ -10,6 +12,8 @@ interface AppHeaderProps {
 }
 
 export default function AppHeader({ locale, setLocale, currency, setCurrency }: AppHeaderProps) {
+  const { theme, toggleTheme } = useTheme()
+
   return (
     <header className={styles.appHeader}>
       <h1>Brew-even</h1>
@@ -37,6 +41,8 @@ export default function AppHeader({ locale, setLocale, currency, setCurrency }: 
           <option value="GBP">GBP</option>
         </select>
       </div>
+
+      <ThemeSwitch theme={theme} toggleTheme={toggleTheme} />
     </header>
   )
 }
