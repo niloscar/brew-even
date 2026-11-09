@@ -16,20 +16,22 @@ import {
 
 import type { Currency } from 'shared'
 
-const OSCARS_CUPS_BREWED = 1289 //1289
+const DEFAULT_CUPS_BREWED = 1289
 
 export default function App() {
   const [currency, setCurrency] = useState<Currency>(
     import.meta.env.VITE_DEFAULT_CURRENCY as Currency
   )
-  const [manualCups, setManualCups] = useState('0')
+  const [manualCups, setManualCups] = useState(String(DEFAULT_CUPS_BREWED))
 
   const { i18n } = useTranslation()
   const locale = i18n.language
 
-  const cupsBrewed = OSCARS_CUPS_BREWED ?? Number(manualCups || 0)
+  const cupsBrewed = Number(manualCups || 0)
 
-  const coffeeBeans = MOCK_CONSUMABLES.find((item) => item.type === 'coffeeBeans')
+  const coffeeBeans = MOCK_CONSUMABLES.find(
+    (item) => item.type === 'coffeeBeans'
+  )
   if (!coffeeBeans) throw new Error('Coffee beans not found')
 
   const consumablesPerCup = calculateBeanCostPerCup(
@@ -51,7 +53,6 @@ export default function App() {
         <OverviewSection
           locale={locale}
           currency={currency}
-          integratedCups={OSCARS_CUPS_BREWED}
           manualCups={manualCups}
           onManualCupsChange={setManualCups}
           averageCostPerCup={costs.averageCostPerCup}
