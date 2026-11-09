@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberStepperInput from '../NumberStepperInput'
 import * as currencyUtils from '../../utils/currency'
@@ -9,6 +9,13 @@ import type { Currency } from 'shared'
 
 type ConsumableId = (typeof MOCK_CONSUMABLES)[number]['id']
 
+type ConsumablesFormProps = {
+  locale: string
+  currency: Currency
+  consumables: typeof MOCK_CONSUMABLES
+  onPriceChange: (id: ConsumableId, pricePerUnit: number) => void
+}
+
 const CURRENCY_STEPS: Record<Currency, number> = {
   SEK: 1,
   EUR: 0.1,
@@ -18,28 +25,11 @@ const CURRENCY_STEPS: Record<Currency, number> = {
 
 export default function ConsumablesForm({
   locale,
-  currency
-}: {
-  locale: string
-  currency: Currency
-}) {
-  const [consumables, setConsumables] = useState(MOCK_CONSUMABLES)
+  currency,
+  consumables,
+  onPriceChange
+}: ConsumablesFormProps) {
   const { t } = useTranslation()
-
-  function handleConsumablePrice(id: ConsumableId, amount: number) {
-    if (!Number.isFinite(amount)) return
-
-    setConsumables((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              pricePerUnit: Math.max(0, amount) / MOCK_RATES[currency]
-            }
-          : item
-      )
-    )
-  }
 
   const currencySymbol =
     new Intl.NumberFormat(locale, {
@@ -48,6 +38,15 @@ export default function ConsumablesForm({
     })
       .formatToParts(0)
       .find((part) => part.type === 'currency')?.value ?? currency
+
+  function handleConsumablePrice(id: ConsumableId, amount: number) {
+    if (!Number.isFinite(amount)) return
+
+    onPriceChange(
+      id,
+      Math.max(0, amount) / MOCK_RATES[currency]
+    )
+  }
 
   function displayPrice(price: number) {
     return Number(currencyUtils.convert(price, MOCK_RATES[currency]).toFixed(2))

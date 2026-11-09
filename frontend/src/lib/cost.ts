@@ -33,6 +33,38 @@ export function calculateBeanCostPerCup(doseGrams: number, pricePerKg: number): 
   return (doseGrams / 1000) * pricePerKg
 }
 
+export function calculateConsumablesPerCup(
+  settings: { doseGrams: number; yieldGrams: number },
+  consumables: { type: string; pricePerUnit: number }[]
+): number {
+  if (
+    consumables.some(
+      (item) =>
+        !Number.isFinite(item.pricePerUnit) ||
+        item.pricePerUnit < 0
+    )
+  ) {
+    throw new RangeError('Invalid consumable price')
+  }
+
+  if (!Number.isFinite(settings.yieldGrams) || settings.yieldGrams < 0) {
+    throw new RangeError('Invalid espresso yield')
+  }
+
+  const beans = consumables.find((item) => item.type === 'coffeeBeans')
+  const water = consumables.find((item) => item.type === 'water')
+
+  const beanCost = calculateBeanCostPerCup(
+    settings.doseGrams,
+    beans?.pricePerUnit ?? 0
+  )
+
+  const waterCost =
+    (settings.yieldGrams / 1000) * (water?.pricePerUnit ?? 0)
+
+  return beanCost + waterCost
+}
+
 export function calculateCosts({ equipment, cupsBrewed, consumablesPerCup, asOfDate }: CostInput): CostSummary {
   if (!Number.isSafeInteger(cupsBrewed) || cupsBrewed < 0) {
     throw new RangeError('cupsBrewed must be a non-negative integer')
