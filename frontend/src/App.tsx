@@ -7,7 +7,7 @@ import SetupSection from './components/setup/SetupSection'
 import SettingsSection from './components/settings/SettingsSection'
 import AppFooter from './components/AppFooter'
 
-import { calculateCosts, calculateBeanCostPerCup } from './lib/cost'
+import { calculateCosts, calculateConsumablesPerCup } from './lib/cost'
 import {
   MOCK_SETUP_PARTS,
   MOCK_SETTINGS,
@@ -19,25 +19,20 @@ import type { Currency } from 'shared'
 const DEFAULT_CUPS_BREWED = 1289
 
 export default function App() {
-  const [currency, setCurrency] = useState<Currency>(
-    import.meta.env.VITE_DEFAULT_CURRENCY as Currency
-  )
+  const [currency, setCurrency] = useState<Currency>(import.meta.env.VITE_DEFAULT_CURRENCY as Currency)
   const [manualCups, setManualCups] = useState(String(DEFAULT_CUPS_BREWED))
+  const [brewSettings, setBrewSettings] = useState(MOCK_SETTINGS)
+  const [consumables, setConsumables] = useState(MOCK_CONSUMABLES)
 
   const { i18n } = useTranslation()
   const locale = i18n.language
 
   const cupsBrewed = Number(manualCups || 0)
 
-  const coffeeBeans = MOCK_CONSUMABLES.find(
-    (item) => item.type === 'coffeeBeans'
-  )
+  const coffeeBeans = MOCK_CONSUMABLES.find((item) => item.type === 'coffeeBeans')
   if (!coffeeBeans) throw new Error('Coffee beans not found')
 
-  const consumablesPerCup = calculateBeanCostPerCup(
-    MOCK_SETTINGS.doseGrams,
-    coffeeBeans.pricePerUnit
-  )
+  const consumablesPerCup = calculateConsumablesPerCup(brewSettings, consumables)
 
   const costs = calculateCosts({
     equipment: MOCK_SETUP_PARTS,
@@ -59,7 +54,25 @@ export default function App() {
           nextAverageCostPerCup={costs.nextAverageCostPerCup}
         />
 
-        <SetupSection locale={locale} currency={currency} />
+        <SetupSection
+          locale={locale}
+          currency={currency}
+          brewSettings={brewSettings}
+          consumables={consumables}
+          onBrewSettingChange={(key, value) =>
+            setBrewSettings((prev) => ({
+              ...prev,
+              [key]: value
+            }))
+          }
+          onConsumablePriceChange={(id, pricePerUnit) =>
+            setConsumables((prev) =>
+              prev.map((item) =>
+                item.id === id ? { ...item, pricePerUnit } : item
+              )
+            )
+          }
+        />
 
         <SettingsSection />
       </main>

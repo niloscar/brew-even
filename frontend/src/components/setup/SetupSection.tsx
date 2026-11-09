@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import BrewSettingsForm from './BrewSettingsForm'
 import ConsumablesForm from './ConsumablesForm'
 import EquipmentList from './EquipmentList'
+import { MOCK_SETTINGS, MOCK_CONSUMABLES } from '../../data/mockData'
 import {
   CoffeeBeanIcon,
   PlusIcon,
@@ -16,9 +17,19 @@ import type { Currency } from 'shared'
 interface SetupSectionProps {
   locale: string
   currency: Currency
+  brewSettings: typeof MOCK_SETTINGS
+  consumables: typeof MOCK_CONSUMABLES
+  onBrewSettingChange: (
+    key: keyof typeof MOCK_SETTINGS,
+    value: number
+  ) => void
+  onConsumablePriceChange: (
+    id: number,
+    pricePerUnit: number
+  ) => void
 }
 
-export default function SetupSection({ locale, currency }: SetupSectionProps) {
+export default function SetupSection({ locale, currency, brewSettings, consumables, onBrewSettingChange, onConsumablePriceChange }: SetupSectionProps) {
   const { t } = useTranslation()
 
   return (
@@ -32,7 +43,10 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
             <span>{t('setup.brewSettings')}</span>
           </h3>
 
-          <BrewSettingsForm />
+          <BrewSettingsForm
+            settings={brewSettings}
+            onChange={onBrewSettingChange}
+          />
         </section>
 
         <section className="card">
@@ -41,7 +55,12 @@ export default function SetupSection({ locale, currency }: SetupSectionProps) {
             <span>{t('setup.consumables')}</span>
           </h3>
 
-          <ConsumablesForm locale={locale} currency={currency} />
+          <ConsumablesForm
+            locale={locale}
+            currency={currency}
+            consumables={consumables}
+            onPriceChange={onConsumablePriceChange}
+          />
         </section>
 
         <section className="card span2">

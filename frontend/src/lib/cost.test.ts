@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { calculateCosts, calculateBeanCostPerCup } from './cost.ts'
+import { calculateCosts, calculateBeanCostPerCup, calculateConsumablesPerCup } from './cost.ts'
 import {
   MOCK_SETUP_PARTS,
   MOCK_SETTINGS,
@@ -221,5 +221,17 @@ describe('calculateCosts', () => {
     assert.equal(result.equipmentCost, 61124)
     assert.ok(Math.abs(result.consumablesCost - 7223.58) < 1e-8)
     assert.ok(Math.abs(result.totalCost - 68347.58) < 1e-8)
+  })
+
+  it('calculates consumables cost from brew settings', () => {
+    const result = calculateConsumablesPerCup(
+      { doseGrams: 15, yieldGrams: 30 },
+      [
+        { type: 'coffeeBeans', pricePerUnit: 378 },
+        { type: 'water', pricePerUnit: 6.33 }
+      ]
+    )
+
+    assert.ok(Math.abs(result - 5.8599) < 1e-10)
   })
 })
