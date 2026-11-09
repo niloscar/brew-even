@@ -8,10 +8,10 @@ import AppFooter from './components/AppFooter'
 
 import type { Currency } from 'shared'
 
-export const OSCARS_NEXT_CUP_COST = 51.21
+const OSCARS_NEXT_CUP_COST = 51.21
+const OSCARS_CUPS_BREWED = null //1274
 
 export default function App() {
-  // const [health, setHealth] = useState<string | null>(null)
   const [locale, setLocale] = useState(import.meta.env.VITE_DEFAULT_LOCALE)
   const [currency, setCurrency] = useState<Currency>(
     import.meta.env.VITE_DEFAULT_CURRENCY as Currency
@@ -30,6 +30,7 @@ export default function App() {
         <OverviewSection
           locale={locale}
           currency={currency}
+          integratedCups={OSCARS_CUPS_BREWED}
         />
 
         <SetupSection
