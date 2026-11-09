@@ -1,22 +1,22 @@
 :root {
+  color-scheme: light;
+
   --page-width: 1126px;
   --header-height: 4rem;
 
   --font-size: 18px;
   --font-sm: .75rem;
 
-  --text: #6A5045;
+  --text: #6a5045;
   --text-h: #261813;
-  --bg: #FFF9E9;
+  --bg: #fff9e9;
 
-  --border: #E5D5C5;
-  --border-dark: #C79B53;
+  --border: #e5d5c5;
+  --border-dark: #c79b53;
 
-  --selection: #E5D5C5;
+  --selection: #e5d5c5;
 
-  --code-bg: #F3E9DA;
-
-  --card-bg: #F3E9DA;
+  --card-bg: #f3e9da;
   --card-inner-bg: color-mix(in srgb, var(--card-bg) 95%, black);
 
   --accent: #94621F;
@@ -31,7 +31,6 @@
   font: var(--font-size)/145% var(--sans);
 
   letter-spacing: 0.18px;
-  color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -44,28 +43,22 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #fff6df;
-    --text-h: #fff9e9;
-    --bg: #140d0c;
-    --border: #3C2724;
-    --border-dark: #3C2724;
-    --selection: #3C2724;
-    --code-bg: #291a18;
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --text: #fff6df;
+  --text-h: #fff9e9;
+  --bg: #140d0c;
+  --border: #3C2724;
+  --border-dark: #3C2724;
+  --selection: #3C2724;
 
-    --card-bg: #291a18;
-    --card-inner-bg: color-mix(in srgb, var(--card-bg) 96%, white);
+  --card-bg: #291a18;
+  --card-inner-bg: color-mix(in srgb, var(--card-bg) 96%, white);
 
-    --accent: #C79B53;
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
-      rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+  --accent: #C79B53;
+  --shadow:
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
 }
 
 *, *::before, *::after {
@@ -330,6 +323,7 @@ input, textarea, select, button {
   padding: .75rem;
   font-family: inherit;
   font-size: inherit;
+  color: var(--text);
   background-color: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -397,4 +391,22 @@ select {
   display: grid;
   grid-column: span 2;
   grid-template-columns: subgrid;
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
 }

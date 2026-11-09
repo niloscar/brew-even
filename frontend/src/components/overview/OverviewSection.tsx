@@ -114,7 +114,13 @@ export default function OverviewSection({
                 />
                 <span className={styles.metricUnit}>cups</span>
                 <PencilSimpleIcon
-                  className={styles.editIcon}
+                  className={`${styles.editIcon} ${styles.editIconRegular}`}
+                  weight="regular"
+                  aria-hidden="true"
+                />
+                <PencilSimpleIcon
+                  className={`${styles.editIcon} ${styles.editIconBold}`}
+                  weight="bold"
                   aria-hidden="true"
                 />
               </label>

@@ -2,6 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <style>
+      html {
+        background: #fff9e9;
+      }
+
+      html[data-theme='dark'] {
+        background: #140d0c;
+      }
+    </style>
+
+    <script>
+      const savedTheme = localStorage.getItem('theme')
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+      const theme =
+        savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : prefersDark ? 'dark' : 'light'
+
+      document.documentElement.dataset.theme = theme
+    </script>
+
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
