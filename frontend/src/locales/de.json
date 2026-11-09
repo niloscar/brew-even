@@ -2,8 +2,8 @@
   "overview": {
     "title": "Übersicht",
     "comingSoon": "Demnächst: Kosten pro Tasse im Zeitverlauf",
-    "lastCup": "Letzte Tasse",
-    "nextCup": "Nächste Tasse",
+    "lastCup": "Letzte",
+    "nextCup": "Nächste",
     "brewed": "Zubereitet",
     "cupsBrewed": "Zubereitete Tassen",
     "cup_one": "Stk.",

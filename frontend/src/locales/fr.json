@@ -2,8 +2,8 @@
   "overview": {
     "title": "Vue d’ensemble",
     "comingSoon": "Bientôt : évolution du coût par tasse",
-    "lastCup": "Dernière tasse",
-    "nextCup": "Prochaine tasse",
+    "lastCup": "Dernière",
+    "nextCup": "Prochaine",
     "brewed": "Préparées",
     "cupsBrewed": "Nombre de tasses préparées",
     "cup_one": "pce",

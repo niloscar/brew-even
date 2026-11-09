@@ -2,8 +2,8 @@
   "overview": {
     "title": "Översikt",
     "comingSoon": "Kommer snart: Kostnad per kopp över tid",
-    "lastCup": "Senaste koppen",
-    "nextCup": "Nästa kopp",
+    "lastCup": "Senaste",
+    "nextCup": "Nästa",
     "brewed": "Bryggt",
     "cupsBrewed": "Bryggda koppar",
     "cup_one": "st",
