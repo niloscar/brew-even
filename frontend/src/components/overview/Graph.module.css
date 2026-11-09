@@ -10,3 +10,9 @@
   border: 1px solid var(--border);
   border-radius: 8px;
 }
+
+.graphLabel {
+  text-align: center;
+  text-wrap: pretty;
+  opacity: .66;
+}
