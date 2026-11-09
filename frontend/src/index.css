@@ -368,6 +368,10 @@ button {
   }
 }
 
+select {
+  cursor: pointer;
+}
+
 .buttonAccent {
   background: var(--accent);
   color: var(--bg);
