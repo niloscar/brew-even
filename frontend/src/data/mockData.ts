@@ -1,3 +1,5 @@
+import type { Equipment } from '../types/equipment'
+
 export const MOCK_RATES = {
   SEK: 1,
   USD: 0.11,
@@ -5,7 +7,7 @@ export const MOCK_RATES = {
   GBP: 0.09
 }
 
-export const MOCK_SETUP_PARTS = [
+export const MOCK_SETUP_PARTS: Equipment[] = [
   {
     id: 1,
     type: 'espressoMachine',
@@ -94,7 +96,7 @@ export const MOCK_SETUP_PARTS = [
     currency: 'SEK',
     acquisitionDate: '2025-09-10'
   }
-]
+] 
 
 export const MOCK_SETTINGS = {
   doseGrams: 15,

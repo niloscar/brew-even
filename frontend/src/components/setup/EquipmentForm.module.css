@@ -1,0 +1,81 @@
+.equipmentForm {
+  width: 100%;
+  padding: .5rem 0 1rem 0;
+}
+
+.formActions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+}
+
+.formActions button {
+  width: auto;
+  padding: .5rem 1rem;
+  font-size: .875rem;
+}
+
+.priceInputGroup {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+
+  &:focus-within {
+    border-color: var(--accent);
+  }
+}
+
+.priceInputGroup input,
+.priceInputGroup select {
+  min-width: 0;
+  border: none;
+  border-radius: 0;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.priceInputGroup input {
+  flex: 1;
+  width: 0;
+  color: var(--text-h);
+  appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.priceInputGroup select {
+  flex: 0 0 auto;
+  width: auto;
+  border-left: 1px solid var(--border);
+  background-color: var(--bg);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--selection);
+    color: var(--text-h);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border-color: var(--border);
+  }
+}
+
+@media (max-width: 480px) {
+  .formActions {
+    margin-top: 1rem;
+  }
+}

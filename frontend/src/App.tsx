@@ -8,13 +8,11 @@ import SettingsSection from './components/settings/SettingsSection'
 import AppFooter from './components/AppFooter'
 
 import { calculateCosts, calculateConsumablesPerCup } from './lib/cost'
-import {
-  MOCK_SETUP_PARTS,
-  MOCK_SETTINGS,
-  MOCK_CONSUMABLES
-} from './data/mockData'
+import * as currencyUtils from './utils/currency'
+import { MOCK_SETUP_PARTS, MOCK_SETTINGS, MOCK_CONSUMABLES, MOCK_RATES } from './data/mockData'
 
 import type { Currency } from 'shared'
+import type { Equipment, EquipmentInput } from './types/equipment'
 
 const DEFAULT_CUPS_BREWED = 1289
 
@@ -23,19 +21,44 @@ export default function App() {
   const [manualCups, setManualCups] = useState(String(DEFAULT_CUPS_BREWED))
   const [brewSettings, setBrewSettings] = useState(MOCK_SETTINGS)
   const [consumables, setConsumables] = useState(MOCK_CONSUMABLES)
+  const [equipment, setEquipment] = useState<Equipment[]>(MOCK_SETUP_PARTS)
 
   const { i18n } = useTranslation()
   const locale = i18n.language
 
+  function addEquipment(values: EquipmentInput) {
+    setEquipment((prev) => {
+      const nextId = Math.max(0, ...prev.map((item) => item.id)) + 1
+
+      return [
+        ...prev,
+        { id: nextId, ...values }
+      ]
+    })
+  }
+
+  function updateEquipment(id: number, values: EquipmentInput) {
+    setEquipment((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, ...values } : item
+      )
+    )
+  }
+
+  function removeEquipment(id: number) {
+    setEquipment((prev) =>
+      prev.filter((item) => item.id !== id)
+    )
+  }
+
   const cupsBrewed = Number(manualCups || 0)
-
-  const coffeeBeans = MOCK_CONSUMABLES.find((item) => item.type === 'coffeeBeans')
-  if (!coffeeBeans) throw new Error('Coffee beans not found')
-
   const consumablesPerCup = calculateConsumablesPerCup(brewSettings, consumables)
 
   const costs = calculateCosts({
-    equipment: MOCK_SETUP_PARTS,
+    equipment: equipment.map((item) => ({
+      price: currencyUtils.convertToSek(item.price, item.currency, MOCK_RATES),
+      acquisitionDate: item.acquisitionDate
+    })),
     cupsBrewed,
     consumablesPerCup
   })
@@ -59,6 +82,7 @@ export default function App() {
           currency={currency}
           brewSettings={brewSettings}
           consumables={consumables}
+          equipment={equipment}
           onBrewSettingChange={(key, value) =>
             setBrewSettings((prev) => ({
               ...prev,
@@ -72,6 +96,9 @@ export default function App() {
               )
             )
           }
+          onAddEquipment={addEquipment}
+          onUpdateEquipment={updateEquipment}
+          onRemoveEquipment={removeEquipment}
         />
 
         <SettingsSection />
