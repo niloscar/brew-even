@@ -7,7 +7,20 @@
     "brewed": "Préparées",
     "cupsBrewed": "Nombre de tasses préparées",
     "cup_one": "pce",
-    "cup_other": "pces"
+    "cup_other": "pces",
+    "chartCupsTotal": "Préparées",
+    "chartAverageCost": "Coût moyen",
+    "chartEmpty": "Indiquez le nombre de tasses préparées pour afficher le graphique",
+    "chartTitle": "Coût par tasse",
+    "chartPeriod": "Période",
+    "chartPeriod30": "1 mois",
+    "chartPeriod90": "3 mois",
+    "chartPeriod180": "6 mois",
+    "chartPeriod365": "1 an",
+    "chartPeriodall": "Depuis le début",
+    "chartHistory": "Évolution estimée",
+    "chartForecast": "Prévision",
+    "chartModelNote": "Évolution modélisée avec un rythme de préparation régulier et des coûts constants."
   },
   "setup": {
     "title": "Préparation et matériel",

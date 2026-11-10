@@ -1,5 +1,4 @@
-
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import AppHeader from './components/AppHeader'
@@ -10,7 +9,12 @@ import AppFooter from './components/AppFooter'
 
 import { calculateCosts, calculateConsumablesPerCup } from './lib/cost'
 import * as currencyUtils from './utils/currency'
-import { MOCK_SETUP_PARTS, MOCK_SETTINGS, MOCK_CONSUMABLES, MOCK_RATES } from './data/mockData'
+import {
+  MOCK_SETUP_PARTS,
+  MOCK_SETTINGS,
+  MOCK_CONSUMABLES,
+  MOCK_RATES
+} from './data/mockData'
 
 import type { Currency } from 'shared'
 import type { Equipment, EquipmentInput } from './types/equipment'
@@ -18,7 +22,9 @@ import type { Equipment, EquipmentInput } from './types/equipment'
 const DEFAULT_CUPS_BREWED = 1289
 
 export default function App() {
-  const [currency, setCurrency] = useState<Currency>(import.meta.env.VITE_DEFAULT_CURRENCY as Currency)
+  const [currency, setCurrency] = useState<Currency>(
+    import.meta.env.VITE_DEFAULT_CURRENCY as Currency
+  )
   const [manualCups, setManualCups] = useState(String(DEFAULT_CUPS_BREWED))
   const [brewSettings, setBrewSettings] = useState(MOCK_SETTINGS)
   const [consumables, setConsumables] = useState(MOCK_CONSUMABLES)
@@ -53,13 +59,27 @@ export default function App() {
   }
 
   const cupsBrewed = Number(manualCups || 0)
-  const consumablesPerCup = calculateConsumablesPerCup(brewSettings, consumables)
+
+  const consumablesPerCup = calculateConsumablesPerCup(
+    brewSettings,
+    consumables
+  )
+
+  const normalizedEquipment = useMemo(
+    () =>
+      equipment.map((item) => ({
+        price: currencyUtils.convertToSek(
+          item.price,
+          item.currency,
+          MOCK_RATES
+        ),
+        acquisitionDate: item.acquisitionDate
+      })),
+    [equipment]
+  )
 
   const costs = calculateCosts({
-    equipment: equipment.map((item) => ({
-      price: currencyUtils.convertToSek(item.price, item.currency, MOCK_RATES),
-      acquisitionDate: item.acquisitionDate
-    })),
+    equipment: normalizedEquipment,
     cupsBrewed,
     consumablesPerCup
   })
@@ -72,6 +92,9 @@ export default function App() {
         <OverviewSection
           locale={locale}
           currency={currency}
+          equipment={normalizedEquipment}
+          cupsBrewed={cupsBrewed}
+          consumablesPerCup={consumablesPerCup}
           manualCups={manualCups}
           onManualCupsChange={setManualCups}
           averageCostPerCup={costs.averageCostPerCup}

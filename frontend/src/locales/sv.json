@@ -7,7 +7,20 @@
     "brewed": "Bryggt",
     "cupsBrewed": "Bryggda koppar",
     "cup_one": "st",
-    "cup_other": "st"
+    "cup_other": "st",
+    "chartCupsTotal": "Bryggt",
+    "chartAverageCost": "Snittkostnad",
+    "chartEmpty": "Ange antal bryggda koppar för att visa diagrammet",
+    "chartTitle": "Kostnad per kopp",
+    "chartPeriod": "Visningsperiod",
+    "chartPeriod30": "1 mån",
+    "chartPeriod90": "3 mån",
+    "chartPeriod180": "6 mån",
+    "chartPeriod365": "1 år",
+    "chartPeriodall": "Sedan start",
+    "chartHistory": "Beräknad utveckling",
+    "chartForecast": "Prognos",
+    "chartModelNote": "Modellberäknad utveckling utifrån jämn bryggtakt och oförändrade kostnader."
   },
   "setup": {
     "title": "Bryggning och utrustning",

@@ -2,13 +2,16 @@
 .metricsGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: .5rem;
+  min-width: 0;
 }
 
 .metricsCard {
-  flex: 1 1 calc((100% - 2rem) / 3);
+  flex: 1 1 calc((100% - 1rem) / 3);
   min-width: max-content;
   box-sizing: border-box;
+  background: var(--card-inner-bg);
+  border: none;
 
   &:last-child {
     min-width: min-content;
@@ -81,7 +84,7 @@
   cursor: text;
 
   &:hover {
-    background: var(--card-inner-bg);
+    background: var(--card-bg);
   }
 
   &:focus-within {
