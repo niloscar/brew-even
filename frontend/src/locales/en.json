@@ -7,7 +7,20 @@
     "brewed": "Brewed",
     "cupsBrewed": "Cups brewed",
     "cup_one": "cup",
-    "cup_other": "cups"
+    "cup_other": "cups",
+    "chartCupsTotal": "Brewed",
+    "chartAverageCost": "Average cost",
+    "chartEmpty": "Enter the number of cups brewed to display the chart",
+    "chartTitle": "Cost per cup",
+    "chartPeriod": "Time period",
+    "chartPeriod30": "1 mo",
+    "chartPeriod90": "3 mo",
+    "chartPeriod180": "6 mo",
+    "chartPeriod365": "1 yr",
+    "chartPeriodall": "Since start",
+    "chartHistory": "Estimated development",
+    "chartForecast": "Forecast",
+    "chartModelNote": "Modeled using a consistent brewing rate and unchanged costs."
   },
   "setup": {
     "title": "Brewing and Equipment",

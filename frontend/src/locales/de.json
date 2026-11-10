@@ -7,7 +7,20 @@
     "brewed": "Zubereitet",
     "cupsBrewed": "Zubereitete Tassen",
     "cup_one": "Stk.",
-    "cup_other": "Stk."
+    "cup_other": "Stk.",
+    "chartCupsTotal": "Zubereitet",
+    "chartAverageCost": "Durchschnittskosten",
+    "chartEmpty": "Anzahl zubereiteter Tassen eingeben, um das Diagramm anzuzeigen",
+    "chartTitle": "Kosten pro Tasse",
+    "chartPeriod": "Zeitraum",
+    "chartPeriod30": "1 Mon.",
+    "chartPeriod90": "3 Mon.",
+    "chartPeriod180": "6 Mon.",
+    "chartPeriod365": "1 Jahr",
+    "chartPeriodall": "Seit Beginn",
+    "chartHistory": "Berechneter Verlauf",
+    "chartForecast": "Prognose",
+    "chartModelNote": "Modellrechnung auf Basis einer gleichmäßigen Zubereitungsrate und konstanter Kosten."
   },
   "setup": {
     "title": "Zubereitung und Equipment",

@@ -255,6 +255,10 @@ a {
   border-radius: 8px;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 }
 
 .card h3 {
