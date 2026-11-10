@@ -1,3 +1,4 @@
+
 import type { Currency } from 'shared'
 
 export function number(
@@ -10,15 +11,20 @@ export function number(
   }).format(value)
 }
 
-export function price(price: number, locale: string, currency = 'SEK'): string {
-  const fractionDigits = Number.isInteger(price) ? 0 : 2
+function getPriceFractionDigits(value: number): number {
+  const rounded = Number(value.toFixed(2))
+  return Number.isInteger(rounded) ? 0 : 2
+}
+
+export function price(amount: number, locale: string, currency = 'SEK'): string {
+  const fractionDigits = getPriceFractionDigits(amount)
 
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency,
     minimumFractionDigits: fractionDigits,
     maximumFractionDigits: fractionDigits
-  }).format(price)
+  }).format(amount)
 }
 
 export function priceParts(
@@ -26,10 +32,14 @@ export function priceParts(
   locale: string,
   currency: Currency
 ) {
+  const fractionDigits = getPriceFractionDigits(amount)
+
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency,
-    currencyDisplay: 'narrowSymbol'
+    currencyDisplay: 'narrowSymbol',
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits
   }).formatToParts(amount)
 }
 

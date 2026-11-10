@@ -1,3 +1,5 @@
+
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import styles from './NumberStepperInput.module.css'
@@ -24,6 +26,7 @@ export default function NumberStepperInput({
   unit = ''
 }: NumberStepperInputProps) {
   const { t } = useTranslation()
+  const [draft, setDraft] = useState<string | null>(null)
 
   function handleAdjust(direction: 1 | -1) {
     const decimals = (step.toString().split('.')[1] ?? '').length
@@ -31,10 +34,16 @@ export default function NumberStepperInput({
 
     const nextValue = Math.round((value + direction * step) * factor) / factor
 
+    setDraft(null)
     onChange(Math.min(max ?? Infinity, Math.max(min, nextValue)))
   }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const rawValue = event.target.value
+    setDraft(rawValue)
+
+    if (rawValue === '') return
+
     const newValue = event.target.valueAsNumber
 
     if (!Number.isFinite(newValue)) return
@@ -42,16 +51,25 @@ export default function NumberStepperInput({
     onChange(Math.min(max ?? Infinity, Math.max(min, newValue)))
   }
 
+  function handleBlur() {
+    if (draft === '') {
+      onChange(0)
+    }
+
+    setDraft(null)
+  }
+
   return (
     <div className={styles.inputWrapper} data-unit={unit}>
       <input
         type="number"
         id={id}
-        value={value}
+        value={draft ?? value}
         min={min}
         max={max}
         step={step}
         onChange={handleChange}
+        onBlur={handleBlur}
         aria-label={unit ? `${label} (${unit})` : undefined}
       />
 
