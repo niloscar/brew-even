@@ -1,6 +1,8 @@
+
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SETUP_PART_OPTIONS } from '../../settings/constants'
+import SelectWithCaret from '../SelectWithCaret'
 
 import type { SubmitEvent } from 'react'
 import type { Currency } from 'shared'
@@ -75,20 +77,29 @@ export default function EquipmentForm({
       className={`formGrid ${styles.equipmentForm}`}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="equipment-type">{t('setup.equipmentCategory')}</label>
-      <select
+      <label htmlFor="equipment-type">
+        {t('setup.equipmentCategory')}
+      </label>
+
+      <SelectWithCaret
         id="equipment-type"
+        wrapperClassName={styles.categorySelect}
         value={draft.type}
-        onChange={(e) => updateField('type', e.target.value as EquipmentType)}
+        onChange={(e) =>
+          updateField('type', e.target.value as EquipmentType)
+        }
       >
         {SETUP_PART_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>
             {t(`setup.equipmentTypes.${option.value}`)}
           </option>
         ))}
-      </select>
+      </SelectWithCaret>
 
-      <label htmlFor="equipment-name">{t('setup.equipmentName')}</label>
+      <label htmlFor="equipment-name">
+        {t('setup.equipmentName')}
+      </label>
+
       <input
         id="equipment-name"
         type="text"
@@ -113,7 +124,8 @@ export default function EquipmentForm({
           onChange={(e) => updateField('price', e.target.value)}
         />
 
-        <select
+        <SelectWithCaret
+          wrapperClassName={styles.currencySelect}
           aria-label={t('setup.equipmentCurrency')}
           value={draft.currency}
           onChange={(e) =>
@@ -125,16 +137,21 @@ export default function EquipmentForm({
               {value}
             </option>
           ))}
-        </select>
+        </SelectWithCaret>
       </div>
 
-      <label htmlFor="equipment-date">{t('setup.equipmentDate')}</label>
+      <label htmlFor="equipment-date">
+        {t('setup.equipmentDate')}
+      </label>
+
       <input
         id="equipment-date"
         type="date"
         required
         value={draft.acquisitionDate}
-        onChange={(e) => updateField('acquisitionDate', e.target.value)}
+        onChange={(e) =>
+          updateField('acquisitionDate', e.target.value)
+        }
       />
 
       <div className={styles.formActions}>

@@ -106,24 +106,21 @@ export default function SetupSection({
           </div>
 
           {(formTarget === 'new' || editingEquipment) && (
-            <>
-              <h4>{editingEquipment ? t('common.edit') : t('common.add')}</h4>
-              <EquipmentForm
-                key={formTarget}
-                currency={currency}
-                initialValues={editingEquipment}
-                onSave={(values) => {
-                  if (typeof formTarget === 'number') {
-                    onUpdateEquipment(formTarget, values)
-                  } else {
-                    onAddEquipment(values)
-                  }
+            <EquipmentForm
+              key={formTarget}
+              currency={currency}
+              initialValues={editingEquipment}
+              onSave={(values) => {
+                if (typeof formTarget === 'number') {
+                  onUpdateEquipment(formTarget, values)
+                } else {
+                  onAddEquipment(values)
+                }
 
-                  setFormTarget(null)
-                }}
-                onCancel={() => setFormTarget(null)}
-              />
-            </>
+                setFormTarget(null)
+              }}
+              onCancel={() => setFormTarget(null)}
+            />
           )}
 
           <EquipmentList

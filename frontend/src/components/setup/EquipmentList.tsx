@@ -1,18 +1,18 @@
 
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import SelectWithCaret from '../SelectWithCaret'
+import { MOCK_RATES } from '../../data/mockData'
+import { SETUP_PART_OPTIONS } from '../../settings/constants'
+import * as currencyUtils from '../../utils/currency'
+import * as format from '../../utils/format'
 import {
-  CaretDownIcon,
   PencilSimpleIcon,
   TrashIcon,
   CheckIcon,
   XIcon
 } from '@phosphor-icons/react'
-
-import { MOCK_RATES } from '../../data/mockData'
-import { SETUP_PART_OPTIONS } from '../../settings/constants'
-import * as currencyUtils from '../../utils/currency'
-import * as format from '../../utils/format'
 
 import type { Currency } from 'shared'
 import type {
@@ -152,36 +152,26 @@ export default function EquipmentList({
         const isEditing = editing?.id === part.id
 
         return (
-          <li
-            key={part.id}
-            title={t('setup.acquiredOn', {
-              date: new Intl.DateTimeFormat(locale).format(
-                new Date(`${part.acquisitionDate}T00:00:00`)
-              )
-            })}
-          >
+          <li key={part.id}>
             {isEditing ? (
               <form
                 className={styles.equipmentEditForm}
                 onSubmit={(event) => handleSave(event, part)}
               >
-                <div className={styles.equipmentTypeSelect}>
-                  <select
-                    aria-label={t('setup.equipmentCategory')}
-                    value={editing.draft.type}
-                    onChange={(e) =>
-                      updateField('type', e.target.value as EquipmentType)
-                    }
-                  >
-                    {SETUP_PART_OPTIONS.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {t(`setup.equipmentTypes.${option.value}`)}
-                      </option>
-                    ))}
-                  </select>
-
-                  <CaretDownIcon size={12} aria-hidden="true" />
-                </div>
+                <SelectWithCaret
+                  wrapperClassName={styles.equipmentTypeSelect}
+                  aria-label={t('setup.equipmentCategory')}
+                  value={editing.draft.type}
+                  onChange={(e) =>
+                    updateField('type', e.target.value as EquipmentType)
+                  }
+                >
+                  {SETUP_PART_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {t(`setup.equipmentTypes.${option.value}`)}
+                    </option>
+                  ))}
+                </SelectWithCaret>
 
                 <input
                   type="text"
@@ -207,23 +197,20 @@ export default function EquipmentList({
                     }
                   />
 
-                  <div className={styles.equipmentCurrencySelect}>
-                    <select
-                      aria-label={t('setup.equipmentCurrency')}
-                      value={editing.draft.currency}
-                      onChange={(e) =>
-                        updateField('currency', e.target.value as Currency)
-                      }
-                    >
-                      {CURRENCIES.map((value) => (
-                        <option key={value} value={value}>
-                          {value}
-                        </option>
-                      ))}
-                    </select>
-
-                    <CaretDownIcon size={12} aria-hidden="true" />
-                  </div>
+                  <SelectWithCaret
+                    wrapperClassName={styles.equipmentCurrencySelect}
+                    aria-label={t('setup.equipmentCurrency')}
+                    value={editing.draft.currency}
+                    onChange={(e) =>
+                      updateField('currency', e.target.value as Currency)
+                    }
+                  >
+                    {CURRENCIES.map((value) => (
+                      <option key={value} value={value}>
+                        {value}
+                      </option>
+                    ))}
+                  </SelectWithCaret>
                 </div>
 
                 <div className={styles.equipmentActions}>
@@ -251,7 +238,14 @@ export default function EquipmentList({
                   {t(`setup.equipmentTypes.${part.type}`)}
                 </span>
 
-                <span className={styles.equipmentName}>
+                <span 
+                  className={styles.equipmentName}
+                  title={t('setup.acquiredOn', {
+                    date: new Intl.DateTimeFormat(locale).format(
+                      new Date(`${part.acquisitionDate}T00:00:00`)
+                    )
+                  })}
+                  >
                   {part.name}
                 </span>
 

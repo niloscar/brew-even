@@ -37,7 +37,13 @@
       "wdt": "WDT",
       "tampingMat": "Tampermatta",
       "waterTestKit": "Vattentest"
-    }
+    },
+    "equipmentCategory": "Kategori",
+    "equipmentName": "Namn",
+    "equipmentPrice": "Inköpspris",
+    "equipmentCurrency": "Inköpsvaluta",
+    "equipmentDate": "Inköpsdatum",
+    "confirmRemoveEquipment": "Vill du ta bort {{name}}?"
   },
   "settings": {
     "title": "Inställningar",

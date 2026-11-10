@@ -16,12 +16,18 @@
   font-size: .875rem;
 }
 
+.categorySelect,
+.categorySelect select {
+  width: 100%;
+}
+
 .priceInputGroup {
   display: flex;
   align-items: stretch;
   min-width: 0;
   border: 1px solid var(--border);
   border-radius: 8px;
+  background: var(--bg);
   overflow: hidden;
 
   &:focus-within {
@@ -54,23 +60,34 @@
   }
 }
 
-.priceInputGroup select {
+.currencySelect {
   flex: 0 0 auto;
-  width: auto;
   border-left: 1px solid var(--border);
-  background-color: var(--bg);
+
+  &:hover,
+  &:focus-within {
+    background: var(--selection);
+  }
+}
+
+.currencySelect select {
+  display: block;
+  width: auto;
+  height: 100%;
+  padding: 0 1.75rem 0 .5rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
 
   &:hover,
   &:focus-visible {
-    background-color: var(--selection);
-    color: var(--text-h);
+    background: transparent;
   }
 
   &:focus-visible {
     outline: none;
     box-shadow: none;
-    border-color: var(--border);
   }
 }
 

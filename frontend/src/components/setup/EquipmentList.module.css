@@ -192,16 +192,6 @@
   }
 }
 
-.equipmentTypeSelect svg,
-.equipmentCurrencySelect svg {
-  position: absolute;
-  top: 50%;
-  right: .4rem;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: var(--text);
-}
-
 .equipmentTotal {
   margin-top: 6px;
   padding-top: 6px;
