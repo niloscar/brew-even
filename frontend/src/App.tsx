@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -107,7 +108,7 @@ export default function App() {
       <AppFooter
         currency={currency}
         locale={locale}
-        nextCupCost={costs.nextAverageCostPerCup}
+        averageCupCost={costs.averageCostPerCup}
       />
     </>
   )

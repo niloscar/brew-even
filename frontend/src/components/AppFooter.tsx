@@ -15,21 +15,24 @@ import styles from './AppFooter.module.css'
 interface AppFooterProps {
   currency: Currency
   locale: string
-  nextCupCost: number
+  averageCupCost: number | null
 }
 
 export default function AppFooter({
   currency,
   locale,
-  nextCupCost
+  averageCupCost
 }: AppFooterProps) {
   const { t } = useTranslation()
 
-  const nextCupPrice = format.price(
-    currencyUtils.convert(nextCupCost, MOCK_RATES[currency]),
-    locale,
-    currency
-  )
+  const averageCupPrice =
+    averageCupCost === null
+      ? null
+      : format.price(
+          currencyUtils.convert(averageCupCost, MOCK_RATES[currency]),
+          locale,
+          currency
+        )
 
   return (
     <footer className={`view ${styles.footer}`} id="about">
@@ -76,9 +79,9 @@ export default function AppFooter({
             <ArrowUpRightIcon />
           </button>
 
-          <i>
-            {t('footer.nextCupCost', { price: nextCupPrice })}
-          </i>
+          {averageCupPrice !== null && (
+            <i>{t('footer.averageCupCost', { price: averageCupPrice })}</i>
+          )}
         </section>
 
         <section className={styles.bottomRow}>

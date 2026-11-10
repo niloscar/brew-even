@@ -63,7 +63,7 @@
     "buyMeACoffee": "Buy me a coffee",
     "supportDescription": "Enjoying Brew-even? Buy me a coffee and help support its development.",
     "supportProject": "Support the project",
-    "nextCupCost": "My next cup of coffee will cost me {{price}}.",
+    "averageCupCost": "My average cost per cup of coffee is currently {{price}}.",
     "tagline": "Caffeine made me do it."
   },
   "common": {
