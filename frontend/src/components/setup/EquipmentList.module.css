@@ -1,3 +1,4 @@
+
 .equipmentList {
   list-style: none;
   display: grid;
@@ -53,11 +54,6 @@
   &:hover {
     color: var(--text-h);
   }
-
-  &:focus-visible {
-    outline: 1px solid var(--accent);
-    outline-offset: 2px;
-  }
 }
 
 .equipmentEditForm {
@@ -79,20 +75,12 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--bg);
-
-  &:focus-within {
-    border-color: var(--accent);
-  }
 }
 
 .equipmentEditForm > input {
   padding: 0 .5rem 1px calc(.5rem - 1px);
   font: inherit;
   font-weight: bold;
-
-  &:focus-visible {
-    outline: none;
-  }
 }
 
 .equipmentTypeSelect {
@@ -102,6 +90,11 @@
   &:hover,
   &:focus-within {
     background: var(--selection);
+  }
+
+  &:focus-within {
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
   }
 }
 
@@ -123,9 +116,21 @@
 }
 
 .equipmentPriceGroup {
+  position: relative;
   display: flex;
   align-items: stretch;
   overflow: hidden;
+
+  &:focus-within::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+    pointer-events: none;
+  }
 }
 
 .equipmentPriceGroup input {

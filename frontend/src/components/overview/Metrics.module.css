@@ -1,3 +1,4 @@
+
 .metricsGrid {
   display: flex;
   flex-wrap: wrap;
@@ -84,8 +85,8 @@
   }
 
   &:focus-within {
-    outline: 1px solid var(--accent);
-    outline-offset: 1px;
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
   }
 }
 
@@ -93,12 +94,15 @@
   min-width: 1ch;
   padding: 0;
   border: none;
-  outline: none;
   background: transparent;
   color: inherit;
   font: inherit;
   text-align: right;
   font-variant-numeric: tabular-nums;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .cupsInputWrapper .metricUnit {

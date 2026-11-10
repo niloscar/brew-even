@@ -19,6 +19,12 @@
   &:hover {
     color: var(--text-h);
   }
+
+  &:focus-visible {
+    background-color: transparent;
+    outline: var(--focus-outline);
+    outline-offset: 1px;
+  }
 }
 
 .icon {

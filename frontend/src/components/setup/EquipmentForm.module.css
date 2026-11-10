@@ -1,3 +1,4 @@
+
 .equipmentForm {
   width: 100%;
   padding: .5rem 0 1rem 0;
@@ -27,6 +28,7 @@
 }
 
 .priceInputGroup {
+  position: relative;
   display: flex;
   align-items: stretch;
   min-width: 0;
@@ -35,8 +37,15 @@
   background: var(--bg);
   overflow: hidden;
 
-  &:focus-within {
-    border-color: var(--accent);
+  &:focus-within::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+    pointer-events: none;
   }
 }
 

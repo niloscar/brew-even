@@ -1,3 +1,4 @@
+
 .inputUnit {
   position: absolute;
   right: .5rem;
@@ -16,7 +17,8 @@
   overflow: hidden;
 
   &:focus-within {
-    border-color: var(--accent);
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
   }
 }
 
@@ -60,7 +62,9 @@
 .inputStepper {
   display: flex;
   flex-direction: column;
+  gap: 1px;
   border-left: 1px solid var(--border);
+  background: var(--border);
 }
 
 .inputStepper button {
@@ -80,8 +84,4 @@
   &:focus-visible {
     outline: none;
   }
-}
-
-.inputStepper button:first-child {
-  border-bottom: 1px solid var(--border);
 }

@@ -1,3 +1,4 @@
+
 :root {
   color-scheme: light;
 
@@ -13,6 +14,11 @@
 
   --border: #e5d5c5;
   --border-dark: #c79b53;
+
+  --focus-outline: 1px solid var(--accent);
+  --focus-outline-offset: -1px;
+  --link-focus-outline: 1px solid var(--accent);
+  --link-focus-outline-offset: 1px;
 
   --selection: #e5d5c5;
 
@@ -141,8 +147,8 @@ a {
   }
 
   &:focus-visible {
-    outline: 1px solid var(--accent);
-    outline-offset: 2px;
+    outline: var(--link-focus-outline);
+    outline-offset: var(--link-focus-outline-offset);
     border-radius: 2px;
   }
 }
@@ -335,17 +341,20 @@ input, textarea, select, button {
   }
 }
 
+select, button {
+  user-select: none;
+}
+
 input:focus-visible,
 textarea:focus-visible,
-select:not(.buttonLike):focus-visible {
-  outline: none;
-  border-color: var(--accent);
+select:focus-visible,
+button:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
 button:focus-visible,
 select.buttonLike:focus-visible {
-  outline: 1px solid var(--accent);
-  outline-offset: -1px;
   background: var(--selection);
   color: var(--text-h);
 }
@@ -387,10 +396,6 @@ select {
   &:focus-visible {
     background: color-mix(in srgb, var(--accent) 80%, black);
     color: var(--bg);
-  }
-
-  &:focus-visible {
-    outline-color: var(--text-h);
   }
 }
 
