@@ -25,13 +25,13 @@
 .appHeader .localeCurrency {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 1rem;
   margin-left: auto;
   flex-shrink: 0;
 }
 
 .appHeader .localeCurrency select {
-  padding: 4px 1.25rem 4px 0;
+  padding: 0 1rem 0 0;
   border: none;
   background-color: transparent;
 
@@ -40,4 +40,8 @@
     outline-offset: 2px;
     border-radius: 2px;
   }
+}
+
+.appHeader .localeCurrency svg {
+  right: 0;
 }

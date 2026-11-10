@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import SelectWithCaret from '../SelectWithCaret'
 
 export default function CoffeeIntegrationForm() {
   const { t } = useTranslation()
@@ -6,9 +7,13 @@ export default function CoffeeIntegrationForm() {
   return (
     <form className="formGrid" onSubmit={(e) => e.preventDefault()}>
       <label htmlFor="supplier">{t('settings.supplier')}</label>
-      <select className="buttonLike" id="supplier" name="supplier" disabled>
+      <SelectWithCaret
+        className="buttonLike" 
+        id="supplier" 
+        name="supplier" 
+        disabled>
         {/* <option value="laMarzocco">La Marzocco</option> */}
-      </select>
+      </SelectWithCaret>
 
       <label htmlFor="apiKey">{t('settings.apiKey')}</label>
       <input
