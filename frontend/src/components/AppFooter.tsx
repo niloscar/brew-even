@@ -18,11 +18,9 @@ interface AppFooterProps {
   averageCupCost: number | null
 }
 
-export default function AppFooter({
-  currency,
-  locale,
-  averageCupCost
-}: AppFooterProps) {
+const CURRENT_YEAR = new Date().getFullYear()
+
+export default function AppFooter({ currency, locale, averageCupCost}: AppFooterProps) {
   const { t } = useTranslation()
 
   const averageCupPrice =
@@ -86,7 +84,7 @@ export default function AppFooter({
 
         <section className={styles.bottomRow}>
           <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()} Brew-even
+            &copy; {CURRENT_YEAR} Brew-even
           </p>
           <p>{t('footer.tagline')}</p>
         </section>
