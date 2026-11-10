@@ -92,6 +92,7 @@ export default function Metrics({
           ) : (
             <label className={styles.cupsInputWrapper}>
               <input
+                name="manualCups"
                 type="text"
                 inputMode="numeric"
                 aria-label={t('overview.cupsBrewed')}

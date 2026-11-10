@@ -37,7 +37,13 @@
       "wdt": "WDT",
       "tampingMat": "Tampermatte",
       "waterTestKit": "Wassertest-Set"
-    }
+    },
+    "equipmentCategory": "Kategorie",
+    "equipmentName": "Name",
+    "equipmentPrice": "Kaufpreis",
+    "equipmentCurrency": "Kaufwährung",
+    "equipmentDate": "Kaufdatum",
+    "confirmRemoveEquipment": "{{name}} entfernen?"
   },
   "settings": {
     "title": "Einstellungen",

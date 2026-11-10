@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import BrewSettingsForm from './BrewSettingsForm'
 import ConsumablesForm from './ConsumablesForm'
 import EquipmentList from './EquipmentList'
+import EquipmentForm from './EquipmentForm'
 import { MOCK_SETTINGS, MOCK_CONSUMABLES } from '../../data/mockData'
 import {
   CoffeeBeanIcon,
@@ -13,12 +15,14 @@ import {
 import styles from './SetupSection.module.css'
 
 import type { Currency } from 'shared'
+import type { Equipment, EquipmentInput } from '../../types/equipment'
 
 interface SetupSectionProps {
   locale: string
   currency: Currency
   brewSettings: typeof MOCK_SETTINGS
   consumables: typeof MOCK_CONSUMABLES
+  equipment: Equipment[]
   onBrewSettingChange: (
     key: keyof typeof MOCK_SETTINGS,
     value: number
@@ -27,10 +31,29 @@ interface SetupSectionProps {
     id: number,
     pricePerUnit: number
   ) => void
+  onAddEquipment: (values: EquipmentInput) => void
+  onUpdateEquipment: (id: number, values: EquipmentInput) => void
+  onRemoveEquipment: (id: number) => void
 }
 
-export default function SetupSection({ locale, currency, brewSettings, consumables, onBrewSettingChange, onConsumablePriceChange }: SetupSectionProps) {
+export default function SetupSection({ 
+  locale, 
+  currency, 
+  brewSettings, 
+  consumables, 
+  equipment, 
+  onBrewSettingChange, 
+  onConsumablePriceChange,
+  onAddEquipment,
+  onUpdateEquipment,
+  onRemoveEquipment
+}: SetupSectionProps) {
+  const [formTarget, setFormTarget] = useState<'new' | number | null>(null)
   const { t } = useTranslation()
+
+  const editingEquipment = typeof formTarget === 'number'
+    ? equipment.find((item) => item.id === formTarget)
+    : undefined
 
   return (
     <section className="view" id="setup">
@@ -70,18 +93,43 @@ export default function SetupSection({ locale, currency, brewSettings, consumabl
               <span>{t('setup.equipment')}</span>
             </h3>
 
-            <button
-              type="button"
-              aria-label={t('setup.addEquipment')}
-              className={styles.addEquipmentButton}
-              onClick={() => alert(t('setup.addEquipment'))}
-            >
-              <PlusIcon weight="bold" />
-              <span>{t('common.add')}</span>
-            </button>
+            {formTarget === null && (
+              <button
+                type="button"
+                className={styles.addEquipmentButton}
+                onClick={() => setFormTarget('new')}
+              >
+                <PlusIcon weight="bold" />
+                <span>{t('common.add')}</span>
+              </button>
+            )}
           </div>
 
-          <EquipmentList locale={locale} currency={currency} />
+          {(formTarget === 'new' || editingEquipment) && (
+            <EquipmentForm
+              key={formTarget}
+              currency={currency}
+              initialValues={editingEquipment}
+              onSave={(values) => {
+                if (typeof formTarget === 'number') {
+                  onUpdateEquipment(formTarget, values)
+                } else {
+                  onAddEquipment(values)
+                }
+
+                setFormTarget(null)
+              }}
+              onCancel={() => setFormTarget(null)}
+            />
+          )}
+
+          <EquipmentList
+            locale={locale}
+            currency={currency}
+            equipment={equipment}
+            onEdit={onUpdateEquipment}
+            onRemove={onRemoveEquipment}
+          />
         </section>
       </div>
     </section>

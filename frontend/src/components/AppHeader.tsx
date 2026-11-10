@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import useTheme from '../hooks/useTheme'
+import SelectWithCaret from './SelectWithCaret'
 import ThemeSwitch from './ThemeSwitch'
 
 import type { Currency } from 'shared'
@@ -20,8 +21,9 @@ export default function AppHeader({ currency, setCurrency }: AppHeaderProps) {
       <h1>Brew-even</h1>
 
       <div className={styles.localeCurrency}>
-        <select
+        <SelectWithCaret
           id="locale"
+          aria-label="Language"
           value={i18n.language}
           onChange={(e) => void i18n.changeLanguage(e.target.value)}
         >
@@ -29,10 +31,11 @@ export default function AppHeader({ currency, setCurrency }: AppHeaderProps) {
           <option value="en-US">English</option>
           <option value="fr-FR">Français</option>
           <option value="sv-SE">Svenska</option>
-        </select>
+        </SelectWithCaret>
 
-        <select
+        <SelectWithCaret
           id="currency"
+          aria-label="Currency"
           value={currency}
           onChange={(e) => setCurrency(e.target.value as Currency)}
         >
@@ -40,7 +43,7 @@ export default function AppHeader({ currency, setCurrency }: AppHeaderProps) {
           <option value="GBP">GBP</option>
           <option value="SEK">SEK</option>
           <option value="USD">USD</option>
-        </select>
+        </SelectWithCaret>
       </div>
 
       <ThemeSwitch theme={theme} toggleTheme={toggleTheme} />

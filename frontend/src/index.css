@@ -323,6 +323,7 @@ input, textarea, select, button {
   padding: .75rem;
   font-family: inherit;
   font-size: inherit;
+  letter-spacing: inherit;
   color: var(--text);
   background-color: var(--bg);
   border: 1px solid var(--border);
@@ -369,6 +370,12 @@ button {
 
 select {
   cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--selection);
+    color: var(--text-h);
+  }
 }
 
 .buttonAccent {

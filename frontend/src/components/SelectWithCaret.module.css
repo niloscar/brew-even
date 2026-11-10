@@ -1,0 +1,18 @@
+.wrapper {
+  position: relative;
+  min-width: 0;
+}
+
+.select {
+  appearance: none;
+  padding-right: 1.75rem;
+}
+
+.caret {
+  position: absolute;
+  top: 50%;
+  right: .4rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text);
+}

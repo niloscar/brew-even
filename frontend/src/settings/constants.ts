@@ -1,3 +1,6 @@
+import type { EquipmentType } from '../types/equipment'
+
+
 export const SETUP_PART_OPTIONS = [
   { value: 'espressoMachine', label: 'Machine' },
   { value: 'grinder', label: 'Grinder' },
@@ -8,7 +11,7 @@ export const SETUP_PART_OPTIONS = [
   { value: 'wdt', label: 'WDT' },
   { value: 'tampingMat', label: 'Tamping mat' },
   { value: 'waterTestKit', label: 'Water test kit' }
-]
+] satisfies { value: EquipmentType; label: string }[]
 
 export const CONSUMABLE_OPTIONS = [
   { value: 'coffeeBeans', label: 'Coffee beans', unit: 'kg' },

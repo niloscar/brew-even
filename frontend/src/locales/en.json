@@ -37,7 +37,13 @@
       "wdt": "WDT",
       "tampingMat": "Tamping mat",
       "waterTestKit": "Water test kit"
-    }
+    },
+    "equipmentCategory": "Category",
+    "equipmentName": "Name",
+    "equipmentPrice": "Purchase price",
+    "equipmentCurrency": "Purchase currency",
+    "equipmentDate": "Purchase date",
+    "confirmRemoveEquipment": "Remove {{name}}?"
   },
   "settings": {
     "title": "Settings",

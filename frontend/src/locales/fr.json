@@ -37,7 +37,13 @@
       "wdt": "WDT",
       "tampingMat": "Tapis de tassage",
       "waterTestKit": "Kit d’analyse de l’eau"
-    }
+    },
+    "equipmentCategory": "Catégorie",
+    "equipmentName": "Nom",
+    "equipmentPrice": "Prix d’achat",
+    "equipmentCurrency": "Devise d’achat",
+    "equipmentDate": "Date d’achat",
+    "confirmRemoveEquipment": "Supprimer {{name}} ?"
   },
   "settings": {
     "title": "Paramètres",
