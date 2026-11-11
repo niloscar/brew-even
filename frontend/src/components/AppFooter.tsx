@@ -15,19 +15,19 @@ import styles from './AppFooter.module.css'
 interface AppFooterProps {
   currency: Currency
   locale: string
-  averageCupCost: number | null
+  nextCupCost: number
 }
 
 const CURRENT_YEAR = new Date().getFullYear()
 
-export default function AppFooter({ currency, locale, averageCupCost}: AppFooterProps) {
+export default function AppFooter({ currency, locale, nextCupCost}: AppFooterProps) {
   const { t } = useTranslation()
 
-  const averageCupPrice =
-    averageCupCost === null
+  const nextCupPrice =
+    nextCupCost === null
       ? null
       : format.price(
-          currencyUtils.convert(averageCupCost, MOCK_RATES[currency]),
+          currencyUtils.convert(nextCupCost, MOCK_RATES[currency]),
           locale,
           currency
         )
@@ -77,8 +77,8 @@ export default function AppFooter({ currency, locale, averageCupCost}: AppFooter
             <ArrowUpRightIcon />
           </button>
 
-          {averageCupPrice !== null && (
-            <i>{t('footer.averageCupCost', { price: averageCupPrice })}</i>
+          {nextCupPrice !== null && (
+            <i>{t('footer.nextCupCost', { price: nextCupPrice })}</i>
           )}
         </section>
 

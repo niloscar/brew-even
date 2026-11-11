@@ -76,7 +76,7 @@
     "buyMeACoffee": "Spendier mir einen Kaffee",
     "supportDescription": "Gefällt dir Brew-even? Spendier mir einen Kaffee und unterstütze die Weiterentwicklung des Projekts.",
     "supportProject": "Projekt unterstützen",
-    "averageCupCost": "Meine durchschnittlichen Kosten für eine Tasse Kaffee liegen derzeit bei {{price}}.",
+    "nextCupCost": "Meine nächste Tasse Kaffee kostet {{price}}.",
     "tagline": "Das habe ich dem Koffein zu verdanken."
   },
   "common": {

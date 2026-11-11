@@ -76,7 +76,7 @@
     "buyMeACoffee": "Bjud mig på en kopp",
     "supportDescription": "Gillar du Brew-even? Bjud mig på en kopp kaffe och stöd utvecklingen av projektet.",
     "supportProject": "Stöd projektet",
-    "averageCupCost": "Min snittkostnad för en kopp kaffe är just nu {{price}}.",
+    "nextCupCost": "Min nästa kopp kaffe kostar {{price}}.",
     "tagline": "Det här är koffeinets verk."
   },
   "common": {

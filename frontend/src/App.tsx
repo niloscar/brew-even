@@ -20,6 +20,7 @@ import type { Currency } from 'shared'
 import type { Equipment, EquipmentInput } from './types/equipment'
 
 const DEFAULT_CUPS_BREWED = 1289
+const DEVELOPER_NEXT_CUP_COST_SEK = 19.86
 
 export default function App() {
   const [currency, setCurrency] = useState<Currency>((import.meta.env.VITE_DEFAULT_CURRENCY || 'SEK') as Currency)
@@ -129,7 +130,7 @@ export default function App() {
       <AppFooter
         currency={currency}
         locale={locale}
-        averageCupCost={costs.averageCostPerCup}
+        nextCupCost={DEVELOPER_NEXT_CUP_COST_SEK}
       />
     </>
   )
