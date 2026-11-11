@@ -22,9 +22,7 @@ import type { Equipment, EquipmentInput } from './types/equipment'
 const DEFAULT_CUPS_BREWED = 1289
 
 export default function App() {
-  const [currency, setCurrency] = useState<Currency>(
-    import.meta.env.VITE_DEFAULT_CURRENCY as Currency
-  )
+  const [currency, setCurrency] = useState<Currency>((import.meta.env.VITE_DEFAULT_CURRENCY || 'SEK') as Currency)
   const [manualCups, setManualCups] = useState(String(DEFAULT_CUPS_BREWED))
   const [brewSettings, setBrewSettings] = useState(MOCK_SETTINGS)
   const [consumables, setConsumables] = useState(MOCK_CONSUMABLES)
