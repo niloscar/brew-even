@@ -1,4 +1,3 @@
-
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
 
@@ -73,14 +72,8 @@ describe('appData storage', () => {
 
     const restored = loadAppData(storage)
 
-    assert.equal(
-      restored.data.consumables[0].pricePerUnit,
-      35
-    )
-    assert.equal(
-      restored.data.consumables[0].currency,
-      'EUR'
-    )
+    assert.equal(restored.data.consumables[0].pricePerUnit, 35)
+    assert.equal(restored.data.consumables[0].currency, 'EUR')
   })
 
   it('rejects invalid JSON without overwriting it', () => {
@@ -91,10 +84,7 @@ describe('appData storage', () => {
     const result = loadAppData(storage)
 
     assert.equal(result.status, 'invalid')
-    assert.equal(
-      storage.getItem(STORAGE_KEY),
-      '{invalid-json'
-    )
+    assert.equal(storage.getItem(STORAGE_KEY), '{invalid-json')
   })
 
   it('rejects an unsupported version', () => {
@@ -109,10 +99,7 @@ describe('appData storage', () => {
     const result = loadAppData(storage)
 
     assert.equal(result.status, 'unsupported')
-    assert.equal(
-      storage.getItem(STORAGE_KEY),
-      JSON.stringify(data)
-    )
+    assert.equal(storage.getItem(STORAGE_KEY), JSON.stringify(data))
   })
 
   it('rejects invalid equipment dates', () => {
@@ -165,10 +152,50 @@ describe('appData storage', () => {
     }
 
     assert.equal(loadAppData(storage).status, 'unavailable')
-    assert.equal(
-      saveAppData(createDefaultAppData(), storage),
-      false
-    )
+    assert.equal(saveAppData(createDefaultAppData(), storage), false)
     assert.equal(resetAppData(storage), false)
+  })
+
+  it('preserves invalid data until explicitly reset', () => {
+    const storage = createMemoryStorage()
+    const original = '{invalid-json'
+
+    storage.setItem(STORAGE_KEY, original)
+
+    assert.equal(loadAppData(storage).status, 'invalid')
+    assert.equal(storage.getItem(STORAGE_KEY), original)
+
+    // Reading invalid data must not overwrite it.
+    assert.equal(storage.getItem(STORAGE_KEY), original)
+
+    // Reset is a separate, explicit operation.
+    assert.equal(resetAppData(storage), true)
+    assert.equal(storage.getItem(STORAGE_KEY), null)
+    assert.equal(loadAppData(storage).status, 'empty')
+  })
+
+  it('reports a failed write', () => {
+    const storage = {
+      getItem: () => null,
+      setItem: () => {
+        throw new Error('Quota exceeded')
+      },
+      removeItem: () => {}
+    }
+
+    assert.equal(saveAppData(createDefaultAppData(), storage), false)
+  })
+
+  it('does not report success when reset fails', () => {
+    const storage = {
+      getItem: () => JSON.stringify(createDefaultAppData()),
+      setItem: () => {},
+      removeItem: () => {
+        throw new Error('Storage unavailable')
+      }
+    }
+
+    assert.equal(resetAppData(storage), false)
+    assert.equal(loadAppData(storage).status, 'loaded')
   })
 })

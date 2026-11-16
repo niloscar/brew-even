@@ -1,4 +1,7 @@
 
+import { SUPPORTED_CURRENCIES } from 'shared'
+import { SETUP_PART_OPTIONS } from '../settings/constants.ts'
+
 import type { Currency } from 'shared'
 import type { AppData } from '../types/appData'
 import type { Consumable } from '../types/setup'
@@ -19,20 +22,6 @@ export type LoadResult = {
 }
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>
-
-const CURRENCIES = ['SEK', 'EUR', 'USD', 'GBP']
-
-const EQUIPMENT_TYPES = [
-  'espressoMachine',
-  'grinder',
-  'scale',
-  'knockBox',
-  'coffeeCanister',
-  'tamper',
-  'wdt',
-  'tampingMat',
-  'waterTestKit'
-]
 
 export function createDefaultAppData(currency: Currency = 'SEK'): AppData {
   return {
@@ -82,7 +71,10 @@ function isNonNegativeNumber(value: unknown): value is number {
 }
 
 function isCurrency(value: unknown): value is Currency {
-  return typeof value === 'string' && CURRENCIES.includes(value)
+  return (
+    typeof value === 'string' &&
+    SUPPORTED_CURRENCIES.some((currency) => currency === value)
+  )
 }
 
 function isValidDate(value: unknown): value is string {
@@ -104,7 +96,7 @@ function isEquipment(value: unknown): value is Equipment {
     Number.isSafeInteger(value.id) &&
     (value.id as number) > 0 &&
     typeof value.type === 'string' &&
-    EQUIPMENT_TYPES.includes(value.type) &&
+    SETUP_PART_OPTIONS.some((option) => option.value === value.type) &&
     typeof value.name === 'string' &&
     value.name.trim().length > 0 &&
     value.name.length <= 100 &&

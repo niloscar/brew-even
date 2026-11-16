@@ -1,10 +1,10 @@
+
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import BrewSettingsForm from './BrewSettingsForm'
 import ConsumablesForm from './ConsumablesForm'
 import EquipmentList from './EquipmentList'
 import EquipmentForm from './EquipmentForm'
-import { MOCK_SETTINGS, MOCK_CONSUMABLES } from '../../data/mockData'
 import {
   CoffeeBeanIcon,
   PlusIcon,
@@ -16,33 +16,35 @@ import styles from './SetupSection.module.css'
 
 import type { Currency } from 'shared'
 import type { Equipment, EquipmentInput } from '../../types/equipment'
+import type { BrewSettings, Consumable } from '../../types/setup'
 
 interface SetupSectionProps {
   locale: string
   currency: Currency
-  brewSettings: typeof MOCK_SETTINGS
-  consumables: typeof MOCK_CONSUMABLES
+  brewSettings: BrewSettings
+  consumables: Consumable[]
   equipment: Equipment[]
   onBrewSettingChange: (
-    key: keyof typeof MOCK_SETTINGS,
+    key: keyof BrewSettings,
     value: number
   ) => void
   onConsumablePriceChange: (
     id: number,
-    pricePerUnit: number
+    pricePerUnit: number,
+    currency: Currency
   ) => void
   onAddEquipment: (values: EquipmentInput) => void
   onUpdateEquipment: (id: number, values: EquipmentInput) => void
   onRemoveEquipment: (id: number) => void
 }
 
-export default function SetupSection({ 
-  locale, 
-  currency, 
-  brewSettings, 
-  consumables, 
-  equipment, 
-  onBrewSettingChange, 
+export default function SetupSection({
+  locale,
+  currency,
+  brewSettings,
+  consumables,
+  equipment,
+  onBrewSettingChange,
   onConsumablePriceChange,
   onAddEquipment,
   onUpdateEquipment,
@@ -51,9 +53,10 @@ export default function SetupSection({
   const [formTarget, setFormTarget] = useState<'new' | number | null>(null)
   const { t } = useTranslation()
 
-  const editingEquipment = typeof formTarget === 'number'
-    ? equipment.find((item) => item.id === formTarget)
-    : undefined
+  const editingEquipment =
+    typeof formTarget === 'number'
+      ? equipment.find((item) => item.id === formTarget)
+      : undefined
 
   return (
     <section className="view" id="setup">

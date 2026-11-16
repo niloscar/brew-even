@@ -65,7 +65,18 @@
     "automaticUpdates": "Nach dem Verbinden werden deine Kosten anhand deiner Nutzung automatisch aktualisiert.",
     "supplier": "Hersteller",
     "apiKey": "API-Schlüssel",
-    "connect": "Verbinden"
+    "connect": "Verbinden",
+    "storage": {
+      "title": "Gespeicherte Daten",
+      "description": "Deine Daten werden nur lokal in diesem Browser gespeichert. Sie werden nicht zwischen Geräten synchronisiert und gehen verloren, wenn du die gespeicherten Websitedaten löschst.",
+      "warning": "Deine Änderungen werden derzeit nicht gespeichert. Weitere Informationen findest du in den Einstellungen.",
+      "manage": "Gespeicherte Daten verwalten",
+      "invalid": "Die gespeicherten Daten konnten nicht gelesen werden. Die Originaldaten wurden nicht verändert. Setze die Daten zurück, um wieder speichern zu können.",
+      "unsupported": "Die Daten wurden mit einer nicht unterstützten Version gespeichert. Sie wurden nicht verändert. Setze sie zurück, um neu zu beginnen.",
+      "unavailable": "Der Browserspeicher ist nicht verfügbar. Änderungen können beim Neuladen der Seite verloren gehen.",
+      "reset": "Gespeicherte Daten zurücksetzen",
+      "confirmReset": "Alle gespeicherten Geräte, Brüheinstellungen, Preise und Tassenzahlen löschen? Dies kann nicht rückgängig gemacht werden. Sprache und Design bleiben unverändert."
+    }
   },
   "footer": {
     "title": "Aus Liebe zum Kaffee entwickelt",

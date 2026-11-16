@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+
+import { useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import AppHeader from './components/AppHeader'
@@ -8,60 +9,146 @@ import SettingsSection from './components/settings/SettingsSection'
 import AppFooter from './components/AppFooter'
 
 import { calculateCosts, calculateConsumablesPerCup } from './lib/cost'
-import * as currencyUtils from './utils/currency'
 import {
-  MOCK_SETUP_PARTS,
-  MOCK_SETTINGS,
-  MOCK_CONSUMABLES,
-  MOCK_RATES
-} from './data/mockData'
+  createDefaultAppData,
+  loadAppData,
+  resetAppData,
+  saveAppData
+} from './lib/storage'
+import * as currencyUtils from './utils/currency'
+import { MOCK_RATES } from './data/mockData'
 
 import type { Currency } from 'shared'
-import type { Equipment, EquipmentInput } from './types/equipment'
+import type { AppData } from './types/appData'
+import type { EquipmentInput } from './types/equipment'
+import type { LoadResult } from './lib/storage'
 
-const DEFAULT_CUPS_BREWED = 1296
 const DEVELOPER_NEXT_CUP_COST_SEK = 19.83
 
 export default function App() {
-  const [currency, setCurrency] = useState<Currency>((import.meta.env.VITE_DEFAULT_CURRENCY || 'SEK') as Currency)
-  const [manualCups, setManualCups] = useState(String(DEFAULT_CUPS_BREWED))
-  const [brewSettings, setBrewSettings] = useState(MOCK_SETTINGS)
-  const [consumables, setConsumables] = useState(MOCK_CONSUMABLES)
-  const [equipment, setEquipment] = useState<Equipment[]>(MOCK_SETUP_PARTS)
+  const [session, setSession] = useState(loadAppData)
+  const sessionRef = useRef(session)
 
-  const { i18n } = useTranslation()
+  const [manualCups, setManualCups] = useState(
+    String(session.data.cupsBrewed)
+  )
+  const [resetKey, setResetKey] = useState(0)
+
+  const { t, i18n } = useTranslation()
   const locale = i18n.language
 
-  function addEquipment(values: EquipmentInput) {
-    setEquipment((prev) => {
-      const nextId = Math.max(0, ...prev.map((item) => item.id)) + 1
+  const { data: appData, status: storageStatus } = session
 
-      return [
+  const {
+    currency,
+    cupsBrewed,
+    brewSettings,
+    consumables,
+    equipment
+  } = appData
+
+  function updateAppData(update: (prev: AppData) => AppData) {
+    const current = sessionRef.current
+    const nextData = update(current.data)
+
+    let nextStatus = current.status
+
+    if (nextStatus === 'empty' || nextStatus === 'loaded') {
+      nextStatus = saveAppData(nextData) ? 'loaded' : 'unavailable'
+    }
+
+    const nextSession: LoadResult = {
+      data: nextData,
+      status: nextStatus
+    }
+
+    sessionRef.current = nextSession
+    setSession(nextSession)
+  }
+
+  function handleReset() {
+    if (!window.confirm(t('settings.storage.confirmReset'))) return
+
+    if (!resetAppData()) {
+      const nextSession: LoadResult = {
+        ...sessionRef.current,
+        status: 'unavailable'
+      }
+
+      sessionRef.current = nextSession
+      setSession(nextSession)
+      return
+    }
+
+    const nextSession: LoadResult = {
+      data: createDefaultAppData(),
+      status: 'empty'
+    }
+
+    sessionRef.current = nextSession
+    setSession(nextSession)
+    setManualCups('0')
+    setResetKey((prev) => prev + 1)
+  }
+
+  function setCurrency(currency: Currency) {
+    updateAppData((prev) => ({ ...prev, currency }))
+  }
+
+  function handleManualCupsChange(value: string) {
+    setManualCups(value)
+
+    const cups = Number(value || 0)
+
+    if (!Number.isSafeInteger(cups) || cups < 0) return
+
+    updateAppData((prev) => ({
+      ...prev,
+      cupsBrewed: cups
+    }))
+  }
+
+  function addEquipment(values: EquipmentInput) {
+    updateAppData((prev) => {
+      const nextId =
+        Math.max(0, ...prev.equipment.map((item) => item.id)) + 1
+
+      return {
         ...prev,
-        { id: nextId, ...values }
-      ]
+        equipment: [
+          ...prev.equipment,
+          { id: nextId, ...values }
+        ]
+      }
     })
   }
 
   function updateEquipment(id: number, values: EquipmentInput) {
-    setEquipment((prev) =>
-      prev.map((item) =>
+    updateAppData((prev) => ({
+      ...prev,
+      equipment: prev.equipment.map((item) =>
         item.id === id ? { ...item, ...values } : item
       )
-    )
+    }))
   }
 
   function removeEquipment(id: number) {
-    setEquipment((prev) =>
-      prev.filter((item) => item.id !== id)
-    )
+    updateAppData((prev) => ({
+      ...prev,
+      equipment: prev.equipment.filter((item) => item.id !== id)
+    }))
   }
-
-  const cupsBrewed = Number(manualCups || 0)
 
   const consumablesPerCup = calculateConsumablesPerCup(
     brewSettings,
-    consumables
+    consumables.map((item) => ({
+      type: item.type,
+      pricePerUnit: currencyUtils.convertToSek(
+        item.pricePerUnit,
+        item.currency,
+        MOCK_RATES
+      )
+    }))
   )
 
   const normalizedEquipment = useMemo(
@@ -83,9 +170,27 @@ export default function App() {
     consumablesPerCup
   })
 
+  const hasStorageError =
+    storageStatus === 'invalid' ||
+    storageStatus === 'unsupported' ||
+    storageStatus === 'unavailable'
+
   return (
     <>
       <AppHeader currency={currency} setCurrency={setCurrency} />
+
+      {hasStorageError && (
+        <div
+          role="alert"
+          className="card"
+          style={{ maxWidth: '48rem', margin: '1rem auto' }}
+        >
+          <p>{t('settings.storage.warning')}</p>
+          <a href="#settings">
+            {t('settings.storage.manage')}
+          </a>
+        </div>
+      )}
 
       <main>
         <OverviewSection
@@ -95,36 +200,46 @@ export default function App() {
           cupsBrewed={cupsBrewed}
           consumablesPerCup={consumablesPerCup}
           manualCups={manualCups}
-          onManualCupsChange={setManualCups}
+          onManualCupsChange={handleManualCupsChange}
           averageCostPerCup={costs.averageCostPerCup}
           nextAverageCostPerCup={costs.nextAverageCostPerCup}
         />
 
         <SetupSection
+          key={resetKey}
           locale={locale}
           currency={currency}
           brewSettings={brewSettings}
           consumables={consumables}
           equipment={equipment}
           onBrewSettingChange={(key, value) =>
-            setBrewSettings((prev) => ({
+            updateAppData((prev) => ({
               ...prev,
-              [key]: value
+              brewSettings: {
+                ...prev.brewSettings,
+                [key]: value
+              }
             }))
           }
-          onConsumablePriceChange={(id, pricePerUnit) =>
-            setConsumables((prev) =>
-              prev.map((item) =>
-                item.id === id ? { ...item, pricePerUnit } : item
+          onConsumablePriceChange={(id, pricePerUnit, currency) =>
+            updateAppData((prev) => ({
+              ...prev,
+              consumables: prev.consumables.map((item) =>
+                item.id === id
+                  ? { ...item, pricePerUnit, currency }
+                  : item
               )
-            )
+            }))
           }
           onAddEquipment={addEquipment}
           onUpdateEquipment={updateEquipment}
           onRemoveEquipment={removeEquipment}
         />
 
-        <SettingsSection />
+        <SettingsSection
+          storageStatus={storageStatus}
+          onResetData={handleReset}
+        />
       </main>
 
       <AppFooter

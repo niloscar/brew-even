@@ -65,7 +65,18 @@
     "automaticUpdates": "När utrustningen är ansluten uppdateras kostnaderna automatiskt utifrån din användning.",
     "supplier": "Tillverkare",
     "apiKey": "API-nyckel",
-    "connect": "Anslut"
+    "connect": "Anslut",
+    "storage": {
+      "title": "Lagrade uppgifter",
+      "description": "Dina uppgifter sparas lokalt i den här webbläsaren. De synkroniseras inte mellan enheter och försvinner om du rensar webbplatsens lagrade data.",
+      "warning": "Dina ändringar sparas inte just nu. Se Inställningar för mer information.",
+      "manage": "Hantera lagrade uppgifter",
+      "invalid": "De lagrade uppgifterna går inte att läsa. Originalet har lämnats orört. Återställ uppgifterna för att kunna spara igen.",
+      "unsupported": "Uppgifterna är sparade med en version som appen inte stöder. De har lämnats orörda. Återställ dem för att börja om.",
+      "unavailable": "Webbläsarens lagring är inte tillgänglig. Ändringar kan försvinna när du laddar om sidan.",
+      "reset": "Återställ uppgifter",
+      "confirmReset": "Vill du radera all sparad utrustning, brygginställningar, priser och antal koppar? Det går inte att ångra. Språk och tema påverkas inte."
+    }
   },
   "footer": {
     "title": "Byggt av kärlek till kaffet",
