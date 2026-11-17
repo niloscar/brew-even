@@ -65,7 +65,18 @@
     "automaticUpdates": "Une fois vos appareils connectés, vos coûts sont automatiquement mis à jour en fonction de votre utilisation.",
     "supplier": "Fabricant",
     "apiKey": "Clé API",
-    "connect": "Connecter"
+    "connect": "Connecter",
+    "storage": {
+      "title": "Données enregistrées",
+      "description": "Vos données sont enregistrées uniquement dans ce navigateur. Elles ne sont pas synchronisées entre les appareils et seront perdues si vous effacez les données enregistrées de ce site.",
+      "warning": "Vos modifications ne sont pas enregistrées actuellement. Consultez les paramètres pour plus d’informations.",
+      "manage": "Gérer les données enregistrées",
+      "invalid": "Les données enregistrées n’ont pas pu être lues. Les données d’origine n’ont pas été modifiées. Réinitialisez-les pour pouvoir enregistrer à nouveau.",
+      "unsupported": "Les données ont été enregistrées avec une version non prise en charge. Elles n’ont pas été modifiées. Réinitialisez-les pour recommencer.",
+      "unavailable": "Le stockage du navigateur est indisponible. Les modifications risquent d’être perdues lors du rechargement de la page.",
+      "reset": "Réinitialiser les données",
+      "confirmReset": "Supprimer tous les équipements, réglages de préparation, prix et nombres de tasses enregistrés ? Cette action est irréversible. La langue et le thème ne seront pas modifiés."
+    }
   },
   "footer": {
     "title": "Créé par amour du café",

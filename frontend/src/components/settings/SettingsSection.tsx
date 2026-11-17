@@ -1,15 +1,23 @@
-import { useTranslation } from 'react-i18next'
-import CoffeeIntegrationForm from './CoffeeIntegrationForm'
-import { PlugsIcon } from '@phosphor-icons/react'
 
-export default function SettingsSection() {
+import { useTranslation } from 'react-i18next'
+import { PlugsIcon, TrashIcon } from '@phosphor-icons/react'
+import CoffeeIntegrationForm from './CoffeeIntegrationForm'
+
+import type { StorageStatus } from '../../lib/storage'
+
+type SettingsSectionProps = {
+  storageStatus: StorageStatus
+  onResetData: () => void
+}
+
+export default function SettingsSection({ storageStatus, onResetData }: SettingsSectionProps) {
   const { t } = useTranslation()
 
   return (
     <section className="view" id="settings">
       <h2>{t('settings.title')}</h2>
 
-      <div className="cardGrid col1">
+      <div className="cardGrid contained col1">
         <section className="card">
           <h3>
             <PlugsIcon />
@@ -20,6 +28,28 @@ export default function SettingsSection() {
           <p>{t('settings.automaticUpdates')}</p>
 
           <CoffeeIntegrationForm />
+        </section>
+
+        <section className="card">
+          <h3>
+            <TrashIcon />
+            <span>{t('settings.storage.title')}</span>
+          </h3>
+
+          <p>{t('settings.storage.description')}</p>
+
+          <div>
+            <button
+              type="button"
+              onClick={onResetData}
+              disabled={
+                storageStatus === 'empty' ||
+                storageStatus === 'unavailable'
+              }
+            >
+              {t('settings.storage.reset')}
+            </button>
+          </div>
         </section>
       </div>
     </section>

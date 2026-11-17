@@ -65,7 +65,18 @@
     "automaticUpdates": "Once connected, the app will automatically update your costs based on your usage.",
     "supplier": "Supplier",
     "apiKey": "API key",
-    "connect": "Connect"
+    "connect": "Connect",
+    "storage": {
+      "title": "Saved data",
+      "description": "Your data is stored locally in this browser only. It is not synced across devices and will be lost if you clear this website's stored data.",
+      "warning": "Your changes are not being saved. See Settings for details.",
+      "manage": "Manage saved data",
+      "invalid": "Your saved data could not be read. The original data has been left untouched. Reset it to enable saving again.",
+      "unsupported": "Your data was saved using an unsupported version. It has been left untouched. Reset it to start over.",
+      "unavailable": "Browser storage is unavailable. Changes may be lost when you reload the page.",
+      "reset": "Reset saved data",
+      "confirmReset": "Delete all saved equipment, brewing settings, prices and cup counts? This cannot be undone. Language and theme will not be affected."
+    }
   },
   "footer": {
     "title": "Built for the love of coffee",

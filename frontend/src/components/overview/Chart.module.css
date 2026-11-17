@@ -116,6 +116,8 @@
   padding: 1rem;
   color: var(--text);
   text-align: center;
+  font-size: var(--font-sm);
+  font-style: italic;
 }
 
 .chartLegend {
