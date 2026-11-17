@@ -51,10 +51,8 @@ export function useSectionScroll() {
 
       if (!event.cancelable) return
 
-      const sections = Array.from(
-        document.querySelectorAll<HTMLElement>('.view')
-      )
-      const headerHeight = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0
+      const sections = Array.from(document.querySelectorAll<HTMLElement>('.view'))
+      const headerHeight = document.querySelector('header')?.getBoundingClientRect().height ?? 0
 
       let currentIndex = 0
 
