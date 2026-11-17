@@ -1,4 +1,6 @@
+import type { AppData } from '../types/appData'
 import type { Equipment } from '../types/equipment'
+import type { Consumable } from '../types/setup'
 
 export const MOCK_RATES = {
   SEK: 1,
@@ -116,7 +118,7 @@ export const MOCK_CONSUMABLES = [
     pricePerUnit: 6.33,
     currency: 'SEK'
   }
-]
+] as Consumable[]
 
 export const MOCK_ALTERNATIVES = [
   {
@@ -132,3 +134,12 @@ export const MOCK_ALTERNATIVES = [
     currency: 'SEK'
   }
 ]
+
+export const MOCK_APP_DATA: AppData = {
+  version: 1,
+  currency: 'SEK',
+  cupsBrewed: 1296,
+  brewSettings: MOCK_SETTINGS,
+  consumables: MOCK_CONSUMABLES,
+  equipment: MOCK_SETUP_PARTS
+}

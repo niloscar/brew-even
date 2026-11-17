@@ -16,7 +16,7 @@ import {
   saveAppData
 } from './lib/storage'
 import * as currencyUtils from './utils/currency'
-import { MOCK_RATES } from './data/mockData'
+import { MOCK_RATES, MOCK_APP_DATA } from './data/mockData'
 
 import type { Currency } from 'shared'
 import type { AppData } from './types/appData'
@@ -25,13 +25,28 @@ import type { LoadResult } from './lib/storage'
 
 const DEVELOPER_NEXT_CUP_COST_SEK = 19.83
 
+function initializeSession(): LoadResult {
+  const url = new URL(window.location.href)
+
+  if (url.searchParams.get('mock') !== '1') return loadAppData()
+
+  const data = structuredClone(MOCK_APP_DATA)
+
+  if (!saveAppData(data)) return { data, status: 'unavailable' }
+
+  url.searchParams.delete('mock')
+  window.history.replaceState(window.history.state, '', `${url.pathname}${url.search}${url.hash}`)
+
+  return { data, status: 'loaded' }
+}
+
+const initialSession = initializeSession()
+
 export default function App() {
-  const [session, setSession] = useState(loadAppData)
+  const [session, setSession] = useState<LoadResult>(initialSession)
   const sessionRef = useRef(session)
 
-  const [manualCups, setManualCups] = useState(
-    String(session.data.cupsBrewed)
-  )
+  const [manualCups, setManualCups] = useState(String(session.data.cupsBrewed))
   const [resetKey, setResetKey] = useState(0)
 
   const { t, i18n } = useTranslation()
@@ -39,13 +54,7 @@ export default function App() {
 
   const { data: appData, status: storageStatus } = session
 
-  const {
-    currency,
-    cupsBrewed,
-    brewSettings,
-    consumables,
-    equipment
-  } = appData
+  const { currency, cupsBrewed, brewSettings, consumables, equipment } = appData
 
   function updateAppData(update: (prev: AppData) => AppData) {
     const current = sessionRef.current
@@ -80,14 +89,16 @@ export default function App() {
       return
     }
 
+    const defaults = createDefaultAppData()
+
     const nextSession: LoadResult = {
-      data: createDefaultAppData(),
+      data: defaults,
       status: 'empty'
     }
 
     sessionRef.current = nextSession
     setSession(nextSession)
-    setManualCups('0')
+    setManualCups(String(defaults.cupsBrewed))
     setResetKey((prev) => prev + 1)
   }
 
@@ -110,15 +121,11 @@ export default function App() {
 
   function addEquipment(values: EquipmentInput) {
     updateAppData((prev) => {
-      const nextId =
-        Math.max(0, ...prev.equipment.map((item) => item.id)) + 1
+      const nextId = Math.max(0, ...prev.equipment.map((item) => item.id)) + 1
 
       return {
         ...prev,
-        equipment: [
-          ...prev.equipment,
-          { id: nextId, ...values }
-        ]
+        equipment: [...prev.equipment, { id: nextId, ...values }]
       }
     })
   }
@@ -170,27 +177,9 @@ export default function App() {
     consumablesPerCup
   })
 
-  const hasStorageError =
-    storageStatus === 'invalid' ||
-    storageStatus === 'unsupported' ||
-    storageStatus === 'unavailable'
-
   return (
     <>
       <AppHeader currency={currency} setCurrency={setCurrency} />
-
-      {hasStorageError && (
-        <div
-          role="alert"
-          className="card"
-          style={{ maxWidth: '48rem', margin: '1rem auto' }}
-        >
-          <p>{t('settings.storage.warning')}</p>
-          <a href="#settings">
-            {t('settings.storage.manage')}
-          </a>
-        </div>
-      )}
 
       <main>
         <OverviewSection
@@ -225,9 +214,7 @@ export default function App() {
             updateAppData((prev) => ({
               ...prev,
               consumables: prev.consumables.map((item) =>
-                item.id === id
-                  ? { ...item, pricePerUnit, currency }
-                  : item
+                item.id === id ? { ...item, pricePerUnit, currency } : item
               )
             }))
           }

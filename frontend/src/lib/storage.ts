@@ -207,10 +207,7 @@ export function saveAppData(data: AppData, storage?: StorageLike): boolean {
   if (!isAppData(data)) return false
 
   try {
-    getStorage(storage).setItem(
-      STORAGE_KEY,
-      JSON.stringify(data)
-    )
+    getStorage(storage).setItem(STORAGE_KEY, JSON.stringify(data))
     return true
   } catch {
     return false

@@ -10,22 +10,14 @@ type SettingsSectionProps = {
   onResetData: () => void
 }
 
-export default function SettingsSection({
-  storageStatus,
-  onResetData
-}: SettingsSectionProps) {
+export default function SettingsSection({ storageStatus, onResetData }: SettingsSectionProps) {
   const { t } = useTranslation()
-
-  const hasStorageError =
-    storageStatus === 'invalid' ||
-    storageStatus === 'unsupported' ||
-    storageStatus === 'unavailable'
 
   return (
     <section className="view" id="settings">
       <h2>{t('settings.title')}</h2>
 
-      <div className="cardGrid col1">
+      <div className="cardGrid contained col1">
         <section className="card">
           <h3>
             <PlugsIcon />
@@ -45,12 +37,6 @@ export default function SettingsSection({
           </h3>
 
           <p>{t('settings.storage.description')}</p>
-
-          {hasStorageError && (
-            <p role="alert">
-              {t(`settings.storage.${storageStatus}`)}
-            </p>
-          )}
 
           <div>
             <button
