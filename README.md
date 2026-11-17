@@ -3,7 +3,7 @@
 
 A home espresso cost calculator for tracking equipment investments, consumables, cost per cup, and the journey towards break-even.
 
-**Live preview:** [brew-even.vercel.app](https://brew-even.vercel.app)
+**Live preview:** [breweven.app](https://breweven.app)
 
 ## Features
 
