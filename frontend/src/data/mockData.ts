@@ -4,9 +4,9 @@ import type { Consumable } from '../types/setup'
 
 export const MOCK_RATES = {
   SEK: 1,
-  USD: 0.11,
-  EUR: 0.10,
-  GBP: 0.09
+  USD: 0.10,
+  EUR: 0.09,
+  GBP: 0.08
 }
 
 export const MOCK_SETUP_PARTS: Equipment[] = [
@@ -138,7 +138,7 @@ export const MOCK_ALTERNATIVES = [
 export const MOCK_APP_DATA: AppData = {
   version: 1,
   currency: 'SEK',
-  cupsBrewed: 1296,
+  cupsBrewed: 1309,
   brewSettings: MOCK_SETTINGS,
   consumables: MOCK_CONSUMABLES,
   equipment: MOCK_SETUP_PARTS
