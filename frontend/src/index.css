@@ -73,10 +73,6 @@
 
 html {
   scroll-padding-top: var(--header-height);
-
-  @media (min-width: 769px) {
-    scroll-snap-type: y proximity;
-  }
 }
 
 body {
@@ -176,7 +172,6 @@ a {
   flex-direction: column;
   justify-content: center;
   padding: 2rem;
-  scroll-snap-align: start;
 
   @media (max-width: 768px) {
     min-height: auto;
@@ -273,6 +268,7 @@ a {
 
 .card h3 svg {
   color: var(--accent);
+  user-select: none;
 }
 
 p + .formGrid {

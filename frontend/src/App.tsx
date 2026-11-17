@@ -1,6 +1,7 @@
 
 import { useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSectionScroll } from './hooks/useSectionScroll'
 
 import AppHeader from './components/AppHeader'
 import OverviewSection from './components/overview/OverviewSection'
@@ -55,6 +56,8 @@ export default function App() {
   const { data: appData, status: storageStatus } = session
 
   const { currency, cupsBrewed, brewSettings, consumables, equipment } = appData
+
+  useSectionScroll()
 
   function updateAppData(update: (prev: AppData) => AppData) {
     const current = sessionRef.current
