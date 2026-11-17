@@ -112,12 +112,6 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 1rem;
-  color: var(--text);
-  text-align: center;
-  font-size: var(--font-sm);
-  font-style: italic;
 }
 
 .chartLegend {

@@ -263,13 +263,38 @@ a {
   text-wrap: pretty;
 }
 
+.card h3:has(+ p) {
+  margin-bottom: 0;
+}
+
 .card h3 svg {
   color: var(--accent);
   user-select: none;
 }
 
+.card > p + p {
+  margin-top: 0;
+}
+
+.emptyState {
+  margin: 0;
+  padding: 1rem;
+  color: var(--text);
+  text-align: center;
+  font-size: var(--font-sm);
+  font-style: italic;
+}
+
 p + .formGrid {
   margin-top: 1rem;
+}
+
+.settingsAction {
+  margin-top: .5rem;
+
+  & button {
+    width: 100%;
+  }
 }
 
 .formGrid {
@@ -369,7 +394,7 @@ button {
   cursor: pointer;
   color: currentColor;
 
-  &:active {
+  &:active:not(:disabled) {
     transform: scale(0.98);
   }
 }
@@ -377,8 +402,8 @@ button {
 select {
   cursor: pointer;
 
-  &:hover,
-  &:focus-visible {
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
     background-color: var(--selection);
     color: var(--text-h);
   }

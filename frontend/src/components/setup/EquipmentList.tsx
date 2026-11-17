@@ -1,4 +1,3 @@
-
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -124,9 +123,13 @@ export default function EquipmentList({
   }
 
   function handleRemove(part: Equipment) {
-    if (!window.confirm(t('setup.confirmRemoveEquipment', {
-      name: part.name
-    }))) {
+    if (
+      !window.confirm(
+        t('setup.confirmRemoveEquipment', {
+          name: part.name
+        })
+      )
+    ) {
       return
     }
 
@@ -135,6 +138,10 @@ export default function EquipmentList({
     if (editing?.id === part.id) {
       setEditing(null)
     }
+  }
+
+  if (equipment.length === 0) {
+    return <p className="emptyState">{t('setup.equipmentEmpty')}</p>
   }
 
   const sortedEquipment = [...equipment].sort(
@@ -179,9 +186,7 @@ export default function EquipmentList({
                   required
                   maxLength={100}
                   value={editing.draft.name}
-                  onChange={(e) =>
-                    updateField('name', e.target.value)
-                  }
+                  onChange={(e) => updateField('name', e.target.value)}
                 />
 
                 <div className={styles.equipmentPriceGroup}>
@@ -192,9 +197,7 @@ export default function EquipmentList({
                     step="any"
                     required
                     value={editing.draft.price}
-                    onChange={(e) =>
-                      updateField('price', e.target.value)
-                    }
+                    onChange={(e) => updateField('price', e.target.value)}
                   />
 
                   <SelectWithCaret
@@ -238,14 +241,14 @@ export default function EquipmentList({
                   {t(`setup.equipmentTypes.${part.type}`)}
                 </span>
 
-                <span 
+                <span
                   className={styles.equipmentName}
                   title={t('setup.acquiredOn', {
                     date: new Intl.DateTimeFormat(locale).format(
                       new Date(`${part.acquisitionDate}T00:00:00`)
                     )
                   })}
-                  >
+                >
                   {part.name}
                 </span>
 

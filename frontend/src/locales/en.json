@@ -20,7 +20,9 @@
     "chartPeriodall": "Since start",
     "chartHistory": "Estimated development",
     "chartForecast": "Forecast",
-    "chartModelNote": "Modeled using a consistent brewing rate and unchanged costs."
+    "chartModelNote": "Modeled using a consistent brewing rate and unchanged costs.",
+    "chartEmptyEquipment": "Add equipment to see how the cost per cup changes over time.",
+    "chartEmptyEquipmentCost": "Enter an equipment cost to display the chart."
   },
   "setup": {
     "title": "Brewing and Equipment",
@@ -56,13 +58,13 @@
     "equipmentPrice": "Purchase price",
     "equipmentCurrency": "Purchase currency",
     "equipmentDate": "Purchase date",
-    "confirmRemoveEquipment": "Remove {{name}}?"
+    "confirmRemoveEquipment": "Remove {{name}}?",
+    "equipmentEmpty": "No equipment has been added yet."
   },
   "settings": {
     "title": "Settings",
     "connectSetup": "Connect your coffee setup",
-    "connectDescription": "Connect your coffee setup to the app to automatically track and calculate your costs.",
-    "automaticUpdates": "Once connected, the app will automatically update your costs based on your usage.",
+    "connectDescription": "Connect your coffee equipment to automatically track brewed cups and keep your cost calculations up to date.",
     "supplier": "Supplier",
     "apiKey": "API key",
     "connect": "Connect",
