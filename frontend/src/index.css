@@ -285,10 +285,6 @@ a {
   font-style: italic;
 }
 
-p + .formGrid {
-  margin-top: 1rem;
-}
-
 .settingsAction {
   margin-top: .5rem;
 
