@@ -20,7 +20,9 @@
     "chartPeriodall": "Sedan start",
     "chartHistory": "Beräknad utveckling",
     "chartForecast": "Prognos",
-    "chartModelNote": "Modellberäknad utveckling utifrån jämn bryggtakt och oförändrade kostnader."
+    "chartModelNote": "Modellberäknad utveckling utifrån jämn bryggtakt och oförändrade kostnader.",
+    "chartEmptyEquipment": "Lägg till utrustning för att se hur kostnaden per kopp utvecklas.",
+    "chartEmptyEquipmentCost": "Ange en utrustningskostnad för att visa diagrammet."
   },
   "setup": {
     "title": "Bryggning och utrustning",
@@ -56,13 +58,13 @@
     "equipmentPrice": "Inköpspris",
     "equipmentCurrency": "Inköpsvaluta",
     "equipmentDate": "Inköpsdatum",
-    "confirmRemoveEquipment": "Vill du ta bort {{name}}?"
+    "confirmRemoveEquipment": "Vill du ta bort {{name}}?",
+    "equipmentEmpty": "Ingen utrustning har lagts till ännu."
   },
   "settings": {
     "title": "Inställningar",
     "connectSetup": "Anslut din kaffeutrustning",
-    "connectDescription": "Anslut din kaffeutrustning till appen för att automatiskt registrera och beräkna dina kostnader.",
-    "automaticUpdates": "När utrustningen är ansluten uppdateras kostnaderna automatiskt utifrån din användning.",
+    "connectDescription": "Anslut din kaffeutrustning för att automatiskt registrera bryggda koppar och hålla kostnadsberäkningarna uppdaterade.",
     "supplier": "Tillverkare",
     "apiKey": "API-nyckel",
     "connect": "Anslut",

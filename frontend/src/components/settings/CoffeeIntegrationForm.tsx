@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import SelectWithCaret from '../SelectWithCaret'
+import { PlugsConnectedIcon } from '@phosphor-icons/react'
 
 export default function CoffeeIntegrationForm() {
   const { t } = useTranslation()
@@ -24,7 +25,13 @@ export default function CoffeeIntegrationForm() {
         disabled
       />
 
-      <button type="submit">{t('settings.connect')}</button>
+      <button 
+        type="submit"
+        disabled
+      >
+        <PlugsConnectedIcon aria-hidden="true" />
+        {t('settings.connect')}
+      </button>
     </form>
   )
 }

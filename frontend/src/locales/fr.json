@@ -20,7 +20,9 @@
     "chartPeriodall": "Depuis le début",
     "chartHistory": "Évolution estimée",
     "chartForecast": "Prévision",
-    "chartModelNote": "Évolution modélisée avec un rythme de préparation régulier et des coûts constants."
+    "chartModelNote": "Évolution modélisée avec un rythme de préparation régulier et des coûts constants.",
+    "chartEmptyEquipment": "Ajoutez du matériel pour voir l’évolution du coût par tasse.",
+    "chartEmptyEquipmentCost": "Indiquez le prix d’achat d’un équipement pour afficher le graphique."
   },
   "setup": {
     "title": "Préparation et matériel",
@@ -56,13 +58,13 @@
     "equipmentPrice": "Prix d’achat",
     "equipmentCurrency": "Devise d’achat",
     "equipmentDate": "Date d’achat",
-    "confirmRemoveEquipment": "Supprimer {{name}} ?"
+    "confirmRemoveEquipment": "Supprimer {{name}} ?",
+    "equipmentEmpty": "Aucun équipement n’a encore été ajouté."
   },
   "settings": {
     "title": "Paramètres",
     "connectSetup": "Connecter vos appareils à café",
-    "connectDescription": "Connectez vos appareils à Brew-even pour suivre automatiquement votre consommation et calculer vos coûts.",
-    "automaticUpdates": "Une fois vos appareils connectés, vos coûts sont automatiquement mis à jour en fonction de votre utilisation.",
+    "connectDescription": "Connectez votre équipement à café pour enregistrer automatiquement les tasses préparées et maintenir vos calculs de coûts à jour.",
     "supplier": "Fabricant",
     "apiKey": "Clé API",
     "connect": "Connecter",

@@ -1,7 +1,8 @@
 
 import { useTranslation } from 'react-i18next'
-import { PlugsIcon, TrashIcon } from '@phosphor-icons/react'
+import { DatabaseIcon, PlugsIcon } from '@phosphor-icons/react'
 import CoffeeIntegrationForm from './CoffeeIntegrationForm'
+import { ArrowCounterClockwiseIcon } from '@phosphor-icons/react'
 
 import type { StorageStatus } from '../../lib/storage'
 
@@ -25,20 +26,19 @@ export default function SettingsSection({ storageStatus, onResetData }: Settings
           </h3>
 
           <p>{t('settings.connectDescription')}</p>
-          <p>{t('settings.automaticUpdates')}</p>
 
           <CoffeeIntegrationForm />
         </section>
 
         <section className="card">
           <h3>
-            <TrashIcon />
+            <DatabaseIcon />
             <span>{t('settings.storage.title')}</span>
           </h3>
 
           <p>{t('settings.storage.description')}</p>
 
-          <div>
+          <div className="settingsAction">
             <button
               type="button"
               onClick={onResetData}
@@ -47,6 +47,7 @@ export default function SettingsSection({ storageStatus, onResetData }: Settings
                 storageStatus === 'unavailable'
               }
             >
+              <ArrowCounterClockwiseIcon aria-hidden="true" />
               {t('settings.storage.reset')}
             </button>
           </div>

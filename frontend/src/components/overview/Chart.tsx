@@ -53,13 +53,21 @@ export default function Chart({
   const { t } = useTranslation()
   const [period, setPeriod] = useState<Period>('90')
 
+  const hasEquipmentCost = equipment.some((item) => item.price > 0)
+
+  const emptyMessageKey = equipment.length === 0
+    ? 'overview.chartEmptyEquipment'
+    : !hasEquipmentCost
+      ? 'overview.chartEmptyEquipmentCost'
+      : 'overview.chartEmpty'
+
   const brewRate = useMemo(
     () => calculateDailyBrewRate(equipment, cupsBrewed, TODAY),
     [equipment, cupsBrewed]
   )
 
   const data = useMemo(() => {
-    if (cupsBrewed === 0) return []
+    if (cupsBrewed === 0 || !hasEquipmentCost) return []
 
     const historyDays = period === 'all' ? null : Number(period)
 
@@ -124,7 +132,8 @@ export default function Chart({
     consumablesPerCup,
     currency,
     period,
-    brewRate
+    brewRate,
+    hasEquipmentCost
   ])
 
   const hasForecast = data.some(
@@ -140,29 +149,31 @@ export default function Chart({
             <span>{t('overview.chartTitle')}</span>
           </h3>
 
-          <div
-            className={styles.periodSelector}
-            role="group"
-            aria-label={t('overview.chartPeriod')}
-          >
-            {PERIODS.map((value) => (
-              <button
-                key={value}
-                type="button"
-                className={styles.periodButton}
-                aria-pressed={period === value}
-                onClick={() => setPeriod(value)}
-              >
-                {t(`overview.chartPeriod${value}`)}
-              </button>
-            ))}
-          </div>
+          {data.length > 0 && (
+            <div
+              className={styles.periodSelector}
+              role="group"
+              aria-label={t('overview.chartPeriod')}
+            >
+              {PERIODS.map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  className={styles.periodButton}
+                  aria-pressed={period === value}
+                  onClick={() => setPeriod(value)}
+                >
+                  {t(`overview.chartPeriod${value}`)}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className={styles.chartCanvas}>
           {data.length === 0 ? (
-            <p className={styles.chartEmpty}>
-              {t('overview.chartEmpty')}
+            <p className={`${styles.chartEmpty} emptyState`}>
+              {t(emptyMessageKey)}
             </p>
           ) : (
             <LineChart
@@ -241,21 +252,25 @@ export default function Chart({
         </div>
       </div>
 
-      <div className={styles.chartLegend}>
-        <span className={styles.legendHistorical}>
-          {t('overview.chartHistory')}
-        </span>
+      {data.length > 0 && (
+        <>
+          <div className={styles.chartLegend}>
+            <span className={styles.legendHistorical}>
+              {t('overview.chartHistory')}
+            </span>
 
-        {hasForecast && (
-          <span className={styles.legendForecast}>
-            {t('overview.chartForecast')}
-          </span>
-        )}
-      </div>
+            {hasForecast && (
+              <span className={styles.legendForecast}>
+                {t('overview.chartForecast')}
+              </span>
+            )}
+          </div>
 
-      <p className={styles.chartNote}>
-        {t('overview.chartModelNote')}
-      </p>
+          <p className={styles.chartNote}>
+            {t('overview.chartModelNote')}
+          </p>
+        </>
+      )}
     </div>
   )
 }

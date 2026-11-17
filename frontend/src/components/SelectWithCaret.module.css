@@ -3,6 +3,10 @@
   min-width: 0;
 }
 
+.wrapper:has(.select:disabled) .caret {
+  opacity: .5;
+}
+
 .select {
   appearance: none;
   padding-right: 1.75rem;

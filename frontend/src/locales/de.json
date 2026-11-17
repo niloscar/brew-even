@@ -20,7 +20,9 @@
     "chartPeriodall": "Seit Beginn",
     "chartHistory": "Berechneter Verlauf",
     "chartForecast": "Prognose",
-    "chartModelNote": "Modellrechnung auf Basis einer gleichmäßigen Zubereitungsrate und konstanter Kosten."
+    "chartModelNote": "Modellrechnung auf Basis einer gleichmäßigen Zubereitungsrate und konstanter Kosten.",
+    "chartEmptyEquipment": "Füge Ausrüstung hinzu, um zu sehen, wie sich die Kosten pro Tasse entwickeln.",
+    "chartEmptyEquipmentCost": "Gib Anschaffungskosten für ein Gerät ein, um das Diagramm anzuzeigen."
   },
   "setup": {
     "title": "Zubereitung und Equipment",
@@ -56,13 +58,13 @@
     "equipmentPrice": "Kaufpreis",
     "equipmentCurrency": "Kaufwährung",
     "equipmentDate": "Kaufdatum",
-    "confirmRemoveEquipment": "{{name}} entfernen?"
+    "confirmRemoveEquipment": "{{name}} entfernen?",
+    "equipmentEmpty": "Es wurde noch keine Ausrüstung hinzugefügt."
   },
   "settings": {
     "title": "Einstellungen",
     "connectSetup": "Kaffeegeräte verbinden",
-    "connectDescription": "Verbinde deine Kaffeegeräte mit Brew-even, um deinen Verbrauch automatisch zu erfassen und deine Kosten zu berechnen.",
-    "automaticUpdates": "Nach dem Verbinden werden deine Kosten anhand deiner Nutzung automatisch aktualisiert.",
+    "connectDescription": "Verbinde deine Kaffeeausrüstung, um zubereitete Tassen automatisch zu erfassen und deine Kostenberechnungen aktuell zu halten.",
     "supplier": "Hersteller",
     "apiKey": "API-Schlüssel",
     "connect": "Verbinden",
