@@ -1,6 +1,6 @@
 {
-    "name": "autokund",
-    "version": "1.0.0",
+    "name": "brew-even",
+    "version": "0.1.0",
     "private": true,
     "description": "",
     "workspaces": [
@@ -8,15 +8,10 @@
         "backend",
         "shared"
     ],
-    "directories": {
-        "doc": "docs"
-    },
     "scripts": {
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "sitemap:build": "node scripts/generate-sitemap.mjs",
-        "images:build": "node scripts/optimize-images.mjs",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "node --experimental-strip-types --test frontend/src/lib/*.test.ts",
         "dev": "concurrently --names frontend,backend \"npm run dev -w frontend\" \"npm run dev -w backend\"",
         "dev:host": "concurrently --names frontend,backend \"npm run dev -w frontend -- --host\" \"npm run dev -w backend\"",
         "build": "npm run build --workspace backend && npm run build --workspace frontend"
