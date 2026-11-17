@@ -14,6 +14,7 @@
 
   --border: #e5d5c5;
   --border-dark: #c79b53;
+  --border-divider: #D7C3AF;
 
   --focus-outline: 1px solid var(--accent);
   --focus-outline-offset: -1px;
@@ -54,8 +55,11 @@
   --text: #fff6df;
   --text-h: #fff9e9;
   --bg: #140d0c;
+
   --border: #3C2724;
   --border-dark: #3C2724;
+  --border-divider: #69504A;
+  
   --selection: #3C2724;
 
   --card-bg: #291a18;
@@ -94,12 +98,12 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 3rem;
   letter-spacing: -1.68px;
   margin: 32px 0;
 
   @media (max-width: 1024px) {
-    font-size: 36px;
+    font-size: 2.25rem;
     margin: 20px 0;
   }
 }
@@ -108,17 +112,13 @@ h2 {
   display: flex;
   align-items: center;
   gap: .25em;
-  font-size: 36px;
+  font-size: 2rem;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
 
-  @media (max-width: 1024px) {
-    font-size: 32px;
-  }
-
   @media (max-width: 768px) {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 }
 
@@ -258,7 +258,7 @@ a {
   align-items: center;
   gap: .33em;
   margin: 0 0 1rem 0;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
   text-wrap: pretty;
 }
@@ -315,7 +315,7 @@ p + .formGrid {
   min-width: 0;
 }
 
-.formGrid button[type="submit"] {
+.formGrid > button[type="submit"] {
   grid-column: 1 / -1;
 }
 

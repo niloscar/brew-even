@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SETUP_PART_OPTIONS } from '../../settings/constants'
 import SelectWithCaret from '../SelectWithCaret'
+import { CheckIcon, XIcon } from '@phosphor-icons/react'
 
 import type { SubmitEvent } from 'react'
 import type { Currency } from 'shared'
@@ -156,11 +157,13 @@ export default function EquipmentForm({
 
       <div className={styles.formActions}>
         <button type="button" onClick={onCancel}>
-          {t('common.cancel')}
+          <XIcon aria-hidden="true" />
+          <span>{t('common.cancel')}</span>
         </button>
 
         <button type="submit" className="buttonAccent">
-          {t('common.save')}
+          <CheckIcon aria-hidden="true" />
+          <span>{t('common.save')}</span>
         </button>
       </div>
     </form>
