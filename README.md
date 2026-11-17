@@ -1,4 +1,3 @@
-
 # Brew-even ☕
 
 A home espresso cost calculator for tracking equipment investments, consumables, cost per cup, and the journey towards break-even.
@@ -58,3 +57,9 @@ Currency conversion currently uses mock exchange rates. Historical charts and fo
 ## Status
 
 **Under active development.**
+
+## License
+
+Brew-even is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE).
+
+You may use, modify, and distribute the source code for noncommercial purposes. Commercial use requires separate permission from the copyright holder.
