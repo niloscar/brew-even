@@ -1,4 +1,3 @@
-
 # Brew-even ☕
 
 A home espresso cost calculator for tracking equipment investments, brewing costs, and how the average cost per cup changes over time.
@@ -58,3 +57,9 @@ npm run build -w frontend
 User data is stored in the browser using `localStorage`. It can be reset in Settings but is not synced between devices or backed up.
 
 Currency conversion currently uses mock exchange rates. Historical charts and forecasts are calculated estimates, not recorded brewing history.
+
+## License
+
+Brew-even is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE).
+
+You may use, modify, and distribute the source code for noncommercial purposes. Commercial use requires separate permission from the copyright holder.
