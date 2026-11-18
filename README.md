@@ -14,7 +14,7 @@ A home espresso cost calculator for tracking equipment investments, brewing cost
 - [x] Visualize estimated historical costs and future projections.
 - [x] Save settings and equipment locally in the browser.
 - [x] Switch between four languages and four currencies, with light and dark themes.
-- [ ] Live exchange rates.
+- [x] Live exchange rates.
 - [ ] Break-even calculations and comparisons.
 - [ ] La Marzocco API integration.
 - [ ] Historical brewing data.
@@ -24,7 +24,7 @@ A home espresso cost calculator for tracking equipment investments, brewing cost
 
 - **Frontend:** React, TypeScript, Vite, Recharts
 - **Localization:** i18next
-- **Backend:** Node.js, Express (in development)
+- **Backend:** Node.js, Express, Zod
 - **Deployment:** Vercel
 - **Architecture:** npm workspaces (`frontend`, `backend`, `shared`)
 
@@ -41,7 +41,7 @@ git clone https://github.com/niloscar/brew-even.git
 cd brew-even
 npm install
 cp frontend/.env.example frontend/.env
-npm run dev -w frontend
+npm run dev
 ```
 
 ### Tests and build
@@ -56,7 +56,9 @@ npm run build -w frontend
 
 User data is stored in the browser using `localStorage`. It can be reset in Settings but is not synced between devices or backed up.
 
-Currency conversion currently uses mock exchange rates. Historical charts and forecasts are calculated estimates, not recorded brewing history.
+Exchange rates are retrieved from the Frankfurter API through the Express backend, using SEK as the base currency. Responses are cached through Vercel's CDN to reduce external API requests. If the service is unavailable, the app uses approximate fallback rates and informs the user.
+
+Historical charts and forecasts are calculated estimates, not recorded brewing history.
 
 ## License
 
