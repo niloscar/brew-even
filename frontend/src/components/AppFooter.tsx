@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import * as format from '../utils/format'
 import * as currencyUtils from '../utils/currency'
-import { MOCK_RATES } from '../data/mockData'
 import {
   ArrowUpRightIcon,
   CoffeeIcon,
@@ -14,20 +13,21 @@ import styles from './AppFooter.module.css'
 
 interface AppFooterProps {
   currency: Currency
+  rates: Record<Currency, number>
   locale: string
   nextCupCost: number
 }
 
 const CURRENT_YEAR = new Date().getFullYear()
 
-export default function AppFooter({ currency, locale, nextCupCost}: AppFooterProps) {
+export default function AppFooter({ currency, rates, locale, nextCupCost}: AppFooterProps) {
   const { t } = useTranslation()
 
   const nextCupPrice =
     nextCupCost === null
       ? null
       : format.price(
-          currencyUtils.convert(nextCupCost, MOCK_RATES[currency]),
+          currencyUtils.convert(nextCupCost, rates[currency]),
           locale,
           currency
         )

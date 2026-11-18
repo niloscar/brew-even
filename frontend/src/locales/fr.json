@@ -22,7 +22,10 @@
     "chartForecast": "Prévision",
     "chartModelNote": "Évolution modélisée avec un rythme de préparation régulier et des coûts constants.",
     "chartEmptyEquipment": "Ajoutez du matériel pour voir l’évolution du coût par tasse.",
-    "chartEmptyEquipmentCost": "Indiquez le prix d’achat d’un équipement pour afficher le graphique."
+    "chartEmptyEquipmentCost": "Indiquez le prix d’achat d’un équipement pour afficher le graphique.",
+    "exchangeRates": {
+      "fallback": "Taux de change estimés utilisés."
+    }
   },
   "setup": {
     "title": "Préparation et matériel",

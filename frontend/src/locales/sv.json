@@ -22,7 +22,10 @@
     "chartForecast": "Prognos",
     "chartModelNote": "Modellberäknad utveckling utifrån jämn bryggtakt och oförändrade kostnader.",
     "chartEmptyEquipment": "Lägg till utrustning för att se hur kostnaden per kopp utvecklas.",
-    "chartEmptyEquipmentCost": "Ange en utrustningskostnad för att visa diagrammet."
+    "chartEmptyEquipmentCost": "Ange en utrustningskostnad för att visa diagrammet.",
+    "exchangeRates": {
+      "fallback": "Uppskattade valutakurser används."
+    }
   },
   "setup": {
     "title": "Bryggning och utrustning",

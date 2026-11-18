@@ -1,0 +1,15 @@
+.statusMessage {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+  line-height: 1.42;
+}
+
+.statusMessage svg {
+  flex-shrink: 0;
+  width: 1.5em;
+  height: 1.5em;
+  color: var(--accent);
+}

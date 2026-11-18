@@ -15,7 +15,6 @@ import ChartTooltip from './ChartTooltip'
 import { calculateCostCurve } from '../../lib/costCurve'
 import { calculateDailyBrewRate } from '../../lib/brewRate'
 import * as currencyUtils from '../../utils/currency'
-import { MOCK_RATES } from '../../data/mockData'
 
 import type { Currency } from 'shared'
 import type { EquipmentPurchase } from '../../lib/cost'
@@ -23,6 +22,7 @@ import type { EquipmentPurchase } from '../../lib/cost'
 import styles from './Chart.module.css'
 
 type ChartProps = {
+  rates: Record<Currency, number>
   equipment: EquipmentPurchase[]
   cupsBrewed: number
   consumablesPerCup: number
@@ -44,6 +44,7 @@ const TODAY = [
 ].join('-')
 
 export default function Chart({
+  rates,
   equipment,
   cupsBrewed,
   consumablesPerCup,
@@ -63,7 +64,7 @@ export default function Chart({
 
   const brewRate = useMemo(
     () => calculateDailyBrewRate(equipment, cupsBrewed, TODAY),
-    [equipment, cupsBrewed]
+    [equipment, cupsBrewed, rates]
   )
 
   const data = useMemo(() => {
@@ -89,7 +90,7 @@ export default function Chart({
       : cupsBrewed + Math.max(1, forecastCupSpan)
 
     const convertPrice = (price: number) =>
-      currencyUtils.convert(price, MOCK_RATES[currency])
+      currencyUtils.convert(price, rates[currency])
 
     const historical = calculateCostCurve({
       equipment,
@@ -130,6 +131,7 @@ export default function Chart({
     equipment,
     cupsBrewed,
     consumablesPerCup,
+    rates,
     currency,
     period,
     brewRate,

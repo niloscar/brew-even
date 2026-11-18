@@ -3,13 +3,18 @@ import { useTranslation } from 'react-i18next'
 
 import Metrics from './Metrics'
 import Chart from './Chart'
+import StatusMessage from '../ui/StatusMessage'
 
 import type { Currency } from 'shared'
 import type { EquipmentPurchase } from '../../lib/cost'
 
+import styles from './OverviewSection.module.css'
+
 type OverviewSectionProps = {
   locale: string
   currency: Currency
+  rates: Record<Currency, number>
+  exchangeRatesUnavailable: boolean
   equipment: EquipmentPurchase[]
   cupsBrewed: number
   consumablesPerCup: number
@@ -17,12 +22,14 @@ type OverviewSectionProps = {
   manualCups: string
   averageCostPerCup: number | null
   nextAverageCostPerCup: number
-  onManualCupsChange: (value: string) => void
+  onManualCupsChange: (value: string) => void 
 }
 
 export default function OverviewSection({
   locale,
   currency,
+  rates,
+  exchangeRatesUnavailable,
   equipment,
   cupsBrewed,
   consumablesPerCup,
@@ -36,12 +43,21 @@ export default function OverviewSection({
 
   return (
     <section className="view" id="overview">
-      <h2>{t('overview.title')}</h2>
+      <div className={styles.heading}>
+        <h2>{t('overview.title')}</h2>
+
+        {exchangeRatesUnavailable && (
+          <StatusMessage>
+            {t('overview.exchangeRates.fallback')}
+          </StatusMessage>
+        )}
+      </div>
 
       <div className="cardGrid contained col1">
         <Metrics
           locale={locale}
           currency={currency}
+          rates={rates}
           integratedCups={integratedCups}
           manualCups={manualCups}
           averageCostPerCup={averageCostPerCup}
@@ -50,6 +66,7 @@ export default function OverviewSection({
         />
 
         <Chart
+          rates={rates}
           equipment={equipment}
           cupsBrewed={cupsBrewed}
           consumablesPerCup={consumablesPerCup}

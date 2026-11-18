@@ -3,7 +3,6 @@ import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberStepperInput from '../NumberStepperInput'
 import * as currencyUtils from '../../utils/currency'
-import { MOCK_RATES } from '../../data/mockData'
 import { CONSUMABLE_OPTIONS } from '../../settings/constants'
 
 import type { Currency } from 'shared'
@@ -12,6 +11,7 @@ import type { Consumable } from '../../types/setup'
 type ConsumablesFormProps = {
   locale: string
   currency: Currency
+  rates: Record<Currency, number>
   consumables: Consumable[]
   onPriceChange: (
     id: number,
@@ -27,7 +27,7 @@ const CURRENCY_STEPS: Record<Currency, number> = {
   GBP: 0.1
 }
 
-export default function ConsumablesForm({ locale, currency, consumables, onPriceChange }: ConsumablesFormProps) {
+export default function ConsumablesForm({ locale, currency, rates, consumables, onPriceChange }: ConsumablesFormProps) {
   const { t } = useTranslation()
 
   const currencySymbol =
@@ -48,13 +48,13 @@ export default function ConsumablesForm({ locale, currency, consumables, onPrice
     const priceInSek = currencyUtils.convertToSek(
       consumable.pricePerUnit,
       consumable.currency,
-      MOCK_RATES
+      rates
     )
 
     return Number(
       currencyUtils.convert(
         priceInSek,
-        MOCK_RATES[currency]
+        rates[currency]
       ).toFixed(2)
     )
   }
