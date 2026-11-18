@@ -21,6 +21,7 @@ import type { BrewSettings, Consumable } from '../../types/setup'
 interface SetupSectionProps {
   locale: string
   currency: Currency
+  rates: Record<Currency, number>
   brewSettings: BrewSettings
   consumables: Consumable[]
   equipment: Equipment[]
@@ -41,6 +42,7 @@ interface SetupSectionProps {
 export default function SetupSection({
   locale,
   currency,
+  rates,
   brewSettings,
   consumables,
   equipment,
@@ -84,6 +86,7 @@ export default function SetupSection({
           <ConsumablesForm
             locale={locale}
             currency={currency}
+            rates={rates}
             consumables={consumables}
             onPriceChange={onConsumablePriceChange}
           />
@@ -129,6 +132,7 @@ export default function SetupSection({
           <EquipmentList
             locale={locale}
             currency={currency}
+            rates={rates}
             equipment={equipment}
             onEdit={onUpdateEquipment}
             onRemove={onRemoveEquipment}

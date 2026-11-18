@@ -2,6 +2,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSectionScroll } from './hooks/useSectionScroll'
+import { useExchangeRates } from './hooks/useExchangeRates'
 
 import AppHeader from './components/AppHeader'
 import OverviewSection from './components/overview/OverviewSection'
@@ -17,7 +18,7 @@ import {
   saveAppData
 } from './lib/storage'
 import * as currencyUtils from './utils/currency'
-import { MOCK_RATES, MOCK_APP_DATA } from './data/mockData'
+import { MOCK_APP_DATA } from './data/mockData'
 
 import type { Currency } from 'shared'
 import type { AppData } from './types/appData'
@@ -49,6 +50,8 @@ export default function App() {
 
   const [manualCups, setManualCups] = useState(String(session.data.cupsBrewed))
   const [resetKey, setResetKey] = useState(0)
+
+  const { rates, status: exchangeRateStatus } = useExchangeRates()
 
   const { t, i18n } = useTranslation()
   const locale = i18n.language
@@ -156,7 +159,7 @@ export default function App() {
       pricePerUnit: currencyUtils.convertToSek(
         item.pricePerUnit,
         item.currency,
-        MOCK_RATES
+        rates
       )
     }))
   )
@@ -167,11 +170,11 @@ export default function App() {
         price: currencyUtils.convertToSek(
           item.price,
           item.currency,
-          MOCK_RATES
+          rates
         ),
         acquisitionDate: item.acquisitionDate
       })),
-    [equipment]
+    [equipment, rates]
   )
 
   const costs = calculateCosts({
@@ -188,6 +191,8 @@ export default function App() {
         <OverviewSection
           locale={locale}
           currency={currency}
+          rates={rates}
+          exchangeRatesUnavailable={exchangeRateStatus === 'fallback'}
           equipment={normalizedEquipment}
           cupsBrewed={cupsBrewed}
           consumablesPerCup={consumablesPerCup}
@@ -201,6 +206,7 @@ export default function App() {
           key={resetKey}
           locale={locale}
           currency={currency}
+          rates={rates}
           brewSettings={brewSettings}
           consumables={consumables}
           equipment={equipment}
@@ -234,6 +240,7 @@ export default function App() {
 
       <AppFooter
         currency={currency}
+        rates={rates}
         locale={locale}
         nextCupCost={DEVELOPER_NEXT_CUP_COST_SEK}
       />

@@ -10,6 +10,7 @@
 
   --text: #6a5045;
   --text-h: #261813;
+  --text-muted: #846e63;
   --bg: #fff9e9;
 
   --border: #e5d5c5;
@@ -54,6 +55,7 @@
   color-scheme: dark;
   --text: #fff6df;
   --text-h: #fff9e9;
+  --text-muted: #b8aa96;
   --bg: #140d0c;
 
   --border: #3C2724;

@@ -2,7 +2,6 @@ import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import SelectWithCaret from '../SelectWithCaret'
-import { MOCK_RATES } from '../../data/mockData'
 import { SETUP_PART_OPTIONS } from '../../settings/constants'
 import * as currencyUtils from '../../utils/currency'
 import * as format from '../../utils/format'
@@ -25,6 +24,7 @@ import styles from './EquipmentList.module.css'
 type EquipmentListProps = {
   locale: string
   currency: Currency
+  rates: Record<Currency, number>
   equipment: Equipment[]
   onEdit: (id: number, values: EquipmentInput) => void
   onRemove: (id: number) => void
@@ -47,6 +47,7 @@ const CURRENCIES: Currency[] = ['SEK', 'EUR', 'USD', 'GBP']
 export default function EquipmentList({
   locale,
   currency,
+  rates,
   equipment,
   onEdit,
   onRemove
@@ -58,10 +59,10 @@ export default function EquipmentList({
     const priceInSek = currencyUtils.convertToSek(
       part.price,
       part.currency,
-      MOCK_RATES
+      rates
     )
 
-    return currencyUtils.convert(priceInSek, MOCK_RATES[currency])
+    return currencyUtils.convert(priceInSek, rates[currency])
   }
 
   function startEditing(part: Equipment) {

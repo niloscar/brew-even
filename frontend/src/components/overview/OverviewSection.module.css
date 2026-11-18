@@ -1,0 +1,13 @@
+.heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+  margin-bottom: 1rem;
+
+  & h2 {
+    margin: 0;
+    line-height: 1;
+  }
+}

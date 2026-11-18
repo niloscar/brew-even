@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import * as currencyUtils from '../../utils/currency'
 import * as format from '../../utils/format'
-import { MOCK_RATES } from '../../data/mockData'
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -18,6 +17,7 @@ import styles from './Metrics.module.css'
 type MetricsProps = {
   locale: string
   currency: Currency
+  rates: Record<Currency, number>
   integratedCups?: number | null
   manualCups: string
   averageCostPerCup: number | null
@@ -28,6 +28,7 @@ type MetricsProps = {
 export default function Metrics({
   locale,
   currency,
+  rates,
   integratedCups,
   manualCups,
   averageCostPerCup,
@@ -48,11 +49,11 @@ export default function Metrics({
 
   const currentAverageCost = averageCostPerCup === null
     ? null
-    : currencyUtils.convert(averageCostPerCup, MOCK_RATES[currency])
+    : currencyUtils.convert(averageCostPerCup, rates[currency])
 
   const nextAverageCost = currencyUtils.convert(
     nextAverageCostPerCup,
-    MOCK_RATES[currency]
+    rates[currency]
   )
 
   const renderPrice = (amount: number) =>
