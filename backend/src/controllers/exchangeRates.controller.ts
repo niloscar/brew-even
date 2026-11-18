@@ -6,7 +6,7 @@ export async function handleGetExchangeRates(_req: Request, res: Response): Prom
   try {
     const data = await getExchangeRates()
 
-    res.set('Cache-Control', 'public, s-maxage=3600')
+    res.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=3600')
     res.json(data)
   } catch (error) {
     console.error('Failed to fetch exchange rates:', error)
