@@ -70,6 +70,9 @@
   },
   "settings": {
     "title": "Einstellungen",
+    "preferences": "Sprache und Währung",
+    "language": "Sprache",
+    "currency": "Währung",
     "connectSetup": "Kaffeegeräte verbinden",
     "connectDescription": "Verbinde deine Kaffeeausrüstung, um zubereitete Tassen automatisch zu erfassen und deine Kostenberechnungen aktuell zu halten.",
     "supplier": "Hersteller",

@@ -185,7 +185,7 @@ export default function App() {
 
   return (
     <>
-      <AppHeader currency={currency} setCurrency={setCurrency} />
+      <AppHeader />
 
       <main>
         <OverviewSection
@@ -233,6 +233,8 @@ export default function App() {
         />
 
         <SettingsSection
+          currency={currency}
+          setCurrency={setCurrency}
           storageStatus={storageStatus}
           onResetData={handleReset}
         />

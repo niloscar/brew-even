@@ -70,6 +70,9 @@
   },
   "settings": {
     "title": "Paramètres",
+    "preferences": "Langue et devise",
+    "language": "Langue",
+    "currency": "Devise",
     "connectSetup": "Connecter vos appareils à café",
     "connectDescription": "Connectez votre équipement à café pour enregistrer automatiquement les tasses préparées et maintenir vos calculs de coûts à jour.",
     "supplier": "Fabricant",
