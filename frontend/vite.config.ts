@@ -7,7 +7,6 @@ import { LANGUAGES } from './src/i18n/languages.ts'
 
 import type { Plugin } from 'vite'
 
-const BASE_URL = 'https://breweven.app'
 const SEO_PLACEHOLDER = '<meta name="brew-even-seo" content="placeholder" />'
 
 function escapeHtml(value: string) {
@@ -18,7 +17,8 @@ function escapeHtml(value: string) {
     .replaceAll('>', '&gt;')
 }
 
-function localizedHtml(): Plugin {
+function localizedHtml(baseUrl: string): Plugin {
+  const BASE_URL = baseUrl.replace(/\/$/, '')
   let outDir: string
 
   return {
@@ -28,6 +28,8 @@ function localizedHtml(): Plugin {
       outDir = resolve(config.root, config.build.outDir)
     },
     async writeBundle() {
+      if (!BASE_URL) throw new Error('SITE_URL is missing')
+
       const indexPath = resolve(outDir, 'index.html')
       const html = await readFile(indexPath, 'utf8')
 
@@ -83,7 +85,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
-    plugins: [react(), localizedHtml()],
+    plugins: [react(), localizedHtml(env.SITE_URL ?? '')],
     server: {
       proxy: {
         '/api': {
