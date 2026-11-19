@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   margin: .5rem 0 0 0;
+  gap: 1rem;
 }
 
 .intro {
@@ -114,13 +115,14 @@
 
 .notice {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: .5rem;
   margin: 0;
   color: var(--text-muted);
   font-size: var(--font-sm);
   line-height: 1.5;
+  text-wrap: pretty;
 }
 
 .notice svg {
