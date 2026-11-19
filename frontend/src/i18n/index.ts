@@ -45,4 +45,46 @@ void i18n.use(initReactI18next).init({
   }
 })
 
+function syncLanguageFromUrl() {
+  const path = window.location.pathname.replace(/\/$/, '') || '/'
+  const language = Object.entries(LANGUAGES).find(([key]) => key === path)?.[1]
+
+  if (!language) return
+
+  const { locale, translation } = language
+  const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+  const url = new URL(path, canonical?.href ?? window.location.origin).href
+
+  void i18n.changeLanguage(locale)
+
+  document.documentElement.lang = locale
+  document.title = translation.meta.title
+
+  document.querySelector('meta[name="description"]')?.setAttribute('content', translation.meta.description)
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', translation.meta.title)
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', translation.meta.description)
+  document.querySelector('meta[property="og:url"]')?.setAttribute('content', url)
+  document.querySelector('meta[property="og:locale"]')?.setAttribute('content', locale.replace('-', '_'))
+
+  canonical?.setAttribute('href', url)
+}
+
+export function navigateToLanguage(path: string) {
+  if (!Object.keys(LANGUAGES).includes(path)) return
+
+  try {
+    localStorage.setItem('brew-even-language', path)
+  } catch {
+    // Continue without saving the preference
+  }
+
+  if (window.location.pathname.replace(/\/$/, '') === path) return
+
+  window.history.pushState(window.history.state, '', `${path}${window.location.search}${window.location.hash}`)
+
+  syncLanguageFromUrl()
+}
+
+window.addEventListener('popstate', syncLanguageFromUrl)
+
 export default i18n

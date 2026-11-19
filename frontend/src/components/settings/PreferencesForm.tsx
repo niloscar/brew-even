@@ -1,22 +1,16 @@
 import { useTranslation } from 'react-i18next'
-import SelectWithCaret from '../ui/SelectWithCaret'
+import { navigateToLanguage } from '../../i18n'
 import { LANGUAGES } from '../../i18n/languages'
+import SelectWithCaret from '../ui/SelectWithCaret'
+
 import type { Currency } from 'shared';
 
 export default function PreferencesForm({ currency, setCurrency }: { currency: Currency; setCurrency: (currency: Currency) => void }) {
   const { t } = useTranslation()
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const path = e.target.value
-
-    try {
-      localStorage.setItem('brew-even-language', path)
-    } catch {
-      // Continue without saving the preference
-    }
-
-    window.location.assign(path)
-}
+    navigateToLanguage(e.target.value)
+  }
 
   return (
     <div className="formGrid">
