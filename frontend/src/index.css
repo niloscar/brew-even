@@ -25,7 +25,9 @@
   --selection: #e5d5c5;
 
   --card-bg: #f3e9da;
+  --card-bg-hover: color-mix(in srgb, var(--card-bg) 97%, black);
   --card-inner-bg: color-mix(in srgb, var(--card-bg) 95%, black);
+  --card-inner-bg-hover: color-mix(in srgb, var(--card-bg) 92%, black);
 
   --accent: #94621F;
   --shadow:
@@ -65,7 +67,9 @@
   --selection: #3C2724;
 
   --card-bg: #291a18;
+  --card-bg-hover: color-mix(in srgb, var(--card-bg) 97%, white);
   --card-inner-bg: color-mix(in srgb, var(--card-bg) 96%, white);
+  --card-inner-bg-hover: color-mix(in srgb, var(--card-bg) 93%, white);
 
   --accent: #C79B53;
   --shadow:
@@ -244,7 +248,6 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 2rem;
   border-radius: 8px;
   background-color: var(--card-bg);

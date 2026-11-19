@@ -16,14 +16,6 @@
   }
 }
 
-.supportCard h2 {
-  margin-bottom: 0;
-}
-
-.supportCard h2 svg {
-  color: var(--accent);
-}
-
 .bottomRow {
   --gap: 1rem;
   display: flex;

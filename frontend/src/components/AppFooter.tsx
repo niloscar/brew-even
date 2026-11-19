@@ -1,7 +1,8 @@
+
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import SupportCheckout from './support/SupportCheckout'
-import { ArrowUpRightIcon, CoffeeIcon, GithubLogoIcon } from '@phosphor-icons/react'
+import SupportSection from './support/SupportSection'
+import { ArrowUpRightIcon, GithubLogoIcon } from '@phosphor-icons/react'
 
 import type { Currency } from 'shared'
 
@@ -64,21 +65,12 @@ export default function AppFooter({ currency, rates, locale, nextCupCost}: AppFo
           </a>
         </section>
 
-        <section className={`card ${styles.supportCard}`}>
-          <h2 className={styles.supportHeader}>
-            <CoffeeIcon />
-            <span>{t('footer.buyMeACoffee')}</span>
-          </h2>
-
-          <p>{t('footer.supportDescription')}</p>
-
-          <SupportCheckout 
-            currency={currency} 
-            rates={rates} 
-            locale={locale} 
-            nextCupCost={nextCupCost}
-          />
-        </section>
+        <SupportSection
+          currency={currency}
+          rates={rates}
+          locale={locale}
+          nextCupCost={nextCupCost}
+        />
 
         <section className={styles.bottomRow}>
           <p className={styles.copyright}>
