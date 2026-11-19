@@ -94,12 +94,12 @@
     "cup_other": "koppar",
     "pricePerCup": "{{price}} per kopp",
     "continueCheckout": "Fortsätt till betalning",
-    "thanksDescription": "Ditt stöd hjälper mig att fortsätta utveckla Brew-even.",
+    "thanksDescription": "Ditt stöd hjälper mig att fortsätta utveckla Brew-even – och mitt koffeinberoende.",
     "openingCheckout": "Öppnar betalningen…",
     "checkoutError": "Det gick inte att starta betalningen. Försök igen.",
     "paymentStatus": {
       "checking": "Kontrollerar betalningen…",
-      "paid": "Tack för ditt stöd!",
+      "paid": "Tack!",
       "pending": "Betalningen har ännu inte bekräftats.",
       "expired": "Betalningstillfället har gått ut.",
       "error": "Det gick inte att kontrollera betalningens status."

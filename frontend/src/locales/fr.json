@@ -94,12 +94,12 @@
     "cup_other": "tasses",
     "pricePerCup": "{{price}} par tasse",
     "continueCheckout": "Continuer vers le paiement",
-    "thanksDescription": "Votre contribution aide à poursuivre le développement de Brew-even.",
+    "thanksDescription": "Votre soutien m’aide à continuer de développer Brew-even. Mon addiction à la caféine vous remercie aussi !",
     "openingCheckout": "Ouverture du paiement…",
     "checkoutError": "Impossible de lancer le paiement. Veuillez réessayer.",
     "paymentStatus": {
       "checking": "Vérification du paiement…",
-      "paid": "Merci pour votre soutien !",
+      "paid": "Merci !",
       "pending": "Votre paiement n’a pas encore été confirmé.",
       "expired": "La session de paiement a expiré.",
       "error": "Impossible de vérifier le statut du paiement."

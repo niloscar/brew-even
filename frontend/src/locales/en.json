@@ -94,12 +94,12 @@
     "cup_other": "cups",
     "pricePerCup": "{{price}} per cup",
     "continueCheckout": "Continue to payment",
-    "thanksDescription": "Your contribution helps support the development of Brew-even.",
+    "thanksDescription": "Your support helps me keep developing Brew-even. My caffeine addiction approves.",
     "openingCheckout": "Opening checkout…",
     "checkoutError": "Could not start checkout. Please try again.",
     "paymentStatus": {
       "checking": "Checking payment status…",
-      "paid": "Thank you for your support!",
+      "paid": "Thank you!",
       "pending": "Your payment has not yet been confirmed.",
       "expired": "The checkout session has expired.",
       "error": "Could not verify the payment status."
