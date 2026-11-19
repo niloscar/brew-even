@@ -70,6 +70,9 @@
   },
   "settings": {
     "title": "Settings",
+    "preferences": "Language and currency",
+    "language": "Language",
+    "currency": "Currency",
     "connectSetup": "Connect your coffee setup",
     "connectDescription": "Connect your coffee equipment to automatically track brewed cups and keep your cost calculations up to date.",
     "supplier": "Supplier",

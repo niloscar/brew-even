@@ -70,6 +70,9 @@
   },
   "settings": {
     "title": "Inställningar",
+    "preferences": "Språk och valuta",
+    "language": "Språk",
+    "currency": "Valuta",
     "connectSetup": "Anslut din kaffeutrustning",
     "connectDescription": "Anslut din kaffeutrustning för att automatiskt registrera bryggda koppar och hålla kostnadsberäkningarna uppdaterade.",
     "supplier": "Tillverkare",
