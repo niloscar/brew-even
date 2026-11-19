@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Brew-even | Espressokosten zu Hause berechnen",
+    "description": "Berechne die Kosten für deinen Espresso zu Hause. Erfasse Ausrüstung und Verbrauchskosten und sieh, wie sich die Kosten pro Tasse entwickeln."
+  },
   "overview": {
     "title": "Übersicht",
     "comingSoon": "Demnächst: Kosten pro Tasse im Zeitverlauf",

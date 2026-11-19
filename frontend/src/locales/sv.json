@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Brew-even | Beräkna kostnaden för din espresso",
+    "description": "Beräkna vad din espresso hemma kostar. Lägg till utrustning och förbrukningsvaror och se hur snittkostnaden per kopp förändras över tid."
+  },
   "overview": {
     "title": "Översikt",
     "comingSoon": "Kommer snart: Kostnad per kopp över tid",

@@ -1,12 +1,83 @@
 
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { dirname, resolve } from 'node:path'
 import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv } from 'vite'
+import { LANGUAGES } from './src/i18n/languages.ts'
+
+import type { Plugin } from 'vite'
+
+const BASE_URL = 'https://breweven.app'
+const SEO_PLACEHOLDER = '<meta name="brew-even-seo" content="placeholder" />'
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('"', '&quot;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+}
+
+function localizedHtml(): Plugin {
+  let outDir: string
+
+  return {
+    name: 'localized-html',
+    apply: 'build',
+    configResolved(config) {
+      outDir = resolve(config.root, config.build.outDir)
+    },
+    async writeBundle() {
+      const indexPath = resolve(outDir, 'index.html')
+      const html = await readFile(indexPath, 'utf8')
+
+      if (!html.includes(SEO_PLACEHOLDER)) {
+        throw new Error('SEO placeholder not found in index.html')
+      }
+
+      const alternateLinks = Object.entries(LANGUAGES).map(([path, { locale }]) =>
+        `<link rel="alternate" hreflang="${locale.split('-')[0]}" href="${BASE_URL}${path}" />`
+      )
+
+      alternateLinks.push(`<link rel="alternate" hreflang="x-default" href="${BASE_URL}/" />`)
+
+      for (const [path, { locale, translation }] of Object.entries(LANGUAGES)) {
+        const title = escapeHtml(translation.meta.title)
+        const description = escapeHtml(translation.meta.description)
+        const url = `${BASE_URL}${path}`
+
+        const metadata = [
+          `<meta name="description" content="${description}" />`,
+          `<link rel="canonical" href="${url}" />`,
+          `<meta property="og:type" content="website" />`,
+          `<meta property="og:site_name" content="Brew-even" />`,
+          `<meta property="og:title" content="${title}" />`,
+          `<meta property="og:description" content="${description}" />`,
+          `<meta property="og:url" content="${url}" />`,
+          `<meta property="og:locale" content="${locale.replace('-', '_')}" />`,
+          `<meta name="twitter:card" content="summary" />`,
+          ...alternateLinks
+        ].join('\n    ')
+
+        const localized = html
+          .replace(/<html lang="[^"]+">/, `<html lang="${locale}">`)
+          .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+          .replace(SEO_PLACEHOLDER, metadata)
+
+        const outputPath = resolve(outDir, path.slice(1), 'index.html')
+
+        await mkdir(dirname(outputPath), { recursive: true })
+        await writeFile(outputPath, localized)
+      }
+    }
+  }
+}
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
-    plugins: [react()],
+    plugins: [react(), localizedHtml()],
     server: {
       proxy: {
         '/api': {
@@ -14,6 +85,6 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
         },
       },
-    },
+    }
   }
 })

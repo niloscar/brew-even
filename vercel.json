@@ -13,6 +13,7 @@
       "framework": "vite"
     }
   },
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/api/(.*)",
