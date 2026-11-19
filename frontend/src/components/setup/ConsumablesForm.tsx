@@ -1,7 +1,6 @@
-
 import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
-import NumberStepperInput from '../NumberStepperInput'
+import NumberStepperInput from '../ui/NumberStepperInput'
 import * as currencyUtils from '../../utils/currency'
 import { CONSUMABLE_OPTIONS } from '../../settings/constants'
 
@@ -13,11 +12,7 @@ type ConsumablesFormProps = {
   currency: Currency
   rates: Record<Currency, number>
   consumables: Consumable[]
-  onPriceChange: (
-    id: number,
-    pricePerUnit: number,
-    currency: Currency
-  ) => void
+  onPriceChange: (id: number, pricePerUnit: number, currency: Currency) => void
 }
 
 const CURRENCY_STEPS: Record<Currency, number> = {
@@ -27,7 +22,13 @@ const CURRENCY_STEPS: Record<Currency, number> = {
   GBP: 0.1
 }
 
-export default function ConsumablesForm({ locale, currency, rates, consumables, onPriceChange }: ConsumablesFormProps) {
+export default function ConsumablesForm({
+  locale,
+  currency,
+  rates,
+  consumables,
+  onPriceChange
+}: ConsumablesFormProps) {
   const { t } = useTranslation()
 
   const currencySymbol =
@@ -51,12 +52,7 @@ export default function ConsumablesForm({ locale, currency, rates, consumables, 
       rates
     )
 
-    return Number(
-      currencyUtils.convert(
-        priceInSek,
-        rates[currency]
-      ).toFixed(2)
-    )
+    return Number(currencyUtils.convert(priceInSek, rates[currency]).toFixed(2))
   }
 
   return (
@@ -75,17 +71,13 @@ export default function ConsumablesForm({ locale, currency, rates, consumables, 
 
         return (
           <Fragment key={consumable.id}>
-            <label htmlFor={`consumable-${consumable.id}`}>
-              {label}
-            </label>
+            <label htmlFor={`consumable-${consumable.id}`}>{label}</label>
 
             <NumberStepperInput
               id={`consumable-${consumable.id}`}
               label={t('setup.priceLabel', { item: label })}
               value={price}
-              onChange={(value) =>
-                handleConsumablePrice(consumable.id, value)
-              }
+              onChange={(value) => handleConsumablePrice(consumable.id, value)}
               min={0}
               step={CURRENCY_STEPS[currency]}
               unit={`${currencySymbol}/${unit}`}
