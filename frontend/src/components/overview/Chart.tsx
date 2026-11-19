@@ -64,7 +64,7 @@ export default function Chart({
 
   const brewRate = useMemo(
     () => calculateDailyBrewRate(equipment, cupsBrewed, TODAY),
-    [equipment, cupsBrewed, rates]
+    [equipment, cupsBrewed]
   )
 
   const data = useMemo(() => {

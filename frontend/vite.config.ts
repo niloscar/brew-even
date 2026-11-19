@@ -77,6 +77,25 @@ function localizedHtml(baseUrl: string): Plugin {
         await mkdir(dirname(outputPath), { recursive: true })
         await writeFile(outputPath, localized)
       }
+
+      const rootMetadata = [
+        `<meta name="description" content="Choose your language for Brew-even, the home espresso cost calculator." />`,
+        `<link rel="canonical" href="${BASE_URL}/" />`,
+        ...alternateLinks
+      ].join('\n    ')
+
+      const languageLinks = Object.entries(LANGUAGES)
+        .map(([path, { label }]) => `<a href="${path}">${escapeHtml(label)}</a>`)
+        .join(' · ')
+
+      const rootHtml = html
+        .replace(SEO_PLACEHOLDER, rootMetadata)
+        .replace(
+          '<div id="root"></div>',
+          `<div id="root"><main><h1>Brew-even</h1><p>Choose your language:</p><nav aria-label="Languages">${languageLinks}</nav></main></div>`
+        )
+
+      await writeFile(indexPath, rootHtml)
     }
   }
 }

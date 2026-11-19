@@ -5,7 +5,7 @@ import sv from '../locales/sv.json' with { type: 'json' }
 
 export const LANGUAGES = {
   '/de': { locale: 'de-DE', label: 'Deutsch', translation: de },
-  '/': { locale: 'en-US', label: 'English', translation: en },
+  '/en': { locale: 'en-US', label: 'English', translation: en },
   '/fr': { locale: 'fr-FR', label: 'Français', translation: fr },
   '/sv': { locale: 'sv-SE', label: 'Svenska', translation: sv }
 } as const

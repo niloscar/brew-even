@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { DatabaseIcon, PlugsIcon } from '@phosphor-icons/react'
+import PreferencesForm from './PreferencesForm'
 import CoffeeIntegrationForm from './CoffeeIntegrationForm'
-import SelectWithCaret from '../ui/SelectWithCaret'
-import { LANGUAGES } from '../../i18n/languages'
 import {
   ArrowCounterClockwiseIcon,
   SlidersHorizontalIcon
@@ -32,34 +31,7 @@ export default function SettingsSection({ currency, setCurrency, storageStatus, 
             <span>{t('settings.preferences')}</span>
           </h3>
 
-          <div className="formGrid">
-            <label htmlFor="locale">{t('settings.language')}</label>
-            <SelectWithCaret
-              className="buttonLike"
-              id="locale"
-              value={window.location.pathname.replace(/\/$/, '') || '/'}
-              onChange={(e) => window.location.assign(e.target.value)}
-            >
-              {Object.entries(LANGUAGES).map(([path, { label }]) => (
-                <option key={path} value={path}>
-                  {label}
-                </option>
-              ))}
-            </SelectWithCaret>
-
-            <label htmlFor="currency">{t('settings.currency')}</label>
-            <SelectWithCaret
-              className="buttonLike"
-              id="currency"
-              value={currency}
-              onChange={(e) => setCurrency(e.target.value as Currency)}
-            >
-              <option value="EUR">EUR</option>
-              <option value="GBP">GBP</option>
-              <option value="SEK">SEK</option>
-              <option value="USD">USD</option>
-            </SelectWithCaret>
-          </div>
+          <PreferencesForm currency={currency} setCurrency={setCurrency} />
         </section>
 
         <section className="card">
