@@ -55,7 +55,13 @@ function localizedHtml(): Plugin {
           `<meta property="og:description" content="${description}" />`,
           `<meta property="og:url" content="${url}" />`,
           `<meta property="og:locale" content="${locale.replace('-', '_')}" />`,
-          `<meta name="twitter:card" content="summary" />`,
+          `<meta property="og:image" content="${BASE_URL}/og-image_light.png" />`,
+          `<meta property="og:image:width" content="1200" />`,
+          `<meta property="og:image:height" content="630" />`,
+          `<meta property="og:image:type" content="image/png" />`,
+          `<meta property="og:image:alt" content="Brew-even | Home Espresso Cost Calculator" />`,
+          `<meta name="twitter:card" content="summary_large_image" />`,
+          `<meta name="twitter:image" content="${BASE_URL}/og-image_light.png" />`,
           ...alternateLinks
         ].join('\n    ')
 
