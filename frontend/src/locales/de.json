@@ -5,7 +5,6 @@
   },
   "overview": {
     "title": "Übersicht",
-    "comingSoon": "Demnächst: Kosten pro Tasse im Zeitverlauf",
     "lastCup": "Letzte",
     "nextCup": "Nächste",
     "brewed": "Zubereitet",
@@ -36,7 +35,6 @@
     "brewSettings": "Brüheinstellungen",
     "consumables": "Verbrauchskosten",
     "equipment": "Ausrüstung",
-    "addEquipment": "Ausrüstung hinzufügen",
     "coffeeDose": "Kaffeedosis",
     "espressoYield": "Espressomenge",
     "priceLabel": "Preis für {{item}}",
@@ -44,10 +42,7 @@
     "acquiredOn": "Gekauft am {{date}}",
     "consumableTypes": {
       "coffeeBeans": "Kaffeebohnen",
-      "water": "Wasser",
-      "electricity": "Strom",
-      "milk": "Milch",
-      "cleaningProducts": "Reinigungsmittel"
+      "water": "Wasser"
     },
     "equipmentTypes": {
       "espressoMachine": "Espressomaschine",
@@ -81,11 +76,6 @@
     "storage": {
       "title": "Gespeicherte Daten",
       "description": "Deine Daten werden nur lokal in diesem Browser gespeichert. Sie werden nicht zwischen Geräten synchronisiert und gehen verloren, wenn du die gespeicherten Websitedaten löschst.",
-      "warning": "Deine Änderungen werden derzeit nicht gespeichert. Weitere Informationen findest du in den Einstellungen.",
-      "manage": "Gespeicherte Daten verwalten",
-      "invalid": "Die gespeicherten Daten konnten nicht gelesen werden. Die Originaldaten wurden nicht verändert. Setze die Daten zurück, um wieder speichern zu können.",
-      "unsupported": "Die Daten wurden mit einer nicht unterstützten Version gespeichert. Sie wurden nicht verändert. Setze sie zurück, um neu zu beginnen.",
-      "unavailable": "Der Browserspeicher ist nicht verfügbar. Änderungen können beim Neuladen der Seite verloren gehen.",
       "reset": "Gespeicherte Daten zurücksetzen",
       "confirmReset": "Alle gespeicherten Geräte, Brüheinstellungen, Preise und Tassenzahlen löschen? Dies kann nicht rückgängig gemacht werden. Sprache und Design bleiben unverändert."
     }
@@ -99,8 +89,12 @@
     "buyMeACoffee": "Spendier mir einen Kaffee",
     "supportDescription": "Gefällt dir Brew-even? Spendier mir einen Kaffee und unterstütze die Weiterentwicklung des Projekts.",
     "supportProject": "Projekt unterstützen",
-    "supportAmount": "Betrag ({{currency}})",
-    "invalidAmount": "Bitte gib einen Betrag zwischen {{min}} und {{max}} ein.",
+    "supportCups": "Anzahl der Tassen",
+    "cup_one": "Tasse",
+    "cup_other": "Tassen",
+    "pricePerCup": "{{price}} pro Tasse",
+    "continueCheckout": "Weiter zur Zahlung",
+    "thanksDescription": "Dein Beitrag unterstützt die Weiterentwicklung von Brew-even.",
     "openingCheckout": "Bezahlvorgang wird geöffnet…",
     "checkoutError": "Der Bezahlvorgang konnte nicht gestartet werden. Bitte versuche es erneut.",
     "paymentStatus": {

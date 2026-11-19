@@ -5,7 +5,6 @@
   },
   "overview": {
     "title": "Översikt",
-    "comingSoon": "Kommer snart: Kostnad per kopp över tid",
     "lastCup": "Senaste",
     "nextCup": "Nästa",
     "brewed": "Bryggt",
@@ -36,7 +35,6 @@
     "brewSettings": "Brygginställningar",
     "consumables": "Förbrukningsvaror",
     "equipment": "Utrustning",
-    "addEquipment": "Lägg till utrustning",
     "coffeeDose": "Kaffedos",
     "espressoYield": "Espressomängd",
     "priceLabel": "Pris för {{item}}",
@@ -44,10 +42,7 @@
     "acquiredOn": "Inköpt {{date}}",
     "consumableTypes": {
       "coffeeBeans": "Kaffebönor",
-      "water": "Vatten",
-      "electricity": "El",
-      "milk": "Mjölk",
-      "cleaningProducts": "Rengöringsmedel"
+      "water": "Vatten"
     },
     "equipmentTypes": {
       "espressoMachine": "Maskin",
@@ -81,11 +76,6 @@
     "storage": {
       "title": "Lagrade uppgifter",
       "description": "Dina uppgifter sparas lokalt i den här webbläsaren. De synkroniseras inte mellan enheter och försvinner om du rensar webbplatsens lagrade data.",
-      "warning": "Dina ändringar sparas inte just nu. Se Inställningar för mer information.",
-      "manage": "Hantera lagrade uppgifter",
-      "invalid": "De lagrade uppgifterna går inte att läsa. Originalet har lämnats orört. Återställ uppgifterna för att kunna spara igen.",
-      "unsupported": "Uppgifterna är sparade med en version som appen inte stöder. De har lämnats orörda. Återställ dem för att börja om.",
-      "unavailable": "Webbläsarens lagring är inte tillgänglig. Ändringar kan försvinna när du laddar om sidan.",
       "reset": "Återställ uppgifter",
       "confirmReset": "Vill du radera all sparad utrustning, brygginställningar, priser och antal koppar? Det går inte att ångra. Språk och tema påverkas inte."
     }
@@ -99,8 +89,12 @@
     "buyMeACoffee": "Bjud mig på en kopp",
     "supportDescription": "Gillar du Brew-even? Bjud mig på en kopp kaffe och stöd utvecklingen av projektet.",
     "supportProject": "Stöd projektet",
-    "supportAmount": "Belopp ({{currency}})",
-    "invalidAmount": "Ange ett belopp mellan {{min}} och {{max}}.",
+    "supportCups": "Antal koppar",
+    "cup_one": "kopp",
+    "cup_other": "koppar",
+    "pricePerCup": "{{price}} per kopp",
+    "continueCheckout": "Fortsätt till betalning",
+    "thanksDescription": "Ditt stöd hjälper mig att fortsätta utveckla Brew-even.",
     "openingCheckout": "Öppnar betalningen…",
     "checkoutError": "Det gick inte att starta betalningen. Försök igen.",
     "paymentStatus": {

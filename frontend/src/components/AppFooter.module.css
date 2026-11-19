@@ -24,36 +24,6 @@
   color: var(--accent);
 }
 
-.supportCard button {
-  margin: .5rem 0;
-}
-
-.supportCard i {
-  font-size: var(--font-sm);
-  text-align: center;
-  text-wrap: pretty;
-}
-
-.supportForm {
-  display: grid;
-  gap: .5rem;
-  margin: .5rem 0;
-}
-
-.supportForm label,
-.supportFeedback {
-  font-size: var(--font-sm);
-}
-
-.supportForm input {
-  width: 100%;
-  min-width: 0;
-}
-
-.supportForm button {
-  margin: 0;
-}
-
 .bottomRow {
   --gap: 1rem;
   display: flex;

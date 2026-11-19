@@ -5,7 +5,6 @@
   },
   "overview": {
     "title": "Vue d’ensemble",
-    "comingSoon": "Bientôt : évolution du coût par tasse",
     "lastCup": "Dernière",
     "nextCup": "Prochaine",
     "brewed": "Préparées",
@@ -36,7 +35,6 @@
     "brewSettings": "Réglages de préparation",
     "consumables": "Consommables",
     "equipment": "Équipement",
-    "addEquipment": "Ajouter un équipement",
     "coffeeDose": "Dose de café moulu",
     "espressoYield": "Quantité d’espresso",
     "priceLabel": "Prix : {{item}}",
@@ -44,10 +42,7 @@
     "acquiredOn": "Date d’achat : {{date}}",
     "consumableTypes": {
       "coffeeBeans": "Café en grains",
-      "water": "Eau",
-      "electricity": "Électricité",
-      "milk": "Lait",
-      "cleaningProducts": "Produits d’entretien"
+      "water": "Eau"
     },
     "equipmentTypes": {
       "espressoMachine": "Machine à expresso",
@@ -81,11 +76,6 @@
     "storage": {
       "title": "Données enregistrées",
       "description": "Vos données sont enregistrées uniquement dans ce navigateur. Elles ne sont pas synchronisées entre les appareils et seront perdues si vous effacez les données enregistrées de ce site.",
-      "warning": "Vos modifications ne sont pas enregistrées actuellement. Consultez les paramètres pour plus d’informations.",
-      "manage": "Gérer les données enregistrées",
-      "invalid": "Les données enregistrées n’ont pas pu être lues. Les données d’origine n’ont pas été modifiées. Réinitialisez-les pour pouvoir enregistrer à nouveau.",
-      "unsupported": "Les données ont été enregistrées avec une version non prise en charge. Elles n’ont pas été modifiées. Réinitialisez-les pour recommencer.",
-      "unavailable": "Le stockage du navigateur est indisponible. Les modifications risquent d’être perdues lors du rechargement de la page.",
       "reset": "Réinitialiser les données",
       "confirmReset": "Supprimer tous les équipements, réglages de préparation, prix et nombres de tasses enregistrés ? Cette action est irréversible. La langue et le thème ne seront pas modifiés."
     }
@@ -99,8 +89,12 @@
     "buyMeACoffee": "Offrez-moi un café",
     "supportDescription": "Brew-even vous plaît ? Offrez-moi un café pour soutenir son développement.",
     "supportProject": "Soutenir le projet",
-    "supportAmount": "Montant ({{currency}})",
-    "invalidAmount": "Saisissez un montant compris entre {{min}} et {{max}}.",
+    "supportCups": "Nombre de tasses",
+    "cup_one": "tasse",
+    "cup_other": "tasses",
+    "pricePerCup": "{{price}} par tasse",
+    "continueCheckout": "Continuer vers le paiement",
+    "thanksDescription": "Votre contribution aide à poursuivre le développement de Brew-even.",
     "openingCheckout": "Ouverture du paiement…",
     "checkoutError": "Impossible de lancer le paiement. Veuillez réessayer.",
     "paymentStatus": {

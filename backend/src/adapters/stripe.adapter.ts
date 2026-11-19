@@ -12,7 +12,7 @@ interface SupportCheckoutOptions {
 const checkoutContent = {
   sv: {
     name: 'Stöd Brew-even',
-    description: 'Frivilligt stöd till utvecklingen av Brew-even.'
+    description: 'Frivilligt stöd för utvecklingen av Brew-even.'
   },
   en: {
     name: 'Support Brew-even',
