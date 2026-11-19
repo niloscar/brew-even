@@ -1,6 +1,7 @@
 .footer {
   display: grid;
   padding-bottom: 2rem;
+  scroll-margin-top: var(--header-height);
 }
 
 .footerGrid {
@@ -21,16 +22,6 @@
 
 .supportCard h2 svg {
   color: var(--accent);
-}
-
-.supportCard button {
-  margin: .5rem 0;
-}
-
-.supportCard i {
-  font-size: var(--font-sm);
-  text-align: center;
-  text-wrap: pretty;
 }
 
 .bottomRow {

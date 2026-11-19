@@ -15,6 +15,7 @@ A home espresso cost calculator for tracking equipment investments, brewing cost
 - [x] Save settings and equipment locally in the browser.
 - [x] Switch between four languages and four currencies, with light and dark themes.
 - [x] Live exchange rates.
+- [x] Support development through voluntary contributions using Stripe Checkout.
 - [ ] Break-even calculations and comparisons.
 - [ ] La Marzocco API integration.
 - [ ] Historical brewing data.
@@ -25,6 +26,7 @@ A home espresso cost calculator for tracking equipment investments, brewing cost
 - **Frontend:** React, TypeScript, Vite, Recharts
 - **Localization:** i18next
 - **Backend:** Node.js, Express, Zod
+- **Payments:** Stripe Checkout
 - **Deployment:** Vercel
 - **Architecture:** npm workspaces (`frontend`, `backend`, `shared`)
 
@@ -41,15 +43,28 @@ git clone https://github.com/niloscar/brew-even.git
 cd brew-even
 npm install
 cp frontend/.env.example frontend/.env
+cp backend/.env.example backend/.env
 npm run dev
 ```
+
+Configure the environment variables:
+
+**Frontend (`frontend/.env`)**
+- `SITE_URL` – Frontend URL, typically `http://localhost:5173`.
+- `API_URL` – Backend URL, typically `http://localhost:3000`.
+
+**Backend (`backend/.env`)**
+- `SITE_URL` – Frontend URL used for Stripe redirects.
+- `STRIPE_SECRET_KEY` – Secret API key from Stripe.
+
+Stripe Checkout requires a valid Stripe API key. Other app features can run without Stripe configuration.
 
 ### Tests and build
 
 ```bash
 npm test
 npm run lint -w frontend
-npm run build -w frontend
+npm run build
 ```
 
 ## Data and limitations
@@ -59,6 +74,8 @@ User data is stored in the browser using `localStorage`. It can be reset in Sett
 Exchange rates are retrieved from the Frankfurter API through the Express backend, using SEK as the base currency. Responses are cached through Vercel's CDN to reduce external API requests. If the service is unavailable, the app uses approximate fallback rates and informs the user.
 
 Historical charts and forecasts are calculated estimates, not recorded brewing history.
+
+Voluntary contributions are processed through Stripe Checkout. Brew-even does not store payment card details.
 
 ## License
 

@@ -1,11 +1,7 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import * as format from '../utils/format'
-import * as currencyUtils from '../utils/currency'
-import {
-  ArrowUpRightIcon,
-  CoffeeIcon,
-  GithubLogoIcon
-} from '@phosphor-icons/react'
+import SupportCheckout from './support/SupportCheckout'
+import { ArrowUpRightIcon, CoffeeIcon, GithubLogoIcon } from '@phosphor-icons/react'
 
 import type { Currency } from 'shared'
 
@@ -23,14 +19,18 @@ const CURRENT_YEAR = new Date().getFullYear()
 export default function AppFooter({ currency, rates, locale, nextCupCost}: AppFooterProps) {
   const { t } = useTranslation()
 
-  const nextCupPrice =
-    nextCupCost === null
-      ? null
-      : format.price(
-          currencyUtils.convert(nextCupCost, rates[currency]),
-          locale,
-          currency
-        )
+  useEffect(() => {
+    if (window.location.hash !== '#about') return
+
+    const frame = requestAnimationFrame(() => {
+      document.getElementById('about')?.scrollIntoView({
+        behavior: 'auto',
+        block: 'start'
+      })
+    })
+
+    return () => cancelAnimationFrame(frame)
+  }, [])
 
   return (
     <footer className={`view ${styles.footer}`} id="about">
@@ -72,14 +72,12 @@ export default function AppFooter({ currency, rates, locale, nextCupCost}: AppFo
 
           <p>{t('footer.supportDescription')}</p>
 
-          <button className="buttonAccent">
-            <span>{t('footer.supportProject')}</span>
-            <ArrowUpRightIcon />
-          </button>
-
-          {nextCupPrice !== null && (
-            <i>{t('footer.nextCupCost', { price: nextCupPrice })}</i>
-          )}
+          <SupportCheckout 
+            currency={currency} 
+            rates={rates} 
+            locale={locale} 
+            nextCupCost={nextCupCost}
+          />
         </section>
 
         <section className={styles.bottomRow}>
