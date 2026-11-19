@@ -1,4 +1,3 @@
-
 import { Router } from 'express'
 import { handleGetExchangeRates } from '../controllers/exchangeRates.controller.ts'
 
