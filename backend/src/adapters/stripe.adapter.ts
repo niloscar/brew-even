@@ -43,9 +43,9 @@ function getStripe(): Stripe {
 }
 
 export async function createSupportCheckout({ amount, currency, locale }: SupportCheckoutOptions) {
-  const appUrl = process.env.APP_URL?.replace(/\/$/, '')
+  const appUrl = process.env.SITE_URL?.replace(/\/$/, '')
 
-  if (!appUrl) throw new Error('APP_URL is missing')
+  if (!appUrl) throw new Error('SITE_URL is missing')
 
   const session = await getStripe().checkout.sessions.create({
     mode: 'payment',
