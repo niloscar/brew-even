@@ -74,9 +74,20 @@ export async function createSupportCheckout({ amount, currency, locale }: Suppor
 }
 
 export async function getSupportCheckoutStatus(sessionId: string) {
-  const session = await getStripe().checkout.sessions.retrieve(sessionId)
+  try {
+    const session = await getStripe().checkout.sessions.retrieve(sessionId)
 
-  if (session.metadata?.purpose !== 'brew-even-support') return null
+    if (session.metadata?.purpose !== 'brew-even-support') return null
 
-  return session.payment_status === 'paid' ? 'paid' : 'pending'
+    if (session.payment_status === 'paid') return 'paid'
+    if (session.status === 'expired') return 'expired'
+
+    return 'pending'
+  } catch (error) {
+    if (error instanceof Stripe.errors.StripeInvalidRequestError && error.code === 'resource_missing') {
+      return null
+    }
+
+    throw error
+  }
 }
