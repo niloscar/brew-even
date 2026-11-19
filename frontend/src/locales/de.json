@@ -99,6 +99,17 @@
     "buyMeACoffee": "Spendier mir einen Kaffee",
     "supportDescription": "Gefällt dir Brew-even? Spendier mir einen Kaffee und unterstütze die Weiterentwicklung des Projekts.",
     "supportProject": "Projekt unterstützen",
+    "supportAmount": "Betrag ({{currency}})",
+    "invalidAmount": "Bitte gib einen Betrag zwischen {{min}} und {{max}} ein.",
+    "openingCheckout": "Bezahlvorgang wird geöffnet…",
+    "checkoutError": "Der Bezahlvorgang konnte nicht gestartet werden. Bitte versuche es erneut.",
+    "paymentStatus": {
+      "checking": "Zahlungsstatus wird geprüft…",
+      "paid": "Vielen Dank für deine Unterstützung!",
+      "pending": "Deine Zahlung wurde noch nicht bestätigt.",
+      "expired": "Der Bezahlvorgang ist abgelaufen.",
+      "error": "Der Zahlungsstatus konnte nicht überprüft werden."
+    },
     "nextCupCost": "Meine nächste Tasse Kaffee kostet {{price}}.",
     "tagline": "Koffein steckt dahinter."
   },

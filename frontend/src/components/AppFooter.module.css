@@ -1,6 +1,7 @@
 .footer {
   display: grid;
   padding-bottom: 2rem;
+  scroll-margin-top: var(--header-height);
 }
 
 .footerGrid {
@@ -31,6 +32,26 @@
   font-size: var(--font-sm);
   text-align: center;
   text-wrap: pretty;
+}
+
+.supportForm {
+  display: grid;
+  gap: .5rem;
+  margin: .5rem 0;
+}
+
+.supportForm label,
+.supportFeedback {
+  font-size: var(--font-sm);
+}
+
+.supportForm input {
+  width: 100%;
+  min-width: 0;
+}
+
+.supportForm button {
+  margin: 0;
 }
 
 .bottomRow {

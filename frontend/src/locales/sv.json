@@ -99,6 +99,17 @@
     "buyMeACoffee": "Bjud mig på en kopp",
     "supportDescription": "Gillar du Brew-even? Bjud mig på en kopp kaffe och stöd utvecklingen av projektet.",
     "supportProject": "Stöd projektet",
+    "supportAmount": "Belopp ({{currency}})",
+    "invalidAmount": "Ange ett belopp mellan {{min}} och {{max}}.",
+    "openingCheckout": "Öppnar betalningen…",
+    "checkoutError": "Det gick inte att starta betalningen. Försök igen.",
+    "paymentStatus": {
+      "checking": "Kontrollerar betalningen…",
+      "paid": "Tack för ditt stöd!",
+      "pending": "Betalningen har ännu inte bekräftats.",
+      "expired": "Betalningstillfället har gått ut.",
+      "error": "Det gick inte att kontrollera betalningens status."
+    },
     "nextCupCost": "Min nästa kopp kaffe kostar {{price}}.",
     "tagline": "Det här är koffeinets verk."
   },

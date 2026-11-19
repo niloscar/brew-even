@@ -99,6 +99,17 @@
     "buyMeACoffee": "Buy me a coffee",
     "supportDescription": "Enjoying Brew-even? Buy me a coffee and help support its development.",
     "supportProject": "Support the project",
+    "supportAmount": "Amount ({{currency}})",
+    "invalidAmount": "Enter an amount between {{min}} and {{max}}.",
+    "openingCheckout": "Opening checkout…",
+    "checkoutError": "Could not start checkout. Please try again.",
+    "paymentStatus": {
+      "checking": "Checking payment status…",
+      "paid": "Thank you for your support!",
+      "pending": "Your payment has not yet been confirmed.",
+      "expired": "The checkout session has expired.",
+      "error": "Could not verify the payment status."
+    },
     "nextCupCost": "My next cup of coffee will cost {{price}}.",
     "tagline": "Caffeine made me do it."
   },
