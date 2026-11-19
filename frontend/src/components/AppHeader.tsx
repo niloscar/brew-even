@@ -1,7 +1,7 @@
-import { useTranslation } from 'react-i18next'
 import useTheme from '../hooks/useTheme'
 import SelectWithCaret from './ui/SelectWithCaret'
 import ThemeSwitch from './ui/ThemeSwitch'
+import { LANGUAGES } from '../i18n/languages'
 
 import type { Currency } from 'shared'
 
@@ -13,7 +13,6 @@ interface AppHeaderProps {
 }
 
 export default function AppHeader({ currency, setCurrency }: AppHeaderProps) {
-  const { i18n } = useTranslation()
   const { theme, toggleTheme } = useTheme()
 
   return (
@@ -25,13 +24,12 @@ export default function AppHeader({ currency, setCurrency }: AppHeaderProps) {
         <SelectWithCaret
           id="locale"
           aria-label="Language"
-          value={i18n.language}
-          onChange={(e) => void i18n.changeLanguage(e.target.value)}
+          value={window.location.pathname.replace(/\/$/, '') || '/'}
+          onChange={(e) => window.location.assign(e.target.value)}
         >
-          <option value="de-DE">Deutsch</option>
-          <option value="en-US">English</option>
-          <option value="fr-FR">Français</option>
-          <option value="sv-SE">Svenska</option>
+          {Object.entries(LANGUAGES).map(([path, { label }]) => (
+            <option key={path} value={path}>{label}</option>
+          ))}
         </SelectWithCaret>
 
         <SelectWithCaret
