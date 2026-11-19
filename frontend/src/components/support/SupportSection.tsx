@@ -115,7 +115,10 @@ export default function SupportSection({
   const showCheckout = paymentStatus === null || paymentStatus === 'expired'
 
   return (
-    <section className={`card ${styles.supportCard}`}>
+    <section
+      className={`card ${styles.supportCard}`}
+      style={paymentStatus === 'checking' ? { visibility: 'hidden' } : undefined}
+    >
       {paymentStatus === 'paid' ? (
         <div className={styles.success} role="status">
           <h2>
