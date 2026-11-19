@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import SelectWithCaret from '../SelectWithCaret'
+import SelectWithCaret from '../ui/SelectWithCaret'
 import { SETUP_PART_OPTIONS } from '../../settings/constants'
 import * as currencyUtils from '../../utils/currency'
 import * as format from '../../utils/format'

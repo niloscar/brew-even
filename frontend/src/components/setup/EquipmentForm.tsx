@@ -1,8 +1,7 @@
-
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SETUP_PART_OPTIONS } from '../../settings/constants'
-import SelectWithCaret from '../SelectWithCaret'
+import SelectWithCaret from '../ui/SelectWithCaret'
 import { CheckIcon, XIcon } from '@phosphor-icons/react'
 
 import type { SubmitEvent } from 'react'
@@ -78,17 +77,13 @@ export default function EquipmentForm({
       className={`formGrid ${styles.equipmentForm}`}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="equipment-type">
-        {t('setup.equipmentCategory')}
-      </label>
+      <label htmlFor="equipment-type">{t('setup.equipmentCategory')}</label>
 
       <SelectWithCaret
         id="equipment-type"
         wrapperClassName={styles.categorySelect}
         value={draft.type}
-        onChange={(e) =>
-          updateField('type', e.target.value as EquipmentType)
-        }
+        onChange={(e) => updateField('type', e.target.value as EquipmentType)}
       >
         {SETUP_PART_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>
@@ -97,9 +92,7 @@ export default function EquipmentForm({
         ))}
       </SelectWithCaret>
 
-      <label htmlFor="equipment-name">
-        {t('setup.equipmentName')}
-      </label>
+      <label htmlFor="equipment-name">{t('setup.equipmentName')}</label>
 
       <input
         id="equipment-name"
@@ -110,9 +103,7 @@ export default function EquipmentForm({
         onChange={(e) => updateField('name', e.target.value)}
       />
 
-      <label htmlFor="equipment-price">
-        {t('setup.equipmentPrice')}
-      </label>
+      <label htmlFor="equipment-price">{t('setup.equipmentPrice')}</label>
 
       <div className={styles.priceInputGroup}>
         <input
@@ -129,9 +120,7 @@ export default function EquipmentForm({
           wrapperClassName={styles.currencySelect}
           aria-label={t('setup.equipmentCurrency')}
           value={draft.currency}
-          onChange={(e) =>
-            updateField('currency', e.target.value as Currency)
-          }
+          onChange={(e) => updateField('currency', e.target.value as Currency)}
         >
           {CURRENCIES.map((value) => (
             <option key={value} value={value}>
@@ -141,18 +130,14 @@ export default function EquipmentForm({
         </SelectWithCaret>
       </div>
 
-      <label htmlFor="equipment-date">
-        {t('setup.equipmentDate')}
-      </label>
+      <label htmlFor="equipment-date">{t('setup.equipmentDate')}</label>
 
       <input
         id="equipment-date"
         type="date"
         required
         value={draft.acquisitionDate}
-        onChange={(e) =>
-          updateField('acquisitionDate', e.target.value)
-        }
+        onChange={(e) => updateField('acquisitionDate', e.target.value)}
       />
 
       <div className={styles.formActions}>

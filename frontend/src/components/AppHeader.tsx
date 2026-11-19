@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import useTheme from '../hooks/useTheme'
-import SelectWithCaret from './SelectWithCaret'
-import ThemeSwitch from './ThemeSwitch'
+import SelectWithCaret from './ui/SelectWithCaret'
+import ThemeSwitch from './ui/ThemeSwitch'
 
 import type { Currency } from 'shared'
 
@@ -18,6 +18,7 @@ export default function AppHeader({ currency, setCurrency }: AppHeaderProps) {
 
   return (
     <header className={styles.appHeader}>
+
       <h1>Brew-even</h1>
 
       <div className={styles.localeCurrency}>

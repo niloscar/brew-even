@@ -39,9 +39,9 @@
 }
 
 .espresso {
-  mask-image: url('../assets/icons/EspressoIcon.svg');
+  mask-image: url('../../assets/icons/EspressoIcon.svg');
 }
 
 .latte {
-  mask-image: url('../assets/icons/LatteIcon.svg');
+  mask-image: url('../../assets/icons/LatteIcon.svg');
 }

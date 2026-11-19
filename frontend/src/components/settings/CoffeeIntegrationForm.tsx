@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import SelectWithCaret from '../SelectWithCaret'
+import SelectWithCaret from '../ui/SelectWithCaret'
 import { PlugsConnectedIcon } from '@phosphor-icons/react'
 
 export default function CoffeeIntegrationForm() {
@@ -9,10 +9,11 @@ export default function CoffeeIntegrationForm() {
     <form className="formGrid" onSubmit={(e) => e.preventDefault()}>
       <label htmlFor="supplier">{t('settings.supplier')}</label>
       <SelectWithCaret
-        className="buttonLike" 
-        id="supplier" 
-        name="supplier" 
-        disabled>
+        className="buttonLike"
+        id="supplier"
+        name="supplier"
+        disabled
+      >
         {/* <option value="laMarzocco">La Marzocco</option> */}
       </SelectWithCaret>
 
@@ -25,10 +26,7 @@ export default function CoffeeIntegrationForm() {
         disabled
       />
 
-      <button 
-        type="submit"
-        disabled
-      >
+      <button type="submit" disabled>
         <PlugsConnectedIcon aria-hidden="true" />
         {t('settings.connect')}
       </button>
