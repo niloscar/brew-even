@@ -1,4 +1,5 @@
 import useTheme from '../hooks/useTheme'
+import Logo from './Logo'
 import SelectWithCaret from './ui/SelectWithCaret'
 import ThemeSwitch from './ui/ThemeSwitch'
 import { LANGUAGES } from '../i18n/languages'
@@ -18,7 +19,7 @@ export default function AppHeader({ currency, setCurrency }: AppHeaderProps) {
   return (
     <header className={styles.appHeader}>
 
-      <h1>Brew-even</h1>
+      <Logo />
 
       <div className={styles.localeCurrency}>
         <SelectWithCaret
