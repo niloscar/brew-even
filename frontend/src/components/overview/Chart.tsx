@@ -182,7 +182,7 @@ export default function Chart({
               responsive
               className={styles.chart}
               data={data}
-              margin={{ top: 8, right: 0, bottom: 8, left: 0 }}
+              margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
               <XAxis
                 dataKey="cupsBrewed"
@@ -211,6 +211,7 @@ export default function Chart({
               />
 
               <Tooltip
+                cursor={{ stroke: 'var(--tooltip-line)', strokeWidth: 1 }}
                 content={(props) => (
                   <ChartTooltip
                     {...props}
@@ -224,7 +225,7 @@ export default function Chart({
               {hasForecast && (
                 <ReferenceLine
                   x={cupsBrewed}
-                  stroke="var(--border-dark)"
+                  stroke="var(--reference-line)"
                   strokeDasharray="3 4"
                 />
               )}

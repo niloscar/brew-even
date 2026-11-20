@@ -1,6 +1,9 @@
 .chartSection {
   width: 100%;
   min-width: 0;
+
+  --tooltip-line: var(--border-divider);
+  --reference-line: var(--border-divider);
 }
 
 .chartContainer {
