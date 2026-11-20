@@ -108,7 +108,7 @@ function localizedHtml(baseUrl: string): Plugin {
         .replace(SEO_PLACEHOLDER, rootMetadata)
         .replace(
           '<div id="root"></div>',
-          `<div id="root"><main><h1>Brew-even</h1><p>Choose your language:</p><nav aria-label="Languages">${languageLinks}</nav></main></div>`
+          `<div id="root"><noscript><main><h1>Brew-even</h1><p>Choose your language:</p><nav aria-label="Languages">${languageLinks}</nav></main></noscript></div>`
         )
 
       await writeFile(indexPath, rootHtml)
