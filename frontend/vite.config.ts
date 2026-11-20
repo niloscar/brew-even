@@ -78,9 +78,25 @@ function localizedHtml(baseUrl: string): Plugin {
         await writeFile(outputPath, localized)
       }
 
+      const rootTitle = escapeHtml(LANGUAGES['/en'].translation.meta.title)
+      const rootDescription = escapeHtml(LANGUAGES['/en'].translation.meta.description)
+
       const rootMetadata = [
-        `<meta name="description" content="Choose your language for Brew-even, the home espresso cost calculator." />`,
+        `<meta name="description" content="${rootDescription}" />`,
         `<link rel="canonical" href="${BASE_URL}/" />`,
+        `<meta property="og:type" content="website" />`,
+        `<meta property="og:site_name" content="Brew-even" />`,
+        `<meta property="og:title" content="${rootTitle}" />`,
+        `<meta property="og:description" content="${rootDescription}" />`,
+        `<meta property="og:url" content="${BASE_URL}/" />`,
+        `<meta property="og:locale" content="en_US" />`,
+        `<meta property="og:image" content="${BASE_URL}/og-image_light.png" />`,
+        `<meta property="og:image:width" content="1200" />`,
+        `<meta property="og:image:height" content="630" />`,
+        `<meta property="og:image:type" content="image/png" />`,
+        `<meta property="og:image:alt" content="Brew-even | Home Espresso Cost Calculator" />`,
+        `<meta name="twitter:card" content="summary_large_image" />`,
+        `<meta name="twitter:image" content="${BASE_URL}/og-image_light.png" />`,
         ...alternateLinks
       ].join('\n    ')
 
