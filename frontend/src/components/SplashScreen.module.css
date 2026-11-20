@@ -1,0 +1,183 @@
+@property --wave-y {
+  syntax: '<length-percentage>';
+  inherits: false;
+  initial-value: -80px;
+}
+
+@property --wave-height {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --wave-drift {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: -15%;
+}
+
+@property --wave-flatten {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+
+  --splash-bg: #140d0c;
+  --text-h: #fff9e9;
+  --wave-y: -80px;
+  --wave-amplitude: calc(var(--wave-height) * var(--wave-flatten));
+
+  background: var(--splash-bg);
+
+  clip-path: shape(
+    from 0% 100%,
+    line to 0% calc(var(--wave-y) - var(--wave-amplitude)),
+    curve to calc(50% + var(--wave-drift)) calc(var(--wave-y) + var(--wave-amplitude) * .25)
+      with calc(18% + var(--wave-drift)) calc(var(--wave-y) - var(--wave-amplitude)) /
+          calc(34% + var(--wave-drift)) calc(var(--wave-y) + var(--wave-amplitude) * .25),
+    curve to 100% calc(var(--wave-y) - var(--wave-amplitude))
+      with calc(66% + var(--wave-drift)) calc(var(--wave-y) + var(--wave-amplitude) * .25) /
+          calc(82% + var(--wave-drift)) calc(var(--wave-y) - var(--wave-amplitude)),
+    line to 100% 100%,
+    close
+  );
+
+  animation:
+    splashExit var(--splash-duration) ease-in-out 600ms forwards,
+    waveBreathe 350ms ease-in-out infinite alternate,
+    waveDrift 600ms ease-in-out infinite alternate,
+    waveFlatten var(--splash-duration) linear 600ms forwards;
+}
+
+:global(html[data-theme='dark']) .splash {
+  --splash-bg: #fff9e9;
+  --text-h: #261813;
+  --wave-y: calc(100% + 80px);
+
+  clip-path: shape(
+    from 0% 0%,
+    line to 100% 0%,
+    line to 100% var(--wave-y),
+    curve to calc(50% + var(--wave-drift)) var(--wave-y)
+      with calc(82% + var(--wave-drift)) calc(var(--wave-y) + var(--wave-amplitude)) /
+          calc(66% + var(--wave-drift)) calc(var(--wave-y) - var(--wave-amplitude) * .2),
+    curve to 0% var(--wave-y)
+      with calc(34% + var(--wave-drift)) calc(var(--wave-y) + var(--wave-amplitude) * .2) /
+          calc(18% + var(--wave-drift)) calc(var(--wave-y) + var(--wave-amplitude)),
+    close
+  );
+
+  animation-name: splashExitUp, waveBreathe, waveDrift, waveFlatten;
+}
+
+.logo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  animation: splashLogoEnter 250ms ease-out forwards;
+}
+
+.logo :global(h1) {
+  margin: 0;
+  max-width: 100%;
+  font-size: clamp(1.5rem, 14vw, 6rem);
+}
+
+@media (max-width: 768px) {
+  .logo :global(h1) {
+    flex-direction: column;
+    gap: .5em;
+  }
+}
+
+@keyframes splashLogoEnter {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes splashExit {
+  to {
+    --wave-y: calc(100% + 80px);
+  }
+}
+
+@keyframes splashExitUp {
+  to {
+    --wave-y: -80px;
+  }
+}
+
+@keyframes waveBreathe {
+  from {
+    --wave-height: clamp(10px, 2vw, 20px);
+  }
+
+  to {
+    --wave-height: clamp(13px, 2.5vw, 25px);
+  }
+}
+
+@keyframes waveDrift {
+  to {
+    --wave-drift: 15%;
+  }
+}
+
+@keyframes waveFlatten {
+  0%, 20% {
+    --wave-flatten: 0;
+  }
+
+  40%, 66% {
+    --wave-flatten: 1;
+  }
+
+  80%, 100% {
+    --wave-flatten: 0;
+  }
+}
+
+@supports not (clip-path: shape(from 0% 0%, line to 100% 0%, line to 100% 100%, close)) {
+  .splash {
+    clip-path: inset(0);
+    animation: splashFallbackDown var(--splash-duration) ease-in-out 600ms forwards;
+  }
+
+  :global(html[data-theme='dark']) .splash {
+    animation-name: splashFallbackUp;
+  }
+}
+
+@keyframes splashFallbackDown {
+  to {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+
+@keyframes splashFallbackUp {
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    animation-duration: 1ms, 0ms, 0ms, 0ms;
+    animation-delay: 0ms;
+  }
+
+  .logo {
+    animation: none;
+    opacity: 1;
+  }
+}

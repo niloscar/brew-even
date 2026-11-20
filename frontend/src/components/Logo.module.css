@@ -1,25 +1,27 @@
 .logoContainer {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: .333em;
+  font-size: 1.5rem;
 }
 
 .logo {
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 1.667em;
+  height: 1.667em;
   flex-shrink: 0;
   background-color: var(--text-h);
   mask: url('/favicon.svg') center / contain no-repeat;
 }
 
-.logoContainer:hover .logo {
+.logoContainer:hover .logo,
+.animated {
   animation: brew .25s linear infinite;
 }
 
 .logoText {
   display: inline-flex;
-  font-size: 1.5rem;
+  font-size: 1em;
   font-weight: 600;
   color: var(--text-h);
   line-height: 1;
