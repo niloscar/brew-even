@@ -3,6 +3,35 @@
   <head>
     <meta charset="UTF-8" />
 
+    <script>
+      if (window.location.pathname === '/') {
+        const languagePaths = {
+          de: '/de',
+          en: '/en',
+          fr: '/fr',
+          sv: '/sv'
+        }
+
+        let savedPath = null
+
+        try {
+          savedPath = localStorage.getItem('brew-even-language')
+        } catch {
+          savedPath = null
+        }
+
+        const browserPath = (navigator.languages.length ? navigator.languages : [navigator.language])
+          .map((language) => languagePaths[language.split('-')[0].toLowerCase()])
+          .find((path) => path !== undefined)
+
+        const preferredPath = savedPath && Object.values(languagePaths).includes(savedPath)
+          ? savedPath
+          : browserPath ?? '/en'
+
+        window.location.replace(`${preferredPath}${window.location.search}${window.location.hash}`)
+      }
+    </script>
+
     <style>
       html {
         background: #fff9e9;
