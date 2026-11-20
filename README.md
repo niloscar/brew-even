@@ -6,6 +6,12 @@ A home espresso cost calculator for tracking equipment investments, brewing cost
 
 **Live preview:** [breweven.app](https://breweven.app)
 
+## Screenshots
+
+| Overview | Brewing & Equipment | Mobile
+| :---: | :---: | :---: |
+| <a href="./docs/screenshots/overview-desktop.png"><img src="./docs/screenshots/overview-desktop.png" width="230" alt="Overview"></a> | <a href="./docs/screenshots/equipment-desktop.png"><img src="./docs/screenshots/equipment-desktop.png" width="230" alt="Brewing and Equipment"></a> | <a href="./docs/screenshots/overview-mobile-mock.png"><img src="./docs/screenshots/overview-mobile-mock.png" width="75" alt="Mobile"></a> |
+
 ## Features
 
 - [x] Calculate total investment and average cost per cup.
