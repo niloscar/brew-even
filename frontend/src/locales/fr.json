@@ -104,7 +104,7 @@
       "expired": "La session de paiement a expiré.",
       "error": "Impossible de vérifier le statut du paiement."
     },
-    "nextCupCost": "Ma prochaine tasse de café me coûtera {{price}}.",
+    "nextCupCost": "Mon prochain double espresso me coûtera {{price}}.",
     "tagline": "C’est l’œuvre de la caféine."
   },
   "common": {

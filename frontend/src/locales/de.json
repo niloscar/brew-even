@@ -104,7 +104,7 @@
       "expired": "Der Bezahlvorgang ist abgelaufen.",
       "error": "Der Zahlungsstatus konnte nicht überprüft werden."
     },
-    "nextCupCost": "Meine nächste Tasse Kaffee kostet {{price}}.",
+    "nextCupCost": "Mein nächster doppelter Espresso kostet {{price}}.",
     "tagline": "Koffein steckt dahinter."
   },
   "common": {

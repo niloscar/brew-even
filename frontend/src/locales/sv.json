@@ -104,7 +104,7 @@
       "expired": "Betalningstillfället har gått ut.",
       "error": "Det gick inte att kontrollera betalningens status."
     },
-    "nextCupCost": "Min nästa kopp kaffe kostar {{price}}.",
+    "nextCupCost": "Min nästa dubbla espresso kostar {{price}}.",
     "tagline": "Det här är koffeinets verk."
   },
   "common": {
