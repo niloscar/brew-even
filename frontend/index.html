@@ -61,9 +61,7 @@
 
       document.documentElement.dataset.theme = theme
 
-      const splashShown = document.cookie
-        .split(';')
-        .some((cookie) => cookie.trim() === 'brew-even-splash=1')
+      const splashShown = sessionStorage.getItem('brew-even-splash') === '1'
 
       if (!splashShown && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.dataset.splash = 'pending'

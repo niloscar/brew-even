@@ -31,9 +31,7 @@ const DEVELOPER_NEXT_CUP_COST_SEK = 19.83
 function shouldShowSplash() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
 
-  return !document.cookie
-    .split(';')
-    .some((cookie) => cookie.trim() === 'brew-even-splash=1')
+  return sessionStorage.getItem('brew-even-splash') !== '1'
 }
 
 function initializeSession(): LoadResult {
@@ -78,7 +76,7 @@ export default function App() {
   useEffect(() => {
     if (!showSplash) return
 
-    document.cookie = 'brew-even-splash=1; Path=/; SameSite=Lax'
+    sessionStorage.setItem('brew-even-splash', '1')
   }, [showSplash])
 
   useSectionScroll(!showSplash)

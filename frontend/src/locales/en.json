@@ -105,7 +105,7 @@
       "error": "Could not verify the payment status."
     },
     "nextCupCost": "My next double espresso will cost {{price}}.",
-    "tagline": "Caffeine made me do it."
+    "tagline": "Caffeine made me do this."
   },
   "common": {
     "add": "Add",
