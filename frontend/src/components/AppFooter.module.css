@@ -16,6 +16,12 @@
   }
 }
 
+.socialLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .bottomRow {
   --gap: 1rem;
   display: flex;

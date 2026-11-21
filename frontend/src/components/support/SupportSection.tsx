@@ -8,7 +8,7 @@ import {
 import * as format from '../../utils/format'
 import * as currencyUtils from '../../utils/currency'
 import {
-  ArrowUpRightIcon,
+  ArrowRightIcon,
   CoffeeIcon,
   CoinsIcon,
   HeartIcon,
@@ -236,7 +236,7 @@ export default function SupportSection({
                               : 'footer.continueCheckout'
                           )}
                         </span>
-                        <ArrowUpRightIcon aria-hidden="true" />
+                        <ArrowRightIcon aria-hidden="true" />
                       </button>
 
                       <button

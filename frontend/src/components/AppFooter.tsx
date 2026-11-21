@@ -2,7 +2,8 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import SupportSection from './support/SupportSection'
-import { ArrowUpRightIcon, GithubLogoIcon } from '@phosphor-icons/react'
+import ExternalLink from './ui/ExternalLink'
+import { PaperPlaneTiltIcon, GithubLogoIcon } from '@phosphor-icons/react'
 
 import type { Currency } from 'shared'
 
@@ -43,26 +44,30 @@ export default function AppFooter({ currency, rates, locale, nextCupCost}: AppFo
 
           <p>
             {t('footer.createdBy')}{' '}
-            <a
-              href="https://oscarnilsson.dev?ref=brew-even"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <ExternalLink href="https://oscarnilsson.dev?ref=brew-even">
               <span>Oscar Nilsson</span>
-              <ArrowUpRightIcon />
-            </a>
+            </ExternalLink>
             {t('footer.creatorDescription')}
           </p>
 
-          <a
-            href="https://github.com/niloscar/brew-even"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GithubLogoIcon />
-            <span>{t('footer.viewOnGitHub')}</span>
-            <ArrowUpRightIcon />
-          </a>
+          <ul className={styles.socialLinks}>
+            <li>
+              <ExternalLink href="https://github.com/niloscar/brew-even">
+                <GithubLogoIcon />
+                <span>{t('footer.viewOnGitHub')}</span>
+              </ExternalLink>
+            </li>
+            <li>
+              <a
+                href="mailto:hello@breweven.app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <PaperPlaneTiltIcon />
+                <span>hello@breweven.app</span>
+              </a>
+            </li>
+          </ul>
         </section>
 
         <SupportSection

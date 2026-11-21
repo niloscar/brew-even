@@ -1,0 +1,18 @@
+.externalLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.externalLink > svg:not(.externalArrow) {
+  margin-right: .25rem;
+}
+
+.externalArrow {
+  width: .66em;
+  height: .66em;
+  margin-left: .125rem;
+  margin-top: -.125rem;
+  flex-shrink: 0;
+  align-self: center;
+}
