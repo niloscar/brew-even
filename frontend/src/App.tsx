@@ -1,5 +1,5 @@
 
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSectionScroll } from './hooks/useSectionScroll'
 import { useExchangeRates } from './hooks/useExchangeRates'
@@ -9,6 +9,7 @@ import OverviewSection from './components/overview/OverviewSection'
 import SetupSection from './components/setup/SetupSection'
 import SettingsSection from './components/settings/SettingsSection'
 import AppFooter from './components/AppFooter'
+import SplashScreen from './components/SplashScreen'
 
 import { calculateCosts, calculateConsumablesPerCup } from './lib/cost'
 import {
@@ -26,6 +27,14 @@ import type { EquipmentInput } from './types/equipment'
 import type { LoadResult } from './lib/storage'
 
 const DEVELOPER_NEXT_CUP_COST_SEK = 19.83
+
+function shouldShowSplash() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+
+  return !document.cookie
+    .split(';')
+    .some((cookie) => cookie.trim() === 'brew-even-splash=1')
+}
 
 function initializeSession(): LoadResult {
   const url = new URL(window.location.href)
@@ -48,6 +57,8 @@ export default function App() {
   const [session, setSession] = useState<LoadResult>(initialSession)
   const sessionRef = useRef(session)
 
+  const [showSplash, setShowSplash] = useState(shouldShowSplash)
+
   const [manualCups, setManualCups] = useState(String(session.data.cupsBrewed))
   const [resetKey, setResetKey] = useState(0)
 
@@ -60,7 +71,17 @@ export default function App() {
 
   const { currency, cupsBrewed, brewSettings, consumables, equipment } = appData
 
-  useSectionScroll()
+  useLayoutEffect(() => {
+    delete document.documentElement.dataset.splash
+  }, [])
+
+  useEffect(() => {
+    if (!showSplash) return
+
+    document.cookie = 'brew-even-splash=1; Path=/; SameSite=Lax'
+  }, [showSplash])
+
+  useSectionScroll(!showSplash)
 
   function updateAppData(update: (prev: AppData) => AppData) {
     const current = sessionRef.current
@@ -246,6 +267,10 @@ export default function App() {
         locale={locale}
         nextCupCost={DEVELOPER_NEXT_CUP_COST_SEK}
       />
+
+      {showSplash && (
+        <SplashScreen onFinish={() => setShowSplash(false)} />
+      )}
     </>
   )
 }

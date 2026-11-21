@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 
-export function useSectionScroll() {
+export function useSectionScroll(enabled = true) {
   useEffect(() => {
+    if (!enabled) return
+
     const desktop = window.matchMedia('(min-width: 1024px) and (pointer: fine)')
     const touch = window.matchMedia('(any-pointer: coarse)')
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -51,8 +53,11 @@ export function useSectionScroll() {
 
       if (!event.cancelable) return
 
-      const sections = Array.from(document.querySelectorAll<HTMLElement>('.view'))
-      const headerHeight = document.querySelector('header')?.getBoundingClientRect().height ?? 0
+      const sections = Array.from(
+        document.querySelectorAll<HTMLElement>('.view')
+      )
+      const headerHeight =
+        document.querySelector('header')?.getBoundingClientRect().height ?? 0
 
       let currentIndex = 0
 
@@ -91,5 +96,5 @@ export function useSectionScroll() {
     return () => {
       window.removeEventListener('wheel', handleWheel)
     }
-  }, [])
+  }, [enabled])
 }

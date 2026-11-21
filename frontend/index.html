@@ -40,6 +40,14 @@
       html[data-theme='dark'] {
         background: #140d0c;
       }
+
+      html[data-splash='pending'] {
+        background: #140d0c;
+      }
+
+      html[data-theme='dark'][data-splash='pending'] {
+        background: #fff9e9;
+      }
     </style>
 
     <script>
@@ -52,6 +60,14 @@
           : prefersDark ? 'dark' : 'light'
 
       document.documentElement.dataset.theme = theme
+
+      const splashShown = document.cookie
+        .split(';')
+        .some((cookie) => cookie.trim() === 'brew-even-splash=1')
+
+      if (!splashShown && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.dataset.splash = 'pending'
+      }
     </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
