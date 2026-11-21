@@ -2,9 +2,9 @@
 
 A home espresso cost calculator for tracking equipment investments, brewing costs, and how the average cost per cup changes over time.
 
-**Status:** Under active development.
+**Status:** Public beta (v0.1.0).
 
-**Live preview:** [breweven.app](https://breweven.app)
+**Live app:** [breweven.app](https://breweven.app)
 
 ## Screenshots
 
@@ -22,10 +22,13 @@ A home espresso cost calculator for tracking equipment investments, brewing cost
 - [x] Switch between four languages and four currencies, with light and dark themes.
 - [x] Live exchange rates.
 - [x] Support development through voluntary contributions using Stripe Checkout.
-- [ ] Break-even calculations and comparisons.
-- [ ] La Marzocco API integration.
-- [ ] Historical brewing data.
-- [ ] Optional account and database synchronization.
+
+## Planned features
+
+- Break-even calculations and comparisons.
+- La Marzocco API integration.
+- Historical brewing data.
+- Optional account and database synchronization.
 
 ## Tech stack
 
