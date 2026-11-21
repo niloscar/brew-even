@@ -54,13 +54,11 @@ export default function Chart({
   const { t } = useTranslation()
   const [period, setPeriod] = useState<Period>('90')
 
-  const hasEquipmentCost = equipment.some((item) => item.price > 0)
+  const hasCosts = consumablesPerCup > 0 || equipment.some((item) => item.price > 0)
 
-  const emptyMessageKey = equipment.length === 0
-    ? 'overview.chartEmptyEquipment'
-    : !hasEquipmentCost
-      ? 'overview.chartEmptyEquipmentCost'
-      : 'overview.chartEmpty'
+  const emptyMessageKey = cupsBrewed === 0
+    ? 'overview.chartEmpty'
+    : 'overview.chartEmptyCosts'
 
   const brewRate = useMemo(
     () => calculateDailyBrewRate(equipment, cupsBrewed, TODAY),
@@ -68,7 +66,7 @@ export default function Chart({
   )
 
   const data = useMemo(() => {
-    if (cupsBrewed === 0 || !hasEquipmentCost) return []
+    if (cupsBrewed === 0 || !hasCosts) return []
 
     const historyDays = period === 'all' ? null : Number(period)
 
@@ -135,7 +133,7 @@ export default function Chart({
     currency,
     period,
     brewRate,
-    hasEquipmentCost
+    hasCosts
   ])
 
   const hasForecast = data.some(
@@ -151,7 +149,7 @@ export default function Chart({
             <span>{t('overview.chartTitle')}</span>
           </h3>
 
-          {data.length > 0 && (
+          {data.length > 0 && brewRate !== null && (
             <div
               className={styles.periodSelector}
               role="group"
@@ -269,9 +267,11 @@ export default function Chart({
             )}
           </div>
 
-          <p className={styles.chartNote}>
-            {t('overview.chartModelNote')}
-          </p>
+          {brewRate !== null && (
+            <p className={styles.chartNote}>
+              {t('overview.chartModelNote')}
+            </p>
+          )}
         </>
       )}
     </div>

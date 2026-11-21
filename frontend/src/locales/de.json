@@ -24,8 +24,7 @@
     "chartHistory": "Berechneter Verlauf",
     "chartForecast": "Prognose",
     "chartModelNote": "Modellrechnung auf Basis einer gleichmäßigen Zubereitungsrate und konstanter Kosten.",
-    "chartEmptyEquipment": "Füge Ausrüstung hinzu, um zu sehen, wie sich die Kosten pro Tasse entwickeln.",
-    "chartEmptyEquipmentCost": "Gib Anschaffungskosten für ein Gerät ein, um das Diagramm anzuzeigen.",
+    "chartEmptyCosts": "Gib Kosten für Verbrauchsmaterial oder Ausrüstung ein, um das Diagramm anzuzeigen.",
     "exchangeRates": {
       "fallback": "Geschätzte Wechselkurse werden verwendet."
     }

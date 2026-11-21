@@ -24,8 +24,7 @@
     "chartHistory": "Estimated development",
     "chartForecast": "Forecast",
     "chartModelNote": "Modeled using a consistent brewing rate and unchanged costs.",
-    "chartEmptyEquipment": "Add equipment to see how the cost per cup changes over time.",
-    "chartEmptyEquipmentCost": "Enter an equipment cost to display the chart.",
+    "chartEmptyCosts": "Enter a consumable or equipment cost to display the chart.",
     "exchangeRates": {
       "fallback": "Estimated exchange rates are used."
     }

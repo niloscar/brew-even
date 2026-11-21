@@ -24,8 +24,7 @@
     "chartHistory": "Beräknad utveckling",
     "chartForecast": "Prognos",
     "chartModelNote": "Modellberäknad utveckling utifrån jämn bryggtakt och oförändrade kostnader.",
-    "chartEmptyEquipment": "Lägg till utrustning för att se hur kostnaden per kopp utvecklas.",
-    "chartEmptyEquipmentCost": "Ange en utrustningskostnad för att visa diagrammet.",
+    "chartEmptyCosts": "Ange en kostnad för förbrukningsvaror eller utrustning för att visa diagrammet.",
     "exchangeRates": {
       "fallback": "Uppskattade valutakurser används."
     }
