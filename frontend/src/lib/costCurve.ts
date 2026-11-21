@@ -1,4 +1,4 @@
-import { calculateCosts } from './cost'
+import { calculateCosts } from './cost.ts'
 import type { EquipmentPurchase } from './cost'
 
 export type CostCurvePoint = {
