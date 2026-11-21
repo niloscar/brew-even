@@ -76,7 +76,7 @@
       "title": "Gespeicherte Daten",
       "description": "Deine Daten werden nur lokal in diesem Browser gespeichert. Sie werden nicht zwischen Geräten synchronisiert und gehen verloren, wenn du die gespeicherten Websitedaten löschst.",
       "reset": "Gespeicherte Daten zurücksetzen",
-      "confirmReset": "Alle gespeicherten Geräte, Brüheinstellungen, Preise und Tassenzahlen löschen? Dies kann nicht rückgängig gemacht werden. Sprache und Design bleiben unverändert."
+      "confirmReset": "Alle gespeicherten Geräte, Brüheinstellungen, Preise und Tassenzahlen löschen? Dies kann nicht rückgängig gemacht werden."
     }
   },
   "footer": {

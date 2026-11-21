@@ -76,7 +76,7 @@
       "title": "Données enregistrées",
       "description": "Vos données sont enregistrées uniquement dans ce navigateur. Elles ne sont pas synchronisées entre les appareils et seront perdues si vous effacez les données enregistrées de ce site.",
       "reset": "Réinitialiser les données",
-      "confirmReset": "Supprimer tous les équipements, réglages de préparation, prix et nombres de tasses enregistrés ? Cette action est irréversible. La langue et le thème ne seront pas modifiés."
+      "confirmReset": "Supprimer tous les équipements, réglages de préparation, prix et nombres de tasses enregistrés ? Cette action est irréversible."
     }
   },
   "footer": {

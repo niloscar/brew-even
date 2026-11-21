@@ -76,7 +76,7 @@
       "title": "Saved data",
       "description": "Your data is stored locally in this browser only. It is not synced across devices and will be lost if you clear this website's stored data.",
       "reset": "Reset saved data",
-      "confirmReset": "Delete all saved equipment, brewing settings, prices and cup counts? This cannot be undone. Language and theme will not be affected."
+      "confirmReset": "Delete all saved equipment, brewing settings, prices and cup counts? This cannot be undone."
     }
   },
   "footer": {

@@ -76,7 +76,7 @@
       "title": "Lagrade uppgifter",
       "description": "Dina uppgifter sparas lokalt i den här webbläsaren. De synkroniseras inte mellan enheter och försvinner om du rensar webbplatsens lagrade data.",
       "reset": "Återställ uppgifter",
-      "confirmReset": "Vill du radera all sparad utrustning, brygginställningar, priser och antal koppar? Det går inte att ångra. Språk och tema påverkas inte."
+      "confirmReset": "Vill du radera all sparad utrustning, brygginställningar, priser och antal koppar? Det går inte att ångra."
     }
   },
   "footer": {
