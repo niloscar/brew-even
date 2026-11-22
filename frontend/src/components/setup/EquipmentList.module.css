@@ -148,6 +148,10 @@
   font-variant-numeric: tabular-nums;
   appearance: textfield;
 
+  &.invalid {
+    color: var(--error);
+  }
+
   &:focus-visible {
     outline: none;
     box-shadow: none;
