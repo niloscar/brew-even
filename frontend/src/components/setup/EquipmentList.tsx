@@ -2,8 +2,9 @@ import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import SelectWithCaret from '../ui/SelectWithCaret'
-import { SETUP_PART_OPTIONS } from '../../settings/constants'
+import { MAX_EQUIPMENT_PRICE, MAX_EQUIPMENT_PRICE_LENGTH, SETUP_PART_OPTIONS } from '../../settings/constants'
 import * as currencyUtils from '../../utils/currency'
+import { normalizeEquipmentPriceInput, clampEquipmentPrice } from '../../utils/equipment'
 import * as format from '../../utils/format'
 import {
   PencilSimpleIcon,
@@ -101,7 +102,7 @@ export default function EquipmentList({
     if (editing?.id !== part.id) return
 
     const { draft } = editing
-    const price = Number(draft.price)
+    const price = clampEquipmentPrice(draft.price)
 
     if (
       !draft.name.trim() ||
@@ -158,6 +159,8 @@ export default function EquipmentList({
     <ul className={styles.equipmentList}>
       {sortedEquipment.map((part) => {
         const isEditing = editing?.id === part.id
+        const isPriceOverMax = isEditing &&
+          Number(editing.draft.price.replace(',', '.')) > MAX_EQUIPMENT_PRICE
 
         return (
           <li key={part.id}>
@@ -192,13 +195,23 @@ export default function EquipmentList({
 
                 <div className={styles.equipmentPriceGroup}>
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="decimal"
                     aria-label={t('setup.equipmentPrice')}
-                    min="0"
-                    step="any"
+                    maxLength={MAX_EQUIPMENT_PRICE_LENGTH}
                     required
                     value={editing.draft.price}
-                    onChange={(e) => updateField('price', e.target.value)}
+                    aria-invalid={isPriceOverMax}
+                    className={isPriceOverMax ? styles.invalid : undefined}
+                    onChange={(e) => {
+                      const value = normalizeEquipmentPriceInput(e.target.value, locale)
+
+                      if (value !== null) updateField('price', value)
+                    }}
+                    onBlur={() => {
+                      const price = clampEquipmentPrice(editing.draft.price)
+                      updateField('price', normalizeEquipmentPriceInput(String(price), locale) ?? '0')
+                    }}
                   />
 
                   <SelectWithCaret

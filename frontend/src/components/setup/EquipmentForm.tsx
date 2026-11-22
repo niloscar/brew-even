@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SETUP_PART_OPTIONS } from '../../settings/constants'
+import { MAX_EQUIPMENT_PRICE, MAX_EQUIPMENT_PRICE_LENGTH, SETUP_PART_OPTIONS } from '../../settings/constants'
+import { normalizeEquipmentPriceInput, clampEquipmentPrice } from '../../utils/equipment'
 import SelectWithCaret from '../ui/SelectWithCaret'
 import { CheckIcon, XIcon } from '@phosphor-icons/react'
 
@@ -31,7 +32,8 @@ export default function EquipmentForm({
   onSave,
   onCancel
 }: EquipmentFormProps) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const locale = i18n.resolvedLanguage ?? i18n.language
 
   const [draft, setDraft] = useState<EquipmentDraft>({
     type: initialValues?.type ?? SETUP_PART_OPTIONS[0].value,
@@ -40,6 +42,8 @@ export default function EquipmentForm({
     currency: initialValues?.currency ?? currency,
     acquisitionDate: initialValues?.acquisitionDate ?? ''
   })
+
+  const isPriceOverMax = Number(draft.price.replace(',', '.')) > MAX_EQUIPMENT_PRICE
 
   function updateField<K extends keyof EquipmentDraft>(
     key: K,
@@ -51,13 +55,11 @@ export default function EquipmentForm({
   function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    const price = Number(draft.price)
+    const price = clampEquipmentPrice(draft.price)
 
     if (
       !draft.name.trim() ||
       !draft.price.trim() ||
-      !Number.isFinite(price) ||
-      price < 0 ||
       !draft.acquisitionDate
     ) {
       return
@@ -108,12 +110,22 @@ export default function EquipmentForm({
       <div className={styles.priceInputGroup}>
         <input
           id="equipment-price"
-          type="number"
-          min="0"
-          step="any"
+          type="text"
+          inputMode="decimal"
+          maxLength={MAX_EQUIPMENT_PRICE_LENGTH}
           required
           value={draft.price}
-          onChange={(e) => updateField('price', e.target.value)}
+          aria-invalid={isPriceOverMax}
+          className={isPriceOverMax ? styles.invalid : undefined}
+          onChange={(e) => {
+            const value = normalizeEquipmentPriceInput(e.target.value, locale)
+
+            if (value !== null) updateField('price', value)
+          }}
+          onBlur={() => {
+            const price = clampEquipmentPrice(draft.price)
+            updateField('price', normalizeEquipmentPriceInput(String(price), locale) ?? '0')
+          }}
         />
 
         <SelectWithCaret
