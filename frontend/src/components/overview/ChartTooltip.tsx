@@ -39,7 +39,7 @@ export default function ChartTooltip({
   const isForecast = cupsBrewed > currentCups
 
   const formattedPrice = format
-    .priceParts(averagePrice, locale, currency)
+    .priceParts(averagePrice, locale, currency, 10)
     .map((part) => part.value)
     .join('')
 
@@ -58,7 +58,7 @@ export default function ChartTooltip({
             </span>
 
             <strong>
-              {format.number(cupsBrewed, locale, 0)}{' '}
+              {format.number(cupsBrewed, locale, 0, 8)}{' '}
               {t('overview.cup', { count: cupsBrewed })}
             </strong>
           </span>

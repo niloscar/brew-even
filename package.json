@@ -11,7 +11,7 @@
     "scripts": {
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "test": "node --experimental-strip-types --test frontend/src/lib/*.test.ts",
+        "test": "node --experimental-strip-types --test frontend/src/{lib,utils}/*.test.ts",
         "dev": "concurrently --names frontend,backend \"npm run dev -w frontend\" \"npm run dev -w backend\"",
         "dev:host": "concurrently --names frontend,backend \"npm run dev -w frontend -- --host\" \"npm run dev -w backend\"",
         "build": "npm run build --workspace backend && npm run build --workspace frontend"
