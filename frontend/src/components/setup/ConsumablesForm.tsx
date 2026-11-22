@@ -68,6 +68,8 @@ export default function ConsumablesForm({
           option?.unit === 'item' || !option?.unit
             ? t('setup.unitItem')
             : option.unit
+        const maxPrice = consumable.type === 'coffeeBeans' ? 10000 : 1000
+        const maxLength = String(maxPrice).length + 2
 
         return (
           <Fragment key={consumable.id}>
@@ -79,6 +81,8 @@ export default function ConsumablesForm({
               value={price}
               onChange={(value) => handleConsumablePrice(consumable.id, value)}
               min={0}
+              max={maxPrice}
+              maxLength={maxLength}
               step={CURRENCY_STEPS[currency]}
               unit={`${currencySymbol}/${unit}`}
             />

@@ -20,6 +20,8 @@ export default function BrewSettingsForm({
         id="doseGrams"
         label={t('setup.coffeeDose')}
         value={settings.doseGrams}
+        max={100}
+        maxLength={5}
         onChange={(value) => onChange('doseGrams', value)}
         step={0.1}
         unit="g"
@@ -30,6 +32,8 @@ export default function BrewSettingsForm({
         id="yieldGrams"
         label={t('setup.espressoYield')}
         value={settings.yieldGrams}
+        max={500}
+        maxLength={5}
         onChange={(value) => onChange('yieldGrams', value)}
         step={0.1}
         unit="g"

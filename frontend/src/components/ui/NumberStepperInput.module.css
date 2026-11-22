@@ -35,6 +35,10 @@
     outline: none;
     box-shadow: none;
   }
+
+  &.invalid {
+    color: var(--error);
+  }
 }
 
 .inputWrapper button {
