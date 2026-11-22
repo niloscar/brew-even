@@ -146,7 +146,6 @@
   text-align: right;
   color: var(--text-h);
   font-variant-numeric: tabular-nums;
-  appearance: textfield;
 
   &.invalid {
     color: var(--error);
@@ -155,12 +154,6 @@
   &:focus-visible {
     outline: none;
     box-shadow: none;
-  }
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
   }
 }
 
@@ -222,8 +215,6 @@
   }
 
   .equipmentList li {
-    height: auto;
-    min-height: 1.5rem;
     font-size: 1rem;
   }
 

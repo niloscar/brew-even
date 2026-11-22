@@ -106,9 +106,7 @@ export default function EquipmentList({
 
     if (
       !draft.name.trim() ||
-      !draft.price.trim() ||
-      !Number.isFinite(price) ||
-      price < 0
+      !draft.price.trim()
     ) {
       return
     }
