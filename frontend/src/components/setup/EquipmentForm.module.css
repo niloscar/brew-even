@@ -67,16 +67,9 @@
   flex: 1;
   width: 0;
   color: var(--text-h);
-  appearance: textfield;
 
   &.invalid {
     color: var(--error);
-  }
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
   }
 }
 
