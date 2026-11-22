@@ -12,6 +12,7 @@
   --text-h: #261813;
   --text-muted: #846e63;
   --bg: #fff9e9;
+  --error: #B34235;
 
   --border: #e5d5c5;
   --border-dark: #c79b53;
@@ -59,6 +60,7 @@
   --text-h: #fff9e9;
   --text-muted: #b8aa96;
   --bg: #140d0c;
+  --error: #F08072;
 
   --border: #3C2724;
   --border-dark: #3C2724;

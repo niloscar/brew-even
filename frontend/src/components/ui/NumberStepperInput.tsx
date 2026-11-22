@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -11,6 +10,7 @@ interface NumberStepperInputProps {
   onChange: (newValue: number) => void
   min?: number
   max?: number
+  maxLength?: number
   step?: number
   unit?: string
 }
@@ -22,6 +22,7 @@ export default function NumberStepperInput({
   onChange,
   min = 0,
   max,
+  maxLength,
   step = 1,
   unit = ''
 }: NumberStepperInputProps) {
@@ -30,11 +31,14 @@ export default function NumberStepperInput({
 
   const locale = i18n.resolvedLanguage ?? i18n.language
 
-  const decimalSeparator = new Intl.NumberFormat(locale)
-    .formatToParts(1.1)
-    .find(part => part.type === 'decimal')?.value ?? '.'
+  const decimalSeparator =
+    new Intl.NumberFormat(locale)
+      .formatToParts(1.1)
+      .find((part) => part.type === 'decimal')?.value ?? '.'
 
-  const formattedValue = new Intl.NumberFormat(locale, { maximumFractionDigits: 20 }).format(value)
+  const formattedValue = new Intl.NumberFormat(locale, {
+    maximumFractionDigits: 20
+  }).format(value)
 
   function clamp(value: number): number {
     return Math.min(max ?? Infinity, Math.max(min, value))
@@ -44,9 +48,8 @@ export default function NumberStepperInput({
     const decimals = (step.toString().split('.')[1] ?? '').length
     const factor = 10 ** decimals
 
-    const currentValue = draft === null
-      ? value
-      : Number(draft.replace(',', '.')) || 0
+    const currentValue =
+      draft === null ? value : Number(draft.replace(',', '.')) || 0
 
     const nextValue =
       Math.round((currentValue + direction * step) * factor) / factor
@@ -71,13 +74,20 @@ export default function NumberStepperInput({
     const newValue = Number(normalized)
 
     if (!Number.isFinite(newValue)) return
+    if (newValue < min || (max !== undefined && newValue > max)) return
 
-    onChange(clamp(newValue))
+    onChange(newValue)
   }
 
   function handleBlur() {
-    if (draft === '' || (draft !== null && !Number.isFinite(Number(draft.replace(',', '.'))))) {
-      onChange(0)
+    if (draft !== null) {
+      const newValue = Number(draft.replace(',', '.'))
+
+      if (draft === '' || !Number.isFinite(newValue)) {
+        onChange(clamp(0))
+      } else if (newValue < min || (max !== undefined && newValue > max)) {
+        onChange(clamp(newValue))
+      }
     }
 
     setDraft(null)
@@ -87,13 +97,20 @@ export default function NumberStepperInput({
     setDraft(value.toString().replace('.', decimalSeparator))
   }
 
+  const isOverMax = draft !== null 
+    && max !== undefined 
+    && Number(draft.replace(',', '.')) > max
+
   return (
     <div className={styles.inputWrapper} data-unit={unit}>
       <input
+        className={isOverMax ? styles.invalid : undefined}
         type="text"
         inputMode="decimal"
         id={id}
         value={draft ?? formattedValue}
+        maxLength={maxLength}
+        aria-invalid={isOverMax}
         onFocus={handleFocus}
         onChange={handleChange}
         onBlur={handleBlur}
