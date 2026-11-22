@@ -45,7 +45,7 @@ export default function Metrics({
 
   const displayedCups = isEditingCups
     ? manualCups
-    : format.number(Number(manualCups || 0), locale)
+    : format.number(Number(manualCups || 0), locale, 0, 8)
 
   const currentAverageCost = averageCostPerCup === null
     ? null
@@ -56,15 +56,18 @@ export default function Metrics({
     rates[currency]
   )
 
-  const renderPrice = (amount: number) =>
-    format
-      .priceParts(amount, locale, currency)
-      .filter((part) => part.type !== 'literal' || part.value.trim() !== '')
+  const renderPrice = (amount: number) => {
+    const parts = format.priceParts(amount, locale, currency, 10)
+    const isCompact = parts.some((part) => part.type === 'compact')
+
+    return parts
+      .filter((part) => isCompact || part.type !== 'literal' || part.value.trim() !== '')
       .map((part, index) => (
         <span key={index} className={styles[part.type]}>
           {part.value}
         </span>
       ))
+  }
 
   return (
     <div className={styles.metricsGrid}>
@@ -101,7 +104,7 @@ export default function Metrics({
         <p className={styles.metricValue}>
           {integratedCups != null ? (
             <>
-              {format.number(integratedCups, locale)}
+              {format.number(integratedCups, locale, 0, 8)}
               <span className={styles.metricUnit}>{cupUnit}</span>
             </>
           ) : (
