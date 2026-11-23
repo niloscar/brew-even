@@ -1,4 +1,4 @@
-import type { Currency } from './currency.types'
+import type { Currency } from './currency.types.ts'
 
 export const AMOUNT_LIMITS: Record<Currency, { min: number; max: number }> = {
   SEK: { min: 300, max: 1000000 },
