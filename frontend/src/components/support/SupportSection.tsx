@@ -11,7 +11,6 @@ import {
   ArrowRightIcon,
   CoffeeIcon,
   CoinsIcon,
-  DropIcon,
   HeartIcon,
   InfoIcon,
   MinusIcon,
@@ -62,7 +61,6 @@ export default function SupportSection({
   const [paymentStatus, setPaymentStatus] = useState<PaymentStatus | null>(
     sessionId ? 'checking' : null
   )
-
 
   const multiplier = SUPPORT_DRINKS.find(({ id }) => id === drink)?.multiplier ?? 1
 
@@ -191,7 +189,7 @@ export default function SupportSection({
 
                     {paymentStatus === null && (
                       <i className={styles.hint}>
-                        {t('footer.nextCupCost', { price: cupPrice })}
+                        {t('footer.nextCupCost', { price: nextCupPrice })}
                       </i>
                     )}
                   </div>
@@ -217,11 +215,7 @@ export default function SupportSection({
                             setCheckoutError(false)
                           }}
                         >
-                          <span className={styles.drinkIcon} data-drink={id} aria-hidden="true">
-                            <CoffeeIcon />
-                            {id === 'doubleEspresso' && <CoffeeIcon />}
-                            {id === 'flatWhite' && <DropIcon weight="fill" />}
-                          </span>
+                          <span className={styles.drinkIcon} data-drink={id} aria-hidden="true" />
                           <span>{t(`footer.drinks.${id}`)}</span>
                         </button>
                       ))}
@@ -264,7 +258,7 @@ export default function SupportSection({
 
                     <div className={styles.total}>
                       <strong>{totalPrice}</strong>
-                      <span>{t('footer.pricePerCup', { price: nextCupPrice })}</span>
+                      <span>{t('footer.pricePerCup', { price: cupPrice })}</span>
                     </div>
 
                     <div className={styles.actions}>

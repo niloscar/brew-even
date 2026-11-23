@@ -1,3 +1,4 @@
+
 .supportCard h2 {
   margin-bottom: 0;
 }
@@ -37,6 +38,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: .5rem;
   animation: supportEnter 250ms ease-out both;
 }
 
@@ -44,7 +46,6 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: .5rem;
-  margin-top: 1rem;
 }
 
 .drinkOption {
@@ -75,26 +76,37 @@
 }
 
 .drinkIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 1.5rem;
-}
-
-.drinkIcon svg {
+  display: block;
   width: 1.5rem;
   height: 1.5rem;
+  background-color: currentColor;
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
 }
 
-.drinkIcon[data-drink='doubleEspresso'] svg + svg {
-  margin-left: -.65rem;
+.drinkIcon[data-drink='singleEspresso'] {
+  mask-image: url('../../assets/icons/SingleEspressoIcon.svg');
+
+  :global(html[data-theme='dark']) & {
+    mask-image: url('../../assets/icons/SingleEspressoIcon_dk.svg');
+  }
 }
 
-.drinkIcon[data-drink='flatWhite'] svg + svg {
-  width: .75rem;
-  height: .75rem;
-  margin-left: -.5rem;
-  align-self: flex-start;
+.drinkIcon[data-drink='doubleEspresso'] {
+  mask-image: url('../../assets/icons/DoubleEspressoIcon.svg');
+
+  :global(html[data-theme='dark']) & {
+    mask-image: url('../../assets/icons/DoubleEspressoIcon_dk.svg');
+  }
+}
+
+.drinkIcon[data-drink='flatWhite'] {
+  mask-image: url('../../assets/icons/FlatWhiteIcon.svg');
+
+  :global(html[data-theme='dark']) & {
+    mask-image: url('../../assets/icons/FlatWhiteIcon_dk.svg');
+  }
 }
 
 .stepper {
