@@ -3,6 +3,9 @@
     "title": "Brew-even | Beräkna kostnaden för din espresso",
     "description": "Beräkna vad din espresso hemma kostar. Lägg till utrustning och förbrukningsvaror och se hur snittkostnaden per kopp förändras över tid."
   },
+  "noScript": {
+    "message": "Brew-even kräver JavaScript. Aktivera JavaScript i din webbläsare för att använda Brew-even."
+  },
   "overview": {
     "title": "Översikt",
     "lastCup": "Senaste",
