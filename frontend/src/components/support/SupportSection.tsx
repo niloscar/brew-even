@@ -11,12 +11,14 @@ import {
   ArrowRightIcon,
   CoffeeIcon,
   CoinsIcon,
+  DropIcon,
   HeartIcon,
   InfoIcon,
   MinusIcon,
   PlusIcon,
   WarningIcon
 } from '@phosphor-icons/react'
+import { AMOUNT_LIMITS } from 'shared'
 
 import type { SubmitEvent } from 'react'
 import type { Currency } from 'shared'
@@ -29,8 +31,14 @@ interface SupportSectionProps {
   locale: string
   nextCupCost: number
 }
-
 type PaymentStatus = 'checking' | 'paid' | 'pending' | 'expired' | 'error'
+type SupportDrink = (typeof SUPPORT_DRINKS)[number]['id']
+
+const SUPPORT_DRINKS = [
+  { id: 'singleEspresso', multiplier: 0.5 },
+  { id: 'doubleEspresso', multiplier: 1 },
+  { id: 'flatWhite', multiplier: 1.5 }
+] as const
 
 export default function SupportSection({
   currency,
@@ -39,6 +47,7 @@ export default function SupportSection({
   nextCupCost
 }: SupportSectionProps) {
   const [isFormVisible, setIsFormVisible] = useState(false)
+  const [drink, setDrink] = useState<SupportDrink>('doubleEspresso')
   const [cups, setCups] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [checkoutError, setCheckoutError] = useState(false)
@@ -54,9 +63,16 @@ export default function SupportSection({
     sessionId ? 'checking' : null
   )
 
-  const cupPriceInMinorUnits = Math.round(currencyUtils.convert(nextCupCost, rates[currency]) * 100)
+
+  const multiplier = SUPPORT_DRINKS.find(({ id }) => id === drink)?.multiplier ?? 1
+
+  const cupPriceInMinorUnits = Math.max(
+    AMOUNT_LIMITS[currency].min,
+    Math.round(currencyUtils.convert(nextCupCost * multiplier, rates[currency]) * 100)
+  )
   const amountInMinorUnits = cupPriceInMinorUnits * cups
 
+  const nextCupPrice = format.price(currencyUtils.convert(nextCupCost, rates[currency]), locale, currency)
   const cupPrice = format.price(cupPriceInMinorUnits / 100, locale, currency)
   const totalPrice = format.price(amountInMinorUnits / 100, locale, currency)
 
@@ -184,6 +200,34 @@ export default function SupportSection({
                 {isFormVisible && (
                   <form className={styles.form} onSubmit={handleCheckout}>
                     <div
+                      className={styles.drinkOptions}
+                      role="group"
+                      aria-label={t('footer.supportDrink')}
+                    >
+                      {SUPPORT_DRINKS.map(({ id }) => (
+                        <button
+                          key={id}
+                          type="button"
+                          className={styles.drinkOption}
+                          aria-pressed={drink === id}
+                          disabled={isSubmitting}
+                          onClick={() => {
+                            setDrink(id)
+                            setCups(1)
+                            setCheckoutError(false)
+                          }}
+                        >
+                          <span className={styles.drinkIcon} data-drink={id} aria-hidden="true">
+                            <CoffeeIcon />
+                            {id === 'doubleEspresso' && <CoffeeIcon />}
+                            {id === 'flatWhite' && <DropIcon weight="fill" />}
+                          </span>
+                          <span>{t(`footer.drinks.${id}`)}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    <div
                       className={styles.stepper}
                       role="group"
                       aria-label={t('footer.supportCups')}
@@ -220,7 +264,7 @@ export default function SupportSection({
 
                     <div className={styles.total}>
                       <strong>{totalPrice}</strong>
-                      <span>{t('footer.pricePerCup', { price: cupPrice })}</span>
+                      <span>{t('footer.pricePerCup', { price: nextCupPrice })}</span>
                     </div>
 
                     <div className={styles.actions}>

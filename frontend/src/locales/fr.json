@@ -89,6 +89,12 @@
     "supportDescription": "Brew-even vous plaît ? Offrez-moi un café pour soutenir son développement.",
     "supportProject": "Soutenir le projet",
     "supportCups": "Nombre de tasses",
+    "supportDrink": "Choisissez un café",
+    "drinks": {
+      "singleEspresso": "Espresso simple",
+      "doubleEspresso": "Double espresso",
+      "flatWhite": "Flat white"
+    },
     "cup_one": "tasse",
     "cup_other": "tasses",
     "pricePerCup": "{{price}} par tasse",

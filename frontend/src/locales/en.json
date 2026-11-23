@@ -89,6 +89,12 @@
     "supportDescription": "Enjoying Brew-even? Buy me a coffee and help support its development.",
     "supportProject": "Support the project",
     "supportCups": "Number of cups",
+    "supportDrink": "Choose coffee",
+    "drinks": {
+      "singleEspresso": "Single espresso",
+      "doubleEspresso": "Double espresso",
+      "flatWhite": "Flat white"
+    },
     "cup_one": "cup",
     "cup_other": "cups",
     "pricePerCup": "{{price}} per cup",

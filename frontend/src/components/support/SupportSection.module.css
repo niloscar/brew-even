@@ -40,6 +40,63 @@
   animation: supportEnter 250ms ease-out both;
 }
 
+.drinkOptions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+.drinkOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-width: 0;
+  min-height: 5.5rem;
+  margin: 0;
+  padding: .75rem .25rem;
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  background: var(--card-inner-bg);
+  color: var(--text);
+  font-size: var(--font-sm);
+  text-align: center;
+
+  &:hover:not(:disabled) {
+    background: var(--card-inner-bg-hover);
+  }
+}
+
+.drinkOption[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--card-inner-bg-hover);
+}
+
+.drinkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+}
+
+.drinkIcon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.drinkIcon[data-drink='doubleEspresso'] svg + svg {
+  margin-left: -.65rem;
+}
+
+.drinkIcon[data-drink='flatWhite'] svg + svg {
+  width: .75rem;
+  height: .75rem;
+  margin-left: -.5rem;
+  align-self: flex-start;
+}
+
 .stepper {
   display: flex;
   align-items: center;
@@ -55,6 +112,10 @@
   height: 2.75rem;
   margin: 0;
   padding: 0;
+
+  &:hover:not(:disabled) {
+    background: var(--card-inner-bg-hover);
+  }
 }
 
 .stepperButton svg {
