@@ -48,6 +48,33 @@
       html[data-theme='dark'][data-splash='pending'] {
         background: #fff9e9;
       }
+
+      noscript main {
+        max-width: 32rem;
+        margin: 20vh auto;
+        padding: 0 1.5rem;
+        font-family: system-ui, sans-serif;
+        text-align: center;
+      }
+
+      noscript .noscript-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: .333em;
+        font-size: clamp(1.5rem, 6vw, 3rem);
+        font-weight: 600;
+        line-height: 1;
+        color: #261813;
+      }
+
+      noscript .noscript-icon {
+        display: inline-block;
+        width: 1.667em;
+        height: 1.667em;
+        flex-shrink: 0;
+        background-color: currentColor;
+        mask: url('/favicon.svg') center / contain no-repeat;
+      }
     </style>
 
     <script>

@@ -9,12 +9,44 @@ import type { Plugin } from 'vite'
 
 const SEO_PLACEHOLDER = '<meta name="brew-even-seo" content="placeholder" />'
 
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+
+  return {
+    plugins: [react(), localizedHtml(env.SITE_URL ?? '')],
+    server: {
+      proxy: {
+        '/api': {
+          target: env.API_URL || 'http://localhost:3000',
+          changeOrigin: true,
+        },
+      },
+    }
+  }
+})
+
 function escapeHtml(value: string) {
   return value
     .replaceAll('&', '&amp;')
     .replaceAll('"', '&quot;')
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
+}
+
+function noScriptHtml(message: string) {
+  return `
+    <div id="root">
+      <noscript>
+        <main>
+          <div class="noscript-logo">
+            <span class="noscript-icon" aria-hidden="true"></span>
+            <span>Brew-even</span>
+          </div>
+          <p>${escapeHtml(message)}</p>
+        </main>
+      </noscript>
+    </div>
+  `
 }
 
 function localizedHtml(baseUrl: string): Plugin {
@@ -71,6 +103,7 @@ function localizedHtml(baseUrl: string): Plugin {
           .replace(/<html lang="[^"]+">/, `<html lang="${locale}">`)
           .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
           .replace(SEO_PLACEHOLDER, metadata)
+          .replace('<div id="root"></div>', noScriptHtml(translation.noScript.message))
 
         const outputPath = resolve(outDir, path.slice(1), 'index.html')
 
@@ -100,34 +133,11 @@ function localizedHtml(baseUrl: string): Plugin {
         ...alternateLinks
       ].join('\n    ')
 
-      const languageLinks = Object.entries(LANGUAGES)
-        .map(([path, { label }]) => `<a href="${path}">${escapeHtml(label)}</a>`)
-        .join(' · ')
-
       const rootHtml = html
         .replace(SEO_PLACEHOLDER, rootMetadata)
-        .replace(
-          '<div id="root"></div>',
-          `<div id="root"><noscript><main><h1>Brew-even</h1><p>Choose your language:</p><nav aria-label="Languages">${languageLinks}</nav></main></noscript></div>`
-        )
+        .replace('<div id="root"></div>', noScriptHtml(LANGUAGES['/en'].translation.noScript.message))
 
       await writeFile(indexPath, rootHtml)
     }
   }
 }
-
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
-
-  return {
-    plugins: [react(), localizedHtml(env.SITE_URL ?? '')],
-    server: {
-      proxy: {
-        '/api': {
-          target: env.API_URL || 'http://localhost:3000',
-          changeOrigin: true,
-        },
-      },
-    }
-  }
-})

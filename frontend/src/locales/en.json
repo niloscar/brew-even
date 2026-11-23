@@ -3,6 +3,9 @@
     "title": "Brew-even | Home Espresso Cost Calculator",
     "description": "Calculate your home espresso costs. Track equipment and brewing expenses, and see how your average cost per cup changes over time."
   },
+  "noScript": {
+    "message": "Brew-even requires JavaScript. Enable JavaScript in your browser to use Brew-even."
+  },
   "overview": {
     "title": "Overview",
     "lastCup": "Last cup",

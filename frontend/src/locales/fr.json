@@ -3,6 +3,9 @@
     "title": "Brew-even | Calculez le coût de votre espresso maison",
     "description": "Calculez le coût de vos expressos à la maison. Suivez votre matériel et vos dépenses et voyez comment le coût moyen par tasse évolue."
   },
+  "noScript": {
+    "message": "Brew-even nécessite JavaScript. Activez JavaScript dans votre navigateur pour utiliser Brew-even."
+  },
   "overview": {
     "title": "Vue d’ensemble",
     "lastCup": "Dernière",
