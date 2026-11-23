@@ -1,16 +1,9 @@
 import { z } from 'zod'
+import { AMOUNT_LIMITS } from 'shared'
 import { SUPPORTED_CURRENCIES } from 'shared'
 import { createSupportCheckout, getSupportCheckoutStatus } from '../adapters/stripe.adapter.ts'
 
 import type { Request, Response } from 'express'
-import type { Currency } from 'shared'
-
-const AMOUNT_LIMITS: Record<Currency, { min: number; max: number }> = {
-  SEK: { min: 1000, max: 1000000 },
-  USD: { min: 100, max: 100000 },
-  EUR: { min: 100, max: 100000 },
-  GBP: { min: 100, max: 100000 }
-}
 
 const supportCheckoutSchema = z.object({
   amount: z.number().int().positive(),

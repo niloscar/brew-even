@@ -89,6 +89,12 @@
     "supportDescription": "Gillar du Brew-even? Bjud mig på en kopp kaffe och stöd utvecklingen av projektet.",
     "supportProject": "Stöd projektet",
     "supportCups": "Antal koppar",
+    "supportDrink": "Välj kaffe",
+    "drinks": {
+      "singleEspresso": "Enkel espresso",
+      "doubleEspresso": "Dubbel espresso",
+      "flatWhite": "Flat white"
+    },
     "cup_one": "kopp",
     "cup_other": "koppar",
     "pricePerCup": "{{price}} per kopp",
