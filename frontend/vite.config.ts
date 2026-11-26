@@ -116,7 +116,7 @@ function localizedHtml(baseUrl: string): Plugin {
 
       const rootMetadata = [
         `<meta name="description" content="${rootDescription}" />`,
-        `<link rel="canonical" href="${BASE_URL}/" />`,
+        `<link rel="canonical" href="${BASE_URL}/en" />`,
         `<meta property="og:type" content="website" />`,
         `<meta property="og:site_name" content="Brew-even" />`,
         `<meta property="og:title" content="${rootTitle}" />`,
